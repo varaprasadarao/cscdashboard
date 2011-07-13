@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TeamDevelopment">
+
+	<resultMap id="resultAttrition" class="com.csc.dashboard.domain.Attrition">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="month" column="month" jdbcType="VARCHAR" javaType="string"/>
+        <result property="attrNum" column="attrition_num" jdbcType="int" javaType="int" />
+        <result property="openingHeadCount" column="opening_head_count" jdbcType="int" javaType="int" />
+        <result property="closingHeadCount" column="closing_head_count" jdbcType="int" javaType="int" />
+	</resultMap>
+        
+    <select id="getAttrition" parameterClass="java.util.Map" resultMap="resultAttrition">
+        select a.id, concat( md.month ,' ', m.year) as month, a.attrition_num, a.opening_head_count, a.closing_head_count 
+        from attrition a, months m, month_def md 
+        where a.month = m.id and m.month = md.month_num and a.account = #account#
+        		and a.month > (select id from months where month= #startMonth# and year= #startYear# )
+    </select>
+    
+    
+    
+    
+    <resultMap id="resultBackfill" class="com.csc.dashboard.domain.Backfill">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="novient" column="novient" jdbcType="VARCHAR" javaType="string"/>
+        <result property="empServingNotice" column="emp_serving_notice" jdbcType="VARCHAR" javaType="string"/>
+        <result property="lastWorkingDate" column="last_working_date" jdbcType="VARCHAR" javaType="string"/>
+        <result property="replacementDate" column="replacement_date" jdbcType="VARCHAR" javaType="string"/>
+        <result property="replacementIdentified" column="replacement_identified" jdbcType="VARCHAR" javaType="string"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="string"/>
+        
+    </resultMap>
+        
+    <select id="getBackfillInfo" parameterClass="java.util.Map" resultMap="resultBackfill">
+        select id, novient, emp_serving_notice, last_working_date, replacement_date, replacement_identified, status 
+        from backfill_management 
+        where account = #account# and month = (select id from months where month = #month# and year = #year#)
+    </select>
+    
+    
+    
+    
+    <resultMap id="resultRepresentation" class="com.csc.dashboard.domain.Representation">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
+        <result property="nameOfForum" column="name_of_forum" jdbcType="VARCHAR" javaType="string"/>
+        <result property="resource" column="resource" jdbcType="VARCHAR" javaType="string"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="string"/>
+        <result property="supportRequired" column="support_required" jdbcType="VARCHAR" javaType="string"/>
+    </resultMap>
+        
+    <select id="getRepresentation" parameterClass="java.util.Map" resultMap="resultRepresentation">
+        select rep.id, t.name as team, name_of_forum, resource, status, support_required 
+        from representation_in_csc rep, team t 
+        where rep.team = t.id and rep.account = #account# 
+        	and rep.month = (select id from months where month = #month# and year = #year#) order by rep.id;
+    </select>
+    
+    
+    
+    
+    <resultMap id="resultResourceRotation" class="com.csc.dashboard.domain.ResourceRotation">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="statistics" column="statistics" jdbcType="VARCHAR" javaType="string" />
+        <result property="group" column="groupTxt" jdbcType="VARCHAR" javaType="string"/>
+    </resultMap>
+        
+    <select id="getResourceRotation" parameterClass="java.util.Map" resultMap="resultResourceRotation">
+        select id, statistics, groupTxt from resource_rotation 
+        where account = #account# and month = (select id from months where month = #month# and year = #year#) 
+        order by id
+    </select>
+    
+    
+    
+    
+    <resultMap id="resultTeamBuilding" class="com.csc.dashboard.domain.TeamBuilding">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="activity" column="activity" jdbcType="VARCHAR" javaType="string"/>
+        <result property="resourceImpacted" column="resource_impacted" jdbcType="int" javaType="int"/>
+        <result property="impact" column="impact" jdbcType="VARCHAR" javaType="string"/>
+    </resultMap>
+        
+    <select id="getTeamBuildingAct" parameterClass="java.util.Map" resultMap="resultTeamBuilding">
+        select id, activity, resource_impacted, impact 
+        from team_building where account = #account# 
+        	and month = (select id from months where month = #month# and year = #year#) order by id;
+    </select>
+    
+</sqlMap>

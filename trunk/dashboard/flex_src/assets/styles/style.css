@@ -1,0 +1,102 @@
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+@font-face{
+	src: url("MyriadWebPro.ttf");
+	fontFamily: myMyriad;
+	embedAsCFF: false; 
+}
+
+
+mx|ColumnChart {
+	fontFamily: myMyriad;
+	fontSize: 14;
+}
+mx|LineChart {
+	fontFamily: myMyriad;
+	fontSize: 14;
+}
+
+
+
+/*** CIRCLES OF DOOM ***/
+mx|Application {
+	backgroundGradientAlphas: 1.0, 1.0;
+	backgroundGradientColors: #111111, #111111;
+}
+
+/*** BODY ***/
+.body {
+	horizontalAlign: center;
+	backgroundColor: #ffffff;
+	borderStyle: solid;
+	borderThickness: 2;
+	borderColor: #886655;
+
+}
+
+.logo {
+	backgroundColor: #C0C0C0;
+
+}
+
+.appTitle
+{
+	fontFamily: "Trebuchet MS";
+	fontSize:16;
+	color:#000000;
+	fontWeight:bold;
+	
+}
+.subHead
+{
+	fontFamily: "Trebuchet MS";
+	fontSize:16;
+	color:#000000;
+	fontWeight:bold;
+	
+}
+.appText
+{
+	fontFamily: "Trebuchet MS";
+	fontWeight: "bold";
+	fontSize:13;
+	color:#000000;
+}
+
+.logo1 {
+	backgroundColor: #C0C0C0;
+	padding-top: 10;
+	padding-left: 10;
+}
+/*** CONTENT ***/
+.contentTxt {
+	fontFamily: Arial;
+	fontSize: 12;
+	fontWeight: normal;
+	color: #000000;
+}
+
+/*** SIDEBAR ***/
+.sidebar {
+	backgroundColor: #aa1100;
+	borderStyle: solid;
+	borderThickness: 2;
+	borderColor: #ff2200;
+	cornerRadius: 12;
+	paddingLeft: 10; paddingRight: 10; paddingTop: 10; paddingBottom: 10;
+}
+
+.sidebarTxt {
+	fontFamily: Arial;
+	fontSize: 12;
+	fontWeight: normal;
+	color: #ffffff;
+}
+
+/*** FOOTER ***/
+.footerTxt {
+	fontFamily: Arial;
+	fontSize: 10;
+	fontWeight: normal;
+	color: #886655;
+}
