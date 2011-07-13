@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"
+				   creationComplete="init()">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<mx:RemoteObject id="srv" destination="teamDevService" result="resultHandler(event)" fault="faultHandler(event)" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.csc.dashboard.busniess.service.TeamDevelopmentService;
+			import com.csc.dashboard.events.AccountChangedEvent;
+			import com.csc.dashboard.events.Global;
+			import com.csc.dashboard.model.AttritionVO;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			private	var service:TeamDevelopmentService  = new TeamDevelopmentService();
+			private var user:AttritionVO = new AttritionVO();
+			
+			
+			[Bindable]
+			public var months:ArrayCollection = new ArrayCollection(
+				[ {label:"Jan", data:1},
+					{label:"Feb", data:2},
+					{label:"Mar", data:3},
+					{label:"Apr", data:4},
+					{label:"May", data:5},
+					{label:"Jun", data:6},
+					{label:"Jul", data:7},
+					{label:"Aug", data:8},
+					{label:"Sep", data:9},
+					{label:"Oct", data:10},
+					{label:"Nov", data:11},
+					{label:"Dec", data:12}]);
+			
+			[Bindable]
+			private var yearXML:XML = new XML;
+			
+			[Bindable]
+			private var _ac:ArrayCollection;
+			
+			private function resultHandler(event:ResultEvent):void{
+				_ac = event.result as ArrayCollection;
+			}
+			
+			private function faultHandler(event:FaultEvent):void{
+				Alert.show('code : ' + event.fault.faultCode +
+					', message : ' + event.fault.faultString +
+					',detail : ' + event.fault.faultDetail);
+				trace(event);
+			}
+			
+			
+			private function init():void {
+				createYears();
+				var now:Date = new Date();
+				var monthnum:Number = now.getMonth();
+				if(monthnum == 0){
+					monthCB.selectedIndex = 11;
+				}else{
+					monthCB.selectedIndex = now.getMonth() - 1;
+				}
+				Global.eventBus.addEventListener("accountChanged",accountCh);
+				reload();
+			}
+			
+			private function createYears():void {
+				var now:Date = new Date();
+				yearXML = <years></years>;
+				yearXML.appendChild(<year value={now.fullYear}>{now.fullYear}</year>);
+				for (var year:int=now.fullYear-1;year >= 2010; --year) {
+					yearXML.appendChild(<year value={year}>{year}</year>);
+				}
+			}
+			private function reload():void {
+				_ac = null;
+				displayText.text = "Attritions for " + Global.accountLabel();	
+				var token:AsyncToken = service.getAttrition(1,3,2010);
+				token.addResponder(new AsyncResponder(onUserResult, onFault));
+			}
+			
+			private function accountCh(event:AccountChangedEvent):void{
+				reload();
+			}
+			
+			private function onUserResult(event:ResultEvent, token:Object = null ):void {
+				_ac = event.result as ArrayCollection;
+//				Alert.show("Returned  " + user.name);
+//				usrName = user.name;
+//				// Once we get the wavePeriods lets retrieve the geoAreaData Get the GeoArea Data.
+				//var geoAreaToken:AsyncToken = service.getGeoAreaFromArbor(geoAreaId.selectedItem.data);
+				//	geoAreaToken.addResponder(new AsyncResponder(geoAreaTokenResult, onFault));
+				//
+				//setTimeout(refreshDataGrid, 1000);	
+			}
+			
+			private function onFault(event:FaultEvent, token:Object = null ):void {
+				Alert.show(event.fault.toString());
+			}
+
+			
+			private function changeEvt(event:Event):void {
+				reload();
+			}
+			
+			
+			[Bindable]
+			public var attrition:ArrayCollection = new ArrayCollection(
+				[ {month:"Apr 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:3.6},
+					{month:"May 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:3.6},
+					{month:"June 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:7.2},
+					{month:"July 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:8.5},
+					{month:"Aug 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:9.0},
+					{month:"Sep 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:12.2},
+					{month:"Oct 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:17.7},
+					{month:"Nov 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:21.6},
+					{month:"Dec 2010", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:21.6},
+					{month:"Jan 2011", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:23.0},
+					{month:"Feb 2011", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:23.6},
+					{month:"Mar 2011", attrnums:3, openhc:86, closinghc:83,cumexit:3,avghc:85,caa:26.2}]);
+			
+		]]>
+	</fx:Script>
+	
+	
+	<mx:Label id="displayText" styleName="subHead" x="30" y="20"/>
+	<mx:ComboBox id="monthCB" dataProvider="{months}" x="695" y="20" change="changeEvt(event)"></mx:ComboBox>
+	<mx:ComboBox id="yearCB" dataProvider="{yearXML.year}" x="765" y="20" change="changeEvt(event)"></mx:ComboBox>
+
+	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="50%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
+		<mx:columns>
+			<mx:DataGridColumn dataField="month" headerText="Month" wordWrap="true"/>
+			<mx:DataGridColumn dataField="attrNum" headerText="Attrition Numbers" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="openingHeadCount" headerText="Opening Head Count" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="closingHeadCount" headerText="Closing Head Count" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="cumulativeExits" headerText="Cumulative Exits" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="avgHeadCount" headerText="Average Head Count" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="cumulativeAnnAttr" headerText="Cumulative Annualized Attrition" headerWordWrap="true" wordWrap="true"/>
+		</mx:columns>
+	</mx:DataGrid>
+	
+	<mx:LineChart id="linechart" color="0x323232"
+				  showDataTips="true" dataProvider="{_ac}" x="{dg.width + 20}" y="60" showDataTipTargets="true">
+		
+		<mx:horizontalAxis>
+			<mx:CategoryAxis id="horAxis" categoryField="month" title="Months"/>
+		</mx:horizontalAxis>
+		
+		<mx:horizontalAxisRenderers>
+			<mx:AxisRenderer labelRotation="90" axis="{horAxis}" />
+		</mx:horizontalAxisRenderers>
+	
+		<mx:series>
+			<mx:LineSeries yField="cumulativeAnnAttr" form="segment" displayName="Cumulative Annualized Attrtion"/>
+		</mx:series>
+	</mx:LineChart>
+	
+	<mx:Legend dataProvider="{linechart}" color="0x323232" x="{dg.width + 150}" y="70"/>
+
+</s:BorderContainer>
