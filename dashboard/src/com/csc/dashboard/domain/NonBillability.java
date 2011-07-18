@@ -16,7 +16,7 @@ public class NonBillability implements Serializable {
 	private int onshoreBillingHC;
 	private int lossOfBillingAvgHC;
 	private int partialBilling;
-	private int nonBillabilityRatio;
+	private double nonBillabilityRatio;
 	public int getId() {
 		return id;
 	}
@@ -65,10 +65,10 @@ public class NonBillability implements Serializable {
 	public void setPartialBilling(int partialBilling) {
 		this.partialBilling = partialBilling;
 	}
-	public int getNonBillabilityRatio() {
+	public double getNonBillabilityRatio() {
 		return nonBillabilityRatio;
 	}
-	public void setNonBillabilityRatio(int nonBillabilityRatio) {
+	public void setNonBillabilityRatio(double nonBillabilityRatio) {
 		this.nonBillabilityRatio = nonBillabilityRatio;
 	}
 	

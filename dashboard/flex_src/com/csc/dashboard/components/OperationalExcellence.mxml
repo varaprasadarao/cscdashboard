@@ -16,40 +16,13 @@
 			<csc:OperationExcellence/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Utilization" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+			<csc:Utilization/>			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Escalations" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+			<csc:Escalations/>			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Margins" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+			<csc:Margins/>			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Key Projects" width="100%" height="100%" >
 			<s:BorderContainer width="100%" height="100%" borderWeight="2" 

@@ -13,9 +13,26 @@ public class DemandForecast implements Serializable {
 	private String month;
 	private int openDemandRepl;
 	private int openDemandNew;
+	private int openDemand;
 	private int demandForecastRepl;
 	private int demandForecastNew;
-	private int demandForecastDesc;
+	private int demandForecast;
+	private double demandForecastDesc;
+	
+	
+	
+	public int getOpenDemand() {
+		return openDemand;
+	}
+	public void setOpenDemand(int openDemand) {
+		this.openDemand = openDemand;
+	}
+	public int getDemandForecast() {
+		return demandForecast;
+	}
+	public void setDemandForecast(int demandForecast) {
+		this.demandForecast = demandForecast;
+	}
 	public int getId() {
 		return id;
 	}
@@ -58,10 +75,10 @@ public class DemandForecast implements Serializable {
 	public void setDemandForecastNew(int demandForecastNew) {
 		this.demandForecastNew = demandForecastNew;
 	}
-	public int getDemandForecastDesc() {
+	public double getDemandForecastDesc() {
 		return demandForecastDesc;
 	}
-	public void setDemandForecastDesc(int demandForecastDesc) {
+	public void setDemandForecastDesc(double demandForecastDesc) {
 		this.demandForecastDesc = demandForecastDesc;
 	}
 	

@@ -2,7 +2,7 @@
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:mx="library://ns.adobe.com/flex/mx"
-				   xmlns:csc="com.csc.dashboard.components.opex.*" width="100%" height="100%">
+				   width="100%" height="100%" xmlns:billing="com.csc.dashboard.components.opex.billing.*">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -10,49 +10,25 @@
 	<s:TabBar id="tabs" left="15" dataProvider="{vs}" top="10" width="98%"/>
 	<mx:ViewStack id="vs" width="110%" height="100%" left="2" top="34">
 		<s:NavigatorContent label="Non Billability"  width="100%" height="100%">
-			<csc:NonBillability />
+			<billing:NonBillability />
 		</s:NavigatorContent>
 		<s:NavigatorContent label="eManage Discrepancy" width="100%" height="100%" >
-			<csc:EManager/>
+			<billing:EManager/>
 			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Demand Forecast" width="100%" height="100%" >
-			<csc:DemandForecast/>
+			<billing:DemandForecast/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="eTes Accuracy" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
+			<billing:ETesAccuracy/>
 			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Billing Efficiency" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
+			<billing:BillingEfficiency/>
 			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Grade Mix" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
+			<billing:GradeMix/>
 			
 		</s:NavigatorContent>
 

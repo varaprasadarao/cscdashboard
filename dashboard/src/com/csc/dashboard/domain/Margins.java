@@ -13,6 +13,22 @@ public class Margins implements Serializable {
 	private String team;
 	private double revenue;
 	private double cost;
+	private double contributingMargin;
+	private double oi;
+	
+	
+	public double getContributingMargin() {
+		return contributingMargin;
+	}
+	public void setContributingMargin(double contributingMargin) {
+		this.contributingMargin = contributingMargin;
+	}
+	public double getOi() {
+		return oi;
+	}
+	public void setOi(double oi) {
+		this.oi = oi;
+	}
 	public int getId() {
 		return id;
 	}
