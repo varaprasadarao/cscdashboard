@@ -37,6 +37,7 @@
 				Global.accountName = account.selectedLabel;
 				Global.verticalId = vertical.selectedItem.data;
 				Global.verticalName = vertical.selectedLabel;
+				Global.eventBus.dispatchEvent(new AccountChangedEvent("accountChanged",account.selectedItem.data,vertical.selectedItem.data));
 			}
 			
 			private function changeEvt(event:Event):void {

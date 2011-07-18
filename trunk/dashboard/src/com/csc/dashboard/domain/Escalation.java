@@ -17,6 +17,8 @@ public class Escalation implements Serializable {
 	private String assignedTo;
 	private int daysOpen;
 	private String account;
+	
+	
 	public int getId() {
 		return id;
 	}

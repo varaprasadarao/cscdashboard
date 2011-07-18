@@ -14,6 +14,15 @@ public class GradeMix implements Serializable {
 	private String month;
 	private int gradeMix;
 	private double gradeMixPer;
+	private int headCount;
+	
+	
+	public int getHeadCount() {
+		return headCount;
+	}
+	public void setHeadCount(int headCount) {
+		this.headCount = headCount;
+	}
 	public int getId() {
 		return id;
 	}

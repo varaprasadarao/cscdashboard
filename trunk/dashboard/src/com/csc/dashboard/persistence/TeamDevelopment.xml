@@ -8,9 +8,9 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 	<resultMap id="resultAttrition" class="com.csc.dashboard.domain.Attrition">
         <result property="id" column="id" jdbcType="int" javaType="int" />
         <result property="month" column="month" jdbcType="VARCHAR" javaType="string"/>
-        <result property="attrNum" column="attrition_num" jdbcType="int" javaType="int" />
-        <result property="openingHeadCount" column="opening_head_count" jdbcType="int" javaType="int" />
-        <result property="closingHeadCount" column="closing_head_count" jdbcType="int" javaType="int" />
+        <result property="attrNum" column="attrition_num" jdbcType="int" javaType="int"  nullValue="0"/>
+        <result property="openingHeadCount" column="opening_head_count" jdbcType="int" javaType="int"  nullValue="0"/>
+        <result property="closingHeadCount" column="closing_head_count" jdbcType="int" javaType="int"  nullValue="0"/>
 	</resultMap>
         
     <select id="getAttrition" parameterClass="java.util.Map" resultMap="resultAttrition">
@@ -80,7 +80,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     <resultMap id="resultTeamBuilding" class="com.csc.dashboard.domain.TeamBuilding">
         <result property="id" column="id" jdbcType="int" javaType="int" />
         <result property="activity" column="activity" jdbcType="VARCHAR" javaType="string"/>
-        <result property="resourceImpacted" column="resource_impacted" jdbcType="int" javaType="int"/>
+        <result property="resourceImpacted" column="resource_impacted" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="impact" column="impact" jdbcType="VARCHAR" javaType="string"/>
     </resultMap>
         

@@ -33,5 +33,13 @@
     <bean id="teamDevService"
         class="org.springframework.flex.remoting.RemotingDestinationExporter" 
         p:messageBroker-ref="mySpringManagedMessageBroker"
-        p:service-ref="TeamDevService"/>        
+        p:service-ref="TeamDevService"/>  
+        
+        
+    <bean id="OpExcelService" class="com.csc.dashboard.service.OpExcelService" />
+    
+    <bean id="opExcelService"
+        class="org.springframework.flex.remoting.RemotingDestinationExporter" 
+        p:messageBroker-ref="mySpringManagedMessageBroker"
+        p:service-ref="OpExcelService"/>           
 </beans>
