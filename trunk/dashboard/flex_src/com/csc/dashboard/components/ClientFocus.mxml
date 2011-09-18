@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
-				   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%">
+				   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"
+				   xmlns:csc="com.csc.dashboard.components.clientfocus.*">
 	<s:layout>
 		<s:BasicLayout/>
 	</s:layout>
@@ -12,50 +13,17 @@
 	<s:TabBar id="tabs" left="15" dataProvider="{vs}" top="10" width="98%"/>
 	<mx:ViewStack id="vs" width="110%" height="100%" left="2" top="34">
 		<s:NavigatorContent label="Client Appreciations"  width="100%" height="100%">
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-				
-			</s:BorderContainer>
+			<csc:Appreciation/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="BACKCSAT / Surrogate CSAT" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+			<csc:Csat/>			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="New order closed" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
+			<csc:NewOrderClosed/>
 			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Innovations" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
+			<csc:Innovations/>
 			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Assessment Programs" width="100%" height="100%" >

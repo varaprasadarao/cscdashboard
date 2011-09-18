@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"				   
+				   creationComplete="init()">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.csc.dashboard.busniess.service.ClientFocusService;
+			import com.csc.dashboard.events.AccountChangedEvent;
+			import com.csc.dashboard.events.Global;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			private	var service:ClientFocusService  = new ClientFocusService();
+			
+			[Bindable]
+			private var _ac:ArrayCollection;
+			
+			[Bindable]
+			public var months:ArrayCollection = new ArrayCollection(
+				[ {label:"Jan", data:1},
+					{label:"Feb", data:2},
+					{label:"Mar", data:3},
+					{label:"Apr", data:4},
+					{label:"May", data:5},
+					{label:"Jun", data:6},
+					{label:"Jul", data:7},
+					{label:"Aug", data:8},
+					{label:"Sep", data:9},
+					{label:"Oct", data:10},
+					{label:"Nov", data:11},
+					{label:"Dec", data:12}]);
+			
+			[Bindable]
+			private var yearXML:XML = new XML;
+			
+			private function init():void{
+				createYears();
+				var now:Date = new Date();
+				var monthnum:Number = now.getMonth();
+				if(monthnum == 0){
+					monthCB.selectedIndex = 11;
+				}else{
+					monthCB.selectedIndex = now.getMonth() - 1;
+				}
+				
+				Global.eventBus.addEventListener("accountChanged",accountCh);
+				reload();
+			}
+			
+			private function accountCh(event:AccountChangedEvent):void{
+				reload();
+			}
+			
+			private function createYears():void {
+				var now:Date = new Date();
+				yearXML = <years></years>;
+				yearXML.appendChild(<year value={now.fullYear}>{now.fullYear}</year>);
+				for (var year:int=now.fullYear-1;year >= 2010; --year) {
+					yearXML.appendChild(<year value={year}>{year}</year>);
+				}
+			}
+			
+			private function changeEvt(event:Event):void {
+				reload();
+			}
+			
+			
+			
+			private function reload():void {
+				_ac = null;
+				displayText.text = "Innovations for " + Global.accountLabel();								
+				var token:AsyncToken = service.getInnovations(parseInt(Global.accountId),monthCB.selectedIndex + 1,parseInt(yearCB.selectedLabel));
+				token.addResponder(new AsyncResponder(onResult, onFault));
+			}
+			
+			private function onResult(event:ResultEvent, token:Object = null ):void {
+				_ac = event.result as ArrayCollection;
+			}
+			
+			private function onFault(event:FaultEvent, token:Object = null ):void {
+				Alert.show('code : ' + event.fault.faultCode +
+					', message : ' + event.fault.faultString +
+					',detail : ' + event.fault.faultDetail);
+				trace(event);
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	<mx:Label id= "displayText" styleName="subHead" x="30" y="20"/>
+	<mx:ComboBox id="monthCB" dataProvider="{months}" x="695" y="20" change="changeEvt(event)"></mx:ComboBox>
+	<mx:ComboBox id="yearCB" dataProvider="{yearXML.year}" x="765" y="20" change="changeEvt(event)"></mx:ComboBox>
+	
+	
+	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="75%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
+		<mx:columns>
+			<mx:DataGridColumn dataField="team" headerText="Team" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="avgHC" headerText="Avg HC" headerWordWrap="true" wordWrap="true" width="70"/>
+			<mx:DataGridColumn dataField="numInnoSub" headerText="# of Innovations - submitted" headerWordWrap="true" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="numInnoQua" headerText="# of Innovations - Qualified" headerWordWrap="true" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="manHrsQualInno" headerText="Manhours of Qualified innovations" headerWordWrap="true" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="qualInnoHC" headerText="Qualified Innovations as %age of HC" headerWordWrap="true" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="innoIndex" headerText="Innovation index" headerWordWrap="true" wordWrap="true" width="100"/>
+		</mx:columns>
+	</mx:DataGrid>
+</s:BorderContainer>
