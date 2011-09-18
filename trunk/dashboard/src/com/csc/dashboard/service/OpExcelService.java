@@ -1,9 +1,9 @@
 package com.csc.dashboard.service;
 
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.List;
 
+import com.csc.dashboard.Utils;
 import com.csc.dashboard.dao.OpExcelDao;
 import com.csc.dashboard.dao.OpExcelDaoImpl;
 import com.csc.dashboard.domain.BillingEfficiency;
@@ -38,7 +38,7 @@ public class OpExcelService {
 				totalOnshoreBillingHC += nonBill.getOnshoreBillingHC();
 				totalLossOfBillingAvgHC += nonBill.getLossOfBillingAvgHC();
 				totalPartialBilling += nonBill.getPartialBilling();
-				nonBill.setNonBillabilityRatio(roundDecimal((double)(nonBill.getHeadCount() - (nonBill.getOffshoreBillingHC() + nonBill.getOnshoreBillingHC() - nonBill.getPartialBilling()))/(double)nonBill.getHeadCount()*100));
+				nonBill.setNonBillabilityRatio(Utils.roundDecimal((double)(nonBill.getHeadCount() - (nonBill.getOffshoreBillingHC() + nonBill.getOnshoreBillingHC() - nonBill.getPartialBilling()))/(double)nonBill.getHeadCount()*100));
 			}
 			overall.setTeam("Overall");
 			overall.setHeadCount(totalHC);
@@ -46,7 +46,7 @@ public class OpExcelService {
 			overall.setOnshoreBillingHC(totalOnshoreBillingHC);
 			overall.setLossOfBillingAvgHC(totalLossOfBillingAvgHC);
 			overall.setPartialBilling(totalPartialBilling);
-			overall.setNonBillabilityRatio(roundDecimal((double)(overall.getHeadCount() - (overall.getOffshoreBillingHC() + overall.getOnshoreBillingHC() - overall.getPartialBilling()))/(double)overall.getHeadCount()*100));
+			overall.setNonBillabilityRatio(Utils.roundDecimal((double)(overall.getHeadCount() - (overall.getOffshoreBillingHC() + overall.getOnshoreBillingHC() - overall.getPartialBilling()))/(double)overall.getHeadCount()*100));
 			res.add(0,overall);	
 		}
 		return res;
@@ -61,11 +61,11 @@ public class OpExcelService {
 			for(EManageDisc eMan: res){
 				totalEManageDisc += eMan.geteManageDisc();
 				totalHC += eMan.getHeadCount();
-				eMan.seteManageDiscHC(roundDecimal((double)(eMan.geteManageDisc()*100)/eMan.getHeadCount()));
+				eMan.seteManageDiscHC(Utils.roundDecimal((double)(eMan.geteManageDisc()*100)/eMan.getHeadCount()));
 			}
 			overall.setTeam("Overall");
 			overall.seteManageDisc(totalEManageDisc);
-			overall.seteManageDiscHC(roundDecimal((double)(totalEManageDisc*100)/totalHC));
+			overall.seteManageDiscHC(Utils.roundDecimal((double)(totalEManageDisc*100)/totalHC));
 			res.add(0,overall);
 		}
 			
@@ -129,7 +129,7 @@ public class OpExcelService {
 			int totalPossibleHrs = 0;
 			int totalBilledHrs = 0;
 			for(BillingEfficiency bill:res){
-				bill.setBillingEfficiency(roundDecimal((double)(bill.getBilledHrs()*100)/bill.getMaxPossibleBillingHrs()));
+				bill.setBillingEfficiency(Utils.roundDecimal((double)(bill.getBilledHrs()*100)/bill.getMaxPossibleBillingHrs()));
 				totalPossibleHrs += bill.getMaxPossibleBillingHrs();
 				totalBilledHrs += bill.getBilledHrs();
 			}
@@ -137,7 +137,7 @@ public class OpExcelService {
 			summary.setTeam("Overall");
 			summary.setBilledHrs(totalBilledHrs);
 			summary.setMaxPossibleBillingHrs(totalPossibleHrs);
-			summary.setBillingEfficiency(roundDecimal((double)(totalBilledHrs*100)/totalPossibleHrs));
+			summary.setBillingEfficiency(Utils.roundDecimal((double)(totalBilledHrs*100)/totalPossibleHrs));
 			res.add(0,summary);
 		}
 		return res;
@@ -150,14 +150,14 @@ public class OpExcelService {
 			int totalGrade = 0;
 			int totalHC = 0;
 			for(GradeMix grade : res){
-				grade.setGradeMixPer(roundDecimal((double)(grade.getGradeMix()*100)/grade.getHeadCount()));
+				grade.setGradeMixPer(Utils.roundDecimal((double)(grade.getGradeMix()*100)/grade.getHeadCount()));
 				totalGrade += grade.getGradeMix();
 				totalHC += grade.getHeadCount();
 			}
 			GradeMix summary = new GradeMix();
 			summary.setTeam("Overall");
 			summary.setGradeMix(totalGrade);
-			summary.setGradeMixPer(roundDecimal((double)(totalGrade*100)/totalHC));
+			summary.setGradeMixPer(Utils.roundDecimal((double)(totalGrade*100)/totalHC));
 			res.add(0,summary);
 		}
 		return res;
@@ -181,10 +181,7 @@ public class OpExcelService {
 		return res;
 	}
 	
-	private double roundDecimal(double d) {
-    	DecimalFormat twoDForm = new DecimalFormat("#.#");
-    	return Double.valueOf(twoDForm.format(d));
-	}
+	
 	
 
 }

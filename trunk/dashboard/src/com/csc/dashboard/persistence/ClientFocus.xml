@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ClientFocus">
+
+	<resultMap id="resultClientAppreciation" class="com.csc.dashboard.domain.ClientAppreciation">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="appriciationFor" column="appreciation_for" jdbcType="VARCHAR" javaType="string"/>
+        <result property="appriciation" column="appreciation" jdbcType="VARCHAR" javaType="string" />
+        <result property="appriciatedBy" column="appreciated_by" jdbcType="VARCHAR" javaType="string" />
+        <result property="relevance" column="relevance" jdbcType="VARCHAR" javaType="string"/>
+	</resultMap>
+        
+    <select id="getClientAppreciation" parameterClass="java.util.Map" resultMap="resultClientAppreciation">
+    	select a.id, t.name as team, a.appreciation_for, a.appreciation, a.appreciated_by, a.relevance from appreciation a, team t
+    	where t.id = a.team and t.account = #account# and a.month = (select id from months where month = #month# and year = #year#)
+    </select>
+    
+    
+    
+    
+    <resultMap id="resultCsat" class="com.csc.dashboard.domain.Csat">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
+        <result property="description" column="description" jdbcType="VARCHAR" javaType="string" />
+        <result property="rating" column="rating" jdbcType="VARCHAR" javaType="string" />
+ 	</resultMap>
+        
+    <select id="getCSAT" parameterClass="java.util.Map" resultMap="resultCsat">
+    	select c.id, t.name as team, c.description, c.rating
+			from team t left join csat c on t.id = c.team 
+			where (c.month = (select id from months where month = #month# and year = #year#) or c.month is null) and t.account = #account# 
+			order by t.disp_order;
+    </select>
+    
+    
+    
+    
+    <resultMap id="resultNewOrderClosed" class="com.csc.dashboard.domain.NewOrderClosed">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
+        <result property="type" column="type" jdbcType="VARCHAR" javaType="string"/>
+        <result property="effort" column="effort" jdbcType="VARCHAR" javaType="string" />
+        <result property="briefDesc" column="briefDesc" jdbcType="VARCHAR" javaType="string"/>
+        
+ 	</resultMap>
+        
+    <select id="getNewOrderClosed" parameterClass="java.util.Map" resultMap="resultNewOrderClosed">
+    	select c.id, t.name as team, c.type, c.effort, c.description as briefDesc from new_order_closed c, team t 
+    	where c.team = t.id and c.month = (select id from months where month = #month# and year = #year#) and t.account = #account#  
+    	order by t.disp_order
+    </select>
+ 
+ 
+ 
+ 
+    <resultMap id="resultInnovation" class="com.csc.dashboard.domain.Innovation">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
+        <result property="avgHC" column="avg_hc" jdbcType="int" javaType="int" />
+        <result property="numInnoSub" column="inno_submitted" jdbcType="int" javaType="int" />
+        <result property="numInnoQua" column="inno_qualified" jdbcType="int" javaType="int" />
+        <result property="manHrsQualInno" column="manhrs_of_qualified_inno" jdbcType="int" javaType="int" />
+ 	</resultMap>
+        
+    <select id="getInnovations" parameterClass="java.util.Map" resultMap="resultInnovation">
+    	select i.id, t.name as team, i.avg_hc, i.inno_submitted, i.inno_qualified,i.manhrs_of_qualified_inno
+			from team t left join innovation i on t.id = i.team 
+			where (i.month = (select id from months where month = #month# and year = #year#) or i.month is null) and t.account = #account# 
+			order by t.disp_order;
+    </select>
+    
+    
+    
+    
+    <resultMap id="resultAssessment" class="com.csc.dashboard.domain.Assessment">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
+        <result property="knowledge" column="knowledge" jdbcType="int" javaType="int"  />
+        <result property="process" column="process" jdbcType="int" javaType="int"  />
+        <result property="technical" column="technical" jdbcType="int" javaType="int"  />
+ 	</resultMap>
+        
+    <select id="getAssessments" parameterClass="java.util.Map" resultMap="resultAssessment">
+    	select a.id, t.name as team, a.knowledge, a.process, a.technical
+			from team t left join assessment_programs a on t.id = a.team 
+			where (a.month = (select id from months where month = #month# and year = #year#) or a.month is null) and t.account = #account# 
+			order by t.disp_order;
+    </select>
+    
+    
+    
+    
+    
+    
+	<resultMap id="resultImproveInit" class="com.csc.dashboard.domain.ImproveInit">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="nameOfProg" column="name_of_prog" jdbcType="VARCHAR" javaType="string"/>
+        <result property="primaryTeam" column="primary_team" jdbcType="VARCHAR" javaType="string"  />
+        <result property="owner" column="owner" jdbcType="VARCHAR" javaType="string"  />
+        <result property="startDate" column="start_date" jdbcType="VARCHAR" javaType="string"  />
+        <result property="startScore" column="start_score" jdbcType="int" javaType="int"  />
+        <result property="endDate" column="end_date" jdbcType="VARCHAR" javaType="string"  />
+        <result property="desiredScore" column="desired_score" jdbcType="int" javaType="int"  />
+        <result property="numPplAffected" column="num_ppl_affected" jdbcType="int" javaType="int"  />
+        <result property="internalTraining" column="internal_training_conducted" jdbcType="VARCHAR" javaType="string"  />
+        <result property="progDesc" column="prog_desc" jdbcType="VARCHAR" javaType="string"  />
+ 	</resultMap>
+        
+    <select id="getImprovementInitiatives" parameterClass="java.util.Map" resultMap="resultImproveInit">
+    	select id, name_of_prog, primary_team, owner, start_date, start_score, end_date, desired_score, num_ppl_affected, internal_training_conducted, prog_desc
+			from improve_init 
+			where (month = (select id from months where month = #month# and year = #year#) or month is null) and account = #account# 
+			order by id;	
+    </select>
+    
+    
+    
+    
+    
+    <resultMap id="resultKMScorecard" class="com.csc.dashboard.domain.KMScorecard">
+        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
+        <result property="numKMContributed" column="numKMContrib" jdbcType="int" javaType="int"  />
+        <result property="qualifiedTop" column="qualTop10" jdbcType="int" javaType="int" />
+ 	</resultMap>
+        
+    <select id="getKMScorecard" parameterClass="java.util.Map" resultMap="resultKMScorecard">
+    	select k.id, t.name as team, k.numKMContrib, k.qualTop10
+			from team t left join km_scorecard k on t.id = k.team 
+			where (k.month = (select id from months where month = #month# and year = #year#) or k.month is null) and t.account = #account# 
+			order by t.disp_order;	
+    </select>
+    
+    
+    
+    
+	<resultMap id="resultVerticalLevelInit" class="com.csc.dashboard.domain.VerticalLevelInit">
+        <result property="nameOfInit" column="name_of_init" jdbcType="VARCHAR" javaType="string"/>
+        <result property="sponsor" column="sponsor" jdbcType="VARCHAR" javaType="string"  />
+        <result property="keyContributions" column="key_contributors" jdbcType="VARCHAR" javaType="string" />
+ 	</resultMap>
+        
+    <select id="getVerticalLevelInitiatives" parameterClass="java.util.Map" resultMap="resultVerticalLevelInit">
+    	select name_of_init, sponsor, key_contributors
+		from vertical_init where account = #account# and month = (select id from months where month = #month# and year = #year#)
+	</select>
+    
+    
+    
+    
+    
+</sqlMap>
