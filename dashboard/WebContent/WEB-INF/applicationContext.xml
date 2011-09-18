@@ -41,5 +41,13 @@
     <bean id="opExcelService"
         class="org.springframework.flex.remoting.RemotingDestinationExporter" 
         p:messageBroker-ref="mySpringManagedMessageBroker"
-        p:service-ref="OpExcelService"/>           
+        p:service-ref="OpExcelService"/>        
+        
+        
+	<bean id="ClientFocusService" class="com.csc.dashboard.service.ClientFocusService" />
+    
+    <bean id="clientFocusService"
+        class="org.springframework.flex.remoting.RemotingDestinationExporter" 
+        p:messageBroker-ref="mySpringManagedMessageBroker"
+        p:service-ref="ClientFocusService"/>         
 </beans>
