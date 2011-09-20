@@ -92,11 +92,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     
-    
-    
-    
 	<resultMap id="resultImproveInit" class="com.csc.dashboard.domain.ImproveInit">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
         <result property="nameOfProg" column="name_of_prog" jdbcType="VARCHAR" javaType="string"/>
         <result property="primaryTeam" column="primary_team" jdbcType="VARCHAR" javaType="string"  />
         <result property="owner" column="owner" jdbcType="VARCHAR" javaType="string"  />
@@ -108,10 +104,12 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         <result property="internalTraining" column="internal_training_conducted" jdbcType="VARCHAR" javaType="string"  />
         <result property="progDesc" column="prog_desc" jdbcType="VARCHAR" javaType="string"  />
  	</resultMap>
+     
+     
         
     <select id="getImprovementInitiatives" parameterClass="java.util.Map" resultMap="resultImproveInit">
-    	select id, name_of_prog, primary_team, owner, start_date, start_score, end_date, desired_score, num_ppl_affected, internal_training_conducted, prog_desc
-			from improve_init 
+    	select name_of_prog, primary_team, owner, start_date, start_score, end_date, desired_score, num_ppl_affected, internal_training_conducted, prog_desc
+			from improve_initi 
 			where (month = (select id from months where month = #month# and year = #year#) or month is null) and account = #account# 
 			order by id;	
     </select>
@@ -121,14 +119,14 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultKMScorecard" class="com.csc.dashboard.domain.KMScorecard">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
         <result property="numKMContributed" column="numKMContrib" jdbcType="int" javaType="int"  />
         <result property="qualifiedTop" column="qualTop10" jdbcType="int" javaType="int" />
+        <result property="headCount" column="hc" jdbcType="int" javaType="int" />
  	</resultMap>
         
     <select id="getKMScorecard" parameterClass="java.util.Map" resultMap="resultKMScorecard">
-    	select k.id, t.name as team, k.numKMContrib, k.qualTop10
+    	select t.name as team, k.numKMContrib, k.qualTop10, k.hc
 			from team t left join km_scorecard k on t.id = k.team 
 			where (k.month = (select id from months where month = #month# and year = #year#) or k.month is null) and t.account = #account# 
 			order by t.disp_order;	
@@ -150,6 +148,17 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     
-    
-    
+    <resultMap id="resultTop10Contributors" class="com.csc.dashboard.domain.ContributionTop10">
+        <result property="nameOfContri" column="name_of_contributor" jdbcType="VARCHAR" javaType="string"/>
+        <result property="team" column="team" jdbcType="VARCHAR" javaType="string"  />
+        <result property="position" column="position_in_top10" jdbcType="int" javaType="int" />
+ 	</resultMap>
+        
+    <select id="getTop10Contributors" parameterClass="java.util.Map" resultMap="resultTop10Contributors">
+    	select t.name as team, c.name_of_contributor, c.position_in_top10
+			from team t, contribution_to_top10 c
+			where t.id = c.team and (c.month = (select id from months where month = #month# and year = #year#) or c.month is null) and t.account = #account# 
+			order by t.disp_order;
+	</select>
+   
 </sqlMap>

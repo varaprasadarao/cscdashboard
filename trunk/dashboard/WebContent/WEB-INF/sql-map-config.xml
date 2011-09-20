@@ -24,4 +24,5 @@
     <sqlMap resource="com/csc/dashboard/persistence/TeamDevelopment.xml" />
     <sqlMap resource="com/csc/dashboard/persistence/OpExcel.xml" />
     <sqlMap resource="com/csc/dashboard/persistence/ClientFocus.xml" />
+    <sqlMap resource="com/csc/dashboard/persistence/SLAAdherence.xml" />
 </sqlMapConfig>

@@ -12,6 +12,15 @@ public class KMScorecard implements Serializable {
 	private int numKMContributed;
 	private double perOfHC;
 	private int qualifiedTop;
+	private int headCount;
+	
+	
+	public int getHeadCount() {
+		return headCount;
+	}
+	public void setHeadCount(int headCount) {
+		this.headCount = headCount;
+	}
 	public String getTeam() {
 		return team;
 	}

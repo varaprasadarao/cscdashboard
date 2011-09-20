@@ -166,7 +166,8 @@ public class OpExcelService {
 	public List<Utilization> getUtilization(int account, int month, int year) throws SQLException{
 		List<Utilization> res = opExcelDao.getUtilization(account, month, year);
 		if(res != null && res.size() != 0){
-			
+			Utilization util = new Utilization();
+		
 		}
 		return res;
 	}
@@ -176,8 +177,29 @@ public class OpExcelService {
 		return res;
 	}
 	
+	
+	
+	
 	public List<Margins> getMargins(int account, int month, int year) throws SQLException{
 		List<Margins> res = opExcelDao.getMargins(account, month, year);
+		if(res != null && res.size() != 0){
+			Margins overall = new Margins();
+			int totalRevenue = 0;
+			int totalCost = 0;
+			for(Margins margin:res){
+				totalRevenue += margin.getRevenue();
+				totalCost += margin.getCost();
+				margin.setContributingMargin(Utils.roundDecimal((double)(margin.getRevenue()*100/((double)margin.getRevenue()+margin.getCost()))));
+				margin.setOi(Utils.roundDecimal((double)((margin.getRevenue()-margin.getCost())*100/((double)margin.getRevenue()))));
+			}
+			overall.setTeam("Overall");
+			overall.setCost(totalCost);
+			overall.setRevenue(totalRevenue);
+			overall.setContributingMargin(Utils.roundDecimal((double)(overall.getRevenue()*100/((double)overall.getRevenue()+overall.getCost()))));
+			overall.setOi(Utils.roundDecimal((double)((overall.getRevenue()-overall.getCost())*100/((double)overall.getRevenue()))));
+			res.add(overall);
+		}
+		
 		return res;
 	}
 	

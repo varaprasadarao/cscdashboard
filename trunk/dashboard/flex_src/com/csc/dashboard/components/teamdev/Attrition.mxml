@@ -84,12 +84,16 @@
 			private function reload():void {
 				_ac = null;
 				displayText.text = "Attritions for " + Global.accountLabel();	
-				var token:AsyncToken = service.getAttrition(1,3,2010);
+				var token:AsyncToken = service.getAttrition(parseInt(Global.accountId),monthCB.selectedIndex + 1,parseInt(yearCB.selectedLabel));
 				token.addResponder(new AsyncResponder(onUserResult, onFault));
 			}
 			
 			private function accountCh(event:AccountChangedEvent):void{
 				reload();
+			}
+			private function format(item:Object, column:DataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
 			}
 			
 			private function onUserResult(event:ResultEvent, token:Object = null ):void {
@@ -144,7 +148,7 @@
 			<mx:DataGridColumn dataField="closingHeadCount" headerText="Closing Head Count" headerWordWrap="true" wordWrap="true"/>
 			<mx:DataGridColumn dataField="cumulativeExits" headerText="Cumulative Exits" headerWordWrap="true" wordWrap="true"/>
 			<mx:DataGridColumn dataField="avgHeadCount" headerText="Average Head Count" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="cumulativeAnnAttr" headerText="Cumulative Annualized Attrition" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="cumulativeAnnAttr" headerText="Cumulative Annualized Attrition" headerWordWrap="true" wordWrap="true" labelFunction="format"/>
 		</mx:columns>
 	</mx:DataGrid>
 	

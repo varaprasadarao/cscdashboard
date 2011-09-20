@@ -3,6 +3,9 @@ package com.csc.dashboard.domain;
 public class Attrition {
 
 	
+	
+	
+	
 	private int id;
 	private String month;
 	private int attrNum;

@@ -24,67 +24,21 @@
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Innovations" width="100%" height="100%" >
 			<csc:Innovations/>
-			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Assessment Programs" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+			<csc:AssessmentPrograms/>			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Improvement Initiatives" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+			<csc:ImprovementInit/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Knowledge Management Initiatives" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+			<csc:KMScorecard/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Vertical Level Initiatives" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+			<csc:VerticalLevelInit/>
 		</s:NavigatorContent>
-		<s:NavigatorContent label="Top 5 contributors" width="100%" height="100%" >
-			<s:BorderContainer width="100%" height="100%" borderWeight="2" 
-							   cornerRadius="3" dropShadowVisible="true">
-				<s:backgroundFill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0xE2E2E2" />
-						<s:GradientEntry color="0x323232" />
-					</s:LinearGradient>
-				</s:backgroundFill>
-			</s:BorderContainer>
-			
+		<s:NavigatorContent label="Top 10 contributors" width="100%" height="100%" >
+			<csc:TopTenContribution/>
 		</s:NavigatorContent>
 	</mx:ViewStack>
 

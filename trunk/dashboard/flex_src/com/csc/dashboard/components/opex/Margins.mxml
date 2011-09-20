@@ -12,6 +12,8 @@
 			import com.csc.dashboard.events.AccountChangedEvent;
 			import com.csc.dashboard.events.Global;
 			
+			import mx.charts.HitData;
+			import mx.charts.series.items.ColumnSeriesItem;
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
 			import mx.rpc.AsyncResponder;
@@ -93,6 +95,17 @@
 				trace(event);
 			}
 			
+			private function format(item:Object, column:DataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
+			}
+			
+			private function dataTipFunction11(item:HitData):String {
+				var pSI:ColumnSeriesItem = item.chartItem as ColumnSeriesItem;
+				return "<b>" + pSI.item.@label + "</b><br />" +
+					pSI.item.@data + " (<i>";// +
+				//	pSI.percentValue.toFixed(2) + "%</i>)";
+			}
 			
 		]]>
 	</fx:Script>
@@ -104,11 +117,11 @@
 	
 	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="50%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
 		<mx:columns>
-			<mx:DataGridColumn dataField="team" headerText="Escalation" wordWrap="true" width="100"/>
-			<mx:DataGridColumn dataField="revenue" headerText="Status" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="cost" headerText="Assigned To" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="contributingMargin" headerText="Contribution Margin %" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="oi" headerText="OI %" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="team" headerText="Team" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="revenue" headerText="Revenue" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="cost" headerText="Cost" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="contributingMargin" headerText="Contribution Margin %" headerWordWrap="true" wordWrap="true" labelFunction="format"/>
+			<mx:DataGridColumn dataField="oi" headerText="OI %" headerWordWrap="true" wordWrap="true" labelFunction="format"/>
 		</mx:columns>
 	</mx:DataGrid>
 	

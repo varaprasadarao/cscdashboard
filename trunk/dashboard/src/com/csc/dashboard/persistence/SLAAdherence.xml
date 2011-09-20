@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SLAAdherence">
+
+	<resultMap id="resultSLAAdherence" class="com.csc.dashboard.domain.SLAAdherence">
+        <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
+        <result property="sev12" column="sev12" jdbcType="int" javaType="int" />
+        <result property="sev12Success" column="sev12success" jdbcType="int" javaType="int" />
+        <result property="sev12SLA" column="sev12sla" jdbcType="double" javaType="double" />
+        <result property="sev3" column="sev3" jdbcType="int" javaType="int" />
+        <result property="sev3Success" column="sev3success" jdbcType="int" javaType="int" />
+        <result property="sev3SLA" column="sev3sla" jdbcType="double" javaType="double" />
+        <result property="sev4" column="sev4" jdbcType="int" javaType="int" />
+        <result property="sev4Success" column="sev4success" jdbcType="int" javaType="int" />
+        <result property="sev4SLA" column="sev4sla" jdbcType="double" javaType="double" />
+        <result property="sev5" column="sev5" jdbcType="int" javaType="int" />
+        <result property="sev5Success" column="sev5success" jdbcType="int" javaType="int" />
+        <result property="sev5SLA" column="sev5sla" jdbcType="double" javaType="double" />
+	</resultMap>
+        
+    <select id="getSLAAdherence" parameterClass="java.util.Map" resultMap="resultSLAAdherence">
+    	select t.name as team, s.sev12,s.sev12success,s.sev3,s.sev3success,s.sev4,s.sev4success,s.sev5,s.sev5success,s.sev12sla,s.sev3sla,s.sev4sla,s.sev5sla  
+		from team t left join sla_adherence s on t.id = s.team 
+		where (s.month = (select id from months where month = #month# and year = #year#) or s.month is null) and t.account = #account# 
+		order by t.disp_order;
+    </select>
+    
+   
+</sqlMap>

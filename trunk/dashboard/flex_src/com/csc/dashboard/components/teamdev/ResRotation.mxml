@@ -102,9 +102,9 @@
 	<mx:ComboBox id="yearCB" dataProvider="{yearXML.year}" x="765" y="20" change="changeEvt(event)"></mx:ComboBox>
 	
 	
-	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="95%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
+	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="55%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
 		<mx:columns>
-			<mx:DataGridColumn dataField="statistics" headerText="Statistics" wordWrap="true"/>
+			<mx:DataGridColumn dataField="statistics" headerText="Statistics" wordWrap="true" width="150"/>
 			<mx:DataGridColumn dataField="group" headerText="Group" headerWordWrap="true" wordWrap="true" />
 			
 		</mx:columns>
