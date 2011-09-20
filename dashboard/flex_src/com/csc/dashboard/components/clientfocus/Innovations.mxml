@@ -93,7 +93,10 @@
 				trace(event);
 			}
 			
-			
+			private function format(item:Object, column:DataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
+			}
 		]]>
 	</fx:Script>
 	
@@ -109,8 +112,8 @@
 			<mx:DataGridColumn dataField="numInnoSub" headerText="# of Innovations - submitted" headerWordWrap="true" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="numInnoQua" headerText="# of Innovations - Qualified" headerWordWrap="true" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="manHrsQualInno" headerText="Manhours of Qualified innovations" headerWordWrap="true" wordWrap="true" width="100"/>
-			<mx:DataGridColumn dataField="qualInnoHC" headerText="Qualified Innovations as %age of HC" headerWordWrap="true" wordWrap="true" width="100"/>
-			<mx:DataGridColumn dataField="innoIndex" headerText="Innovation index" headerWordWrap="true" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="qualInnoHC" headerText="Qualified Innovations as %age of HC" headerWordWrap="true" wordWrap="true" width="100" labelFunction="format"/>
+			<mx:DataGridColumn dataField="innoIndex" headerText="Innovation index" headerWordWrap="true" wordWrap="true" width="100" labelFunction="format"/>
 		</mx:columns>
 	</mx:DataGrid>
 </s:BorderContainer>

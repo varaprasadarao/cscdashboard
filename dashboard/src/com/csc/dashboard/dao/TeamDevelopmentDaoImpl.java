@@ -19,7 +19,8 @@ public class TeamDevelopmentDaoImpl implements TeamDevelopmentDao {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
 		parameters.put("startMonth", startMonth);
-		parameters.put("startYear", startYear);
+		parameters.put("startYear", startYear-1);
+		parameters.put("endYear", startYear);
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Attrition> uv = (List<Attrition>)sqlMap.queryForList("getAttrition" , parameters);

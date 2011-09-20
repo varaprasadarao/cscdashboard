@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
-				   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"
+				   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"				   
 				   creationComplete="init()">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
-			import com.csc.dashboard.busniess.service.TeamDevelopmentService;
+			import com.csc.dashboard.busniess.service.SLAAdherenceService;
 			import com.csc.dashboard.events.AccountChangedEvent;
 			import com.csc.dashboard.events.Global;
 			
@@ -19,8 +19,8 @@
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			
-			private	var service:TeamDevelopmentService  = new TeamDevelopmentService();
-						
+			private	var service:SLAAdherenceService  = new SLAAdherenceService();
+			
 			[Bindable]
 			private var _ac:ArrayCollection;
 			
@@ -77,11 +77,10 @@
 			
 			private function reload():void {
 				_ac = null;
-				displayText.text = "Backfill Management for " + Global.accountLabel();								
-				var token:AsyncToken = service.getBackfillInfo(parseInt(Global.accountId),monthCB.selectedIndex + 1,parseInt(yearCB.selectedLabel));
+				displayText.text = "Category 3 Incidents for " + Global.accountLabel();								
+				var token:AsyncToken = service.getSLAAdherence(parseInt(Global.accountId),monthCB.selectedIndex + 1,parseInt(yearCB.selectedLabel));
 				token.addResponder(new AsyncResponder(onResult, onFault));
 			}
-			
 			
 			private function onResult(event:ResultEvent, token:Object = null ):void {
 				_ac = event.result as ArrayCollection;
@@ -93,6 +92,10 @@
 					',detail : ' + event.fault.faultDetail);
 				trace(event);
 			}
+			private function format(item:Object, column:DataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
+			}
 			
 			
 		]]>
@@ -102,16 +105,33 @@
 	<mx:ComboBox id="monthCB" dataProvider="{months}" x="695" y="20" change="changeEvt(event)"></mx:ComboBox>
 	<mx:ComboBox id="yearCB" dataProvider="{yearXML.year}" x="765" y="20" change="changeEvt(event)"></mx:ComboBox>
 	
-	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="95%" height="75%" textAlign="center" x="20" y="70">
+	
+	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="45%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
 		<mx:columns>
-			<mx:DataGridColumn dataField="novient" headerText="Novient" />
-			<mx:DataGridColumn dataField="empServingNotice" headerText="Emp Serving Notice Period" headerWordWrap="true"/>
-			<mx:DataGridColumn dataField="lastWorkingDate" headerText="Last Working Day" headerWordWrap="true"/>
-			<mx:DataGridColumn dataField="replacementIdentified" headerText="Replacement Identified" headerWordWrap="true"/>
-			<mx:DataGridColumn dataField="replacementDate" headerText="Replacement Date" headerWordWrap="true"/>
-			<mx:DataGridColumn dataField="status" headerText="Status / Issues" headerWordWrap="true" wordWrap="true"/>
-			
+			<mx:DataGridColumn dataField="team" headerText="Team" headerWordWrap="true" wordWrap="true" width="140"/>
+			<mx:DataGridColumn dataField="sev3" headerText="Count" headerWordWrap="true" wordWrap="true" width="70"/>
+			<mx:DataGridColumn dataField="sev3Success" headerText="Successful" headerWordWrap="true" wordWrap="true" width="70"/>
+			<mx:DataGridColumn dataField="sev3Fail" headerText="Fail" headerWordWrap="true" wordWrap="true" width="70"/>
+			<mx:DataGridColumn dataField="sev3SuccessRate" headerText="Success Rate" headerWordWrap="true" wordWrap="true" width="70" labelFunction="format"/>
+			<mx:DataGridColumn dataField="sev3SLA" headerText="SLA" headerWordWrap="true" wordWrap="true" width="70" labelFunction="format"/>
 		</mx:columns>
 	</mx:DataGrid>
 	
+	<mx:ColumnChart id="column" height="100%" color="0x323232"
+					showDataTips="true" dataProvider="{_ac}" x="{dg.width + 20}" y="60">
+		
+		<mx:horizontalAxis>
+			<mx:CategoryAxis id="horAxis" categoryField="team" title="Teams"/>
+		</mx:horizontalAxis>
+		
+		<mx:horizontalAxisRenderers>
+			<mx:AxisRenderer labelRotation="90" axis="{horAxis}" />
+		</mx:horizontalAxisRenderers>
+		
+		<mx:series>
+			<mx:ColumnSeries xField="team" yField="sev3SuccessRate" displayName="SLA Success Rate"/>
+			<mx:LineSeries xField="team" yField="sev3SLA" displayName="SLA"/>
+		</mx:series>
+		
+	</mx:ColumnChart>
 </s:BorderContainer>

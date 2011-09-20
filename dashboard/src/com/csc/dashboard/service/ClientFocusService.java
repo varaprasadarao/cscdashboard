@@ -54,17 +54,20 @@ public class ClientFocusService {
 				totalNumInnoQua += inno.getNumInnoQua();
 				totalManHrsQualInno += inno.getManHrsQualInno();
 				
-				inno.setQualInnoHC(Utils.roundDecimal((double)(inno.getNumInnoQua()/inno.getAvgHC())));
-				inno.setInnoIndex(Utils.roundDecimal((double)(inno.getManHrsQualInno()/(inno.getAvgHC()*180))));
+				inno.setQualInnoHC(Utils.roundDecimal((double)(inno.getNumInnoQua()*100/(double)inno.getAvgHC())));
+				
+				System.out.println(inno.getNumInnoQua() + "   dd "+inno.getAvgHC()+"CCC" + Utils.roundDecimal((double)(inno.getNumInnoQua()*100/(double)inno.getAvgHC())) );
+				
+				inno.setInnoIndex(Utils.roundDecimal((double)(inno.getManHrsQualInno()*100/((double)inno.getAvgHC()*180))));
 			}
 			overall.setTeam("Overall");
 			overall.setAvgHC(totalHC);
 			overall.setNumInnoSub(totalNumInnoSub);
-			overall.setNumInnoSub(totalNumInnoSub);
+			overall.setNumInnoQua(totalNumInnoQua);
 			overall.setManHrsQualInno(totalManHrsQualInno);
 			
-			overall.setQualInnoHC(Utils.roundDecimal((double)(overall.getNumInnoQua()/overall.getAvgHC())));
-			overall.setInnoIndex(Utils.roundDecimal((double)(overall.getManHrsQualInno()/(overall.getAvgHC()*180))));
+			overall.setQualInnoHC(Utils.roundDecimal((double)(overall.getNumInnoQua()*100/(double)overall.getAvgHC())));
+			overall.setInnoIndex(Utils.roundDecimal((double)(overall.getManHrsQualInno()*100/((double)overall.getAvgHC()*180))));
 			
 			res.add(0,overall);	
 		}
@@ -84,6 +87,29 @@ public class ClientFocusService {
 	
 	public List<KMScorecard> getKMScorecard(int account, int month, int year) throws SQLException{
 		List<KMScorecard> res = clientDao.getKMScorecard(account, month, year);
+		
+		if(res != null && res.size() !=0){
+			KMScorecard overall = new KMScorecard();
+			
+			int totalNumKM = 0;
+			int totalQualifiedTop = 0;
+			int totalHeadCount = 0;
+			
+			for(KMScorecard it:res){
+				totalNumKM += it.getNumKMContributed();
+				totalQualifiedTop += it.getQualifiedTop();
+				totalHeadCount += it.getHeadCount();
+				it.setPerOfHC(Utils.roundDecimal((double)(it.getNumKMContributed()*100/(double)it.getHeadCount())));
+			}
+			overall.setTeam("Overall");
+			overall.setHeadCount(totalHeadCount);
+			overall.setNumKMContributed(totalNumKM);
+			overall.setQualifiedTop(totalQualifiedTop);
+			overall.setPerOfHC(Utils.roundDecimal((double)(overall.getNumKMContributed()*100/(double)overall.getHeadCount())));
+			res.add(0,overall);	
+
+		}
+		
 		return res;
 	}
 	

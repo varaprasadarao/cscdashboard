@@ -49,5 +49,15 @@
     <bean id="clientFocusService"
         class="org.springframework.flex.remoting.RemotingDestinationExporter" 
         p:messageBroker-ref="mySpringManagedMessageBroker"
-        p:service-ref="ClientFocusService"/>         
+        p:service-ref="ClientFocusService"/>  
+        
+    <bean id="SLAAdherenceService" class="com.csc.dashboard.service.SLAAdherenceService" />
+    
+    <bean id="slaAdherenceService"
+        class="org.springframework.flex.remoting.RemotingDestinationExporter" 
+        p:messageBroker-ref="mySpringManagedMessageBroker"
+        p:service-ref="SLAAdherenceService"/>     
+        
+        
+               
 </beans>

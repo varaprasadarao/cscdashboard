@@ -14,10 +14,13 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 	</resultMap>
         
     <select id="getAttrition" parameterClass="java.util.Map" resultMap="resultAttrition">
-        select a.id, concat( md.month ,' ', m.year) as month, a.attrition_num, a.opening_head_count, a.closing_head_count 
+        <![CDATA[select a.id, concat( md.month ,' ', m.year) as month, a.attrition_num, a.opening_head_count, a.closing_head_count 
         from attrition a, months m, month_def md 
         where a.month = m.id and m.month = md.month_num and a.account = #account#
         		and a.month > (select id from months where month= #startMonth# and year= #startYear# )
+        		and a.month <= (select id from months where month= #startMonth# and year= #endYear# )
+        		order by a.month asc
+        		]]>
     </select>
     
     
