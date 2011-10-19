@@ -111,7 +111,6 @@
 			<mx:DataGridColumn dataField="team" headerText="Team" headerWordWrap="true" wordWrap="true" width="200"/>
 			<mx:DataGridColumn dataField="numKMContributed" headerText="# of KM Assets contributed" headerWordWrap="true" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="perOfHC" headerText="Contribution as %of HC" headerWordWrap="true" wordWrap="true" width="100" labelFunction="format"/>
-			<mx:DataGridColumn dataField="qualifiedTop" headerText="Qualified as Top 10 Asssets of the month" headerWordWrap="true" wordWrap="true" width="100"/>
 		</mx:columns>
 	</mx:DataGrid>
 </s:BorderContainer>

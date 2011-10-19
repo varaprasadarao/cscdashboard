@@ -18,6 +18,7 @@
 			import mx.rpc.AsyncToken;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
+			import com.csc.dashboard.util.BackgroundRenderer;
 			
 			private	var service:ClientFocusService  = new ClientFocusService();
 			
@@ -107,7 +108,8 @@
 			<mx:DataGridColumn dataField="appriciationFor" headerText="Appriciation For" wordWrap="true" width="150"/>
 			<mx:DataGridColumn dataField="appriciation" headerText="Appriciation" headerWordWrap="true" wordWrap="true"/>
 			<mx:DataGridColumn dataField="appriciatedBy" headerText="Appriciated By" headerWordWrap="true" wordWrap="true" width="150"/>
-			<mx:DataGridColumn dataField="relevance" headerText="Relevance" headerWordWrap="true" wordWrap="true" width="150"/>
+			<mx:DataGridColumn dataField="relevance" headerText="Relevance" headerWordWrap="true" wordWrap="true" width="150" itemRenderer="com.csc.dashboard.util.BackgroundRenderer"/>
 		</mx:columns>
 	</mx:DataGrid>
+
 </s:BorderContainer>

@@ -16,4 +16,11 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         SELECT no, name, subject, content, ip
         FROM userinfo ORDER BY no DESC
     </select>
+    
+    
+    <select id="getUserName" resultClass="string">
+    	select name from users where username = #value#
+    </select>
+    
+    
 </sqlMap>

@@ -82,6 +82,19 @@ public class ClientFocusService {
 	
 	public List<ImproveInit> getImprovementInitiatives(int account, int month, int year) throws SQLException{
 		List<ImproveInit> res = clientDao.getImprovementInitiatives(account, month, year);
+		
+		
+		Integer hc = clientDao.getHeadCount(account, month, year);
+		System.out.println("Head Count"  + hc);
+		
+		
+		if(res!=null && res.size()>0){
+			for(ImproveInit imp:res){
+				imp.setPplAffectedHC(Utils.roundDecimal((double)(imp.getNumPplAffected()*100)/(double)hc));
+			}
+		}
+		
+		
 		return res;
 	}
 	

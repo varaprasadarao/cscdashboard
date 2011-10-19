@@ -92,7 +92,10 @@
 					',detail : ' + event.fault.faultDetail);
 				trace(event);
 			}
-			
+			private function format(item:Object, column:AdvancedDataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
+			}
 			
 		]]>
 	</fx:Script>
@@ -116,7 +119,7 @@
 				<mx:AdvancedDataGridColumn dataField="demandForecastNew" headerText="New"/>
 				<mx:AdvancedDataGridColumn dataField="demandForecast" headerText="Total"/>
 			</mx:AdvancedDataGridColumnGroup> 
-			<mx:AdvancedDataGridColumn dataField="demandForecastDesc" headerText="Demand Forecast Discrepancy"/>
+			<mx:AdvancedDataGridColumn dataField="demandForecastDesc" headerText="Demand Forecast Discrepancy" labelFunction="format"/>
 		</mx:groupedColumns>
 	</mx:AdvancedDataGrid>
 	

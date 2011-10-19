@@ -111,7 +111,7 @@
 			<mx:DataGridColumn dataField="team" headerText="Team" headerWordWrap="true" wordWrap="true" width="140"/>
 			<mx:DataGridColumn dataField="sev3" headerText="Count" headerWordWrap="true" wordWrap="true" width="70"/>
 			<mx:DataGridColumn dataField="sev3Success" headerText="Successful" headerWordWrap="true" wordWrap="true" width="70"/>
-			<mx:DataGridColumn dataField="sev3Fail" headerText="Fail" headerWordWrap="true" wordWrap="true" width="70"/>
+			<mx:DataGridColumn dataField="sev3Fail" headerText="Fail" headerWordWrap="true" wordWrap="true" width="70" itemRenderer="com.csc.dashboard.util.SLARenderer"/>
 			<mx:DataGridColumn dataField="sev3SuccessRate" headerText="Success Rate" headerWordWrap="true" wordWrap="true" width="70" labelFunction="format"/>
 			<mx:DataGridColumn dataField="sev3SLA" headerText="SLA" headerWordWrap="true" wordWrap="true" width="70" labelFunction="format"/>
 		</mx:columns>

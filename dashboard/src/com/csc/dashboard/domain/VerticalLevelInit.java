@@ -12,6 +12,15 @@ public class VerticalLevelInit implements Serializable{
 	private String nameOfInit;
 	private String sponsor;
 	private String keyContributions;
+	private String remarks;
+	
+	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public String getNameOfInit() {
 		return nameOfInit;
 	}

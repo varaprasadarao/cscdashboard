@@ -9,5 +9,36 @@
     <default-channels>
         <channel ref="my-amf"/>
     </default-channels>
-
+    
+    <destination id="userInfo">
+        <properties>
+            <source>com.csc.dashboard.service.UserInfoService</source>
+        </properties>
+    </destination>
+    
+    <destination id="teamDevService">
+        <properties>
+            <source>com.csc.dashboard.service.TeamDevelopmentService</source>
+        </properties>
+    </destination>
+    
+     <destination id="opExcelService">
+        <properties>
+            <source>com.csc.dashboard.service.OpExcelService</source>
+        </properties>
+    </destination>
+    
+    <destination id="clientFocusService">
+        <properties>
+            <source>com.csc.dashboard.service.ClientFocusService</source>
+        </properties>
+    </destination>
+    
+    <destination id="slaAdherenceService">
+        <properties>
+            <source>com.csc.dashboard.service.SLAAdherenceService</source>
+        </properties>
+    </destination>
+    
+    
 </service>

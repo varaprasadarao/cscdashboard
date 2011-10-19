@@ -92,7 +92,10 @@
 					',detail : ' + event.fault.faultDetail);
 				trace(event);
 			}
-			
+			private function format(item:Object, column:DataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
+			}	
 			
 		]]>
 	</fx:Script>
@@ -110,7 +113,7 @@
 			<mx:DataGridColumn dataField="onshoreBillingHC" headerText="Onshore Billing HC" headerWordWrap="true" wordWrap="true"/>
 			<mx:DataGridColumn dataField="lossOfBillingAvgHC" headerText="Loss of Billing - Avg HC" headerWordWrap="true" wordWrap="true"/>
 			<mx:DataGridColumn dataField="partialBilling" headerText="Partial Billing" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="nonBillabilityRatio" headerText="Non Billability Ratio" headerWordWrap="true" wordWrap="true" />
+			<mx:DataGridColumn dataField="nonBillabilityRatio" headerText="Non Billability Ratio" headerWordWrap="true" wordWrap="true" labelFunction="format"/>
 		</mx:columns>
 	</mx:DataGrid>
 	

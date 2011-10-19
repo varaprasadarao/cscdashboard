@@ -106,7 +106,7 @@
 		<mx:columns>
 			<mx:DataGridColumn dataField="description" headerText="Description of Survey" wordWrap="true" width="200"/>
 			<mx:DataGridColumn dataField="team" headerText="Team" headerWordWrap="true" wordWrap="true" width="200"/>
-			<mx:DataGridColumn dataField="rating" headerText="Rating" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="rating" headerText="Rating" headerWordWrap="true" wordWrap="true" itemRenderer="com.csc.dashboard.util.BackgroundRenderer"/>
 		</mx:columns>
 	</mx:DataGrid>
 </s:BorderContainer>

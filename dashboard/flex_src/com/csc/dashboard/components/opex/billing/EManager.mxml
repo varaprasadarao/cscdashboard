@@ -92,7 +92,10 @@
 					',detail : ' + event.fault.faultDetail);
 				trace(event);
 			}
-			
+			private function format(item:Object, column:DataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
+			}
 			
 		]]>
 	</fx:Script>
@@ -106,7 +109,7 @@
 		<mx:columns>
 			<mx:DataGridColumn dataField="team" headerText="Team" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="eManageDisc" headerText="eManage SAP Discripancy" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="eManageDiscHC" headerText="eManage SAP Discripancy as % HC" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="eManageDiscHC" headerText="eManage SAP Discripancy as % HC" headerWordWrap="true" wordWrap="true" labelFunction="format" itemRenderer="com.csc.dashboard.util.SLARenderer"/>
 		</mx:columns>
 	</mx:DataGrid>
 	

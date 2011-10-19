@@ -93,6 +93,11 @@
 				trace(event);
 			}
 			
+			private function format(item:Object, column:DataGridColumn):String{
+				
+				var str:String=item[column.dataField];
+				return str+"%";
+			}
 			
 		]]>
 	</fx:Script>
@@ -107,7 +112,7 @@
 			<mx:DataGridColumn dataField="team" headerText="Team" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="mts" headerText="MTS" headerWordWrap="true" wordWrap="true"/>
 			<mx:DataGridColumn dataField="incompleteEtes" headerText="Incomplete eTes" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="eTesAccuracy" headerText="eTes Accuracy" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="eTesAccuracy" headerText="eTes Accuracy" headerWordWrap="true" wordWrap="true" labelFunction="format" itemRenderer="com.csc.dashboard.util.ETesRenderer"/>
 			
 		</mx:columns>
 	</mx:DataGrid>

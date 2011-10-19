@@ -107,6 +107,7 @@
 			<mx:DataGridColumn dataField="nameOfInit" headerText="Name of the Initiatives" headerWordWrap="true" wordWrap="true" width="200"/>
 			<mx:DataGridColumn dataField="sponsor" headerText="Sponsorer" headerWordWrap="true" wordWrap="true" width="150"/>
 			<mx:DataGridColumn dataField="keyContributions" headerText="Key Contributors" headerWordWrap="true" wordWrap="true" width="300"/>
+			<mx:DataGridColumn dataField="remarks" headerText="Remarks" headerWordWrap="true" wordWrap="true" width="300"/>
 		</mx:columns>
 	</mx:DataGrid>
 </s:BorderContainer>

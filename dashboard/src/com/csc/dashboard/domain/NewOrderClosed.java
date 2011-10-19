@@ -13,6 +13,15 @@ public class NewOrderClosed implements Serializable {
 	private String type;
 	private String effort;
 	private String briefDesc;
+	private String status;
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getId() {
 		return id;
 	}

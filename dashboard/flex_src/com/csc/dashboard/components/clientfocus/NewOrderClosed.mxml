@@ -108,6 +108,7 @@
 			<mx:DataGridColumn dataField="type" headerText="Type" headerWordWrap="true" wordWrap="true" width="140"/>
 			<mx:DataGridColumn dataField="effort" headerText="Effort" headerWordWrap="true" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="briefDesc" headerText="Brief Description" headerWordWrap="true" wordWrap="true"/>
+			<mx:DataGridColumn dataField="status" headerText="Status" headerWordWrap="true" wordWrap="true" width="100"/>
 		</mx:columns>
 	</mx:DataGrid>
 </s:BorderContainer>

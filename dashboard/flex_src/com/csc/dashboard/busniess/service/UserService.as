@@ -1,8 +1,9 @@
 package com.csc.dashboard.busniess.service
 {
 	import com.csc.dashboard.busniess.service.RemoteService;
-	import mx.rpc.AsyncToken;
 	import com.csc.dashboard.model.User;
+	
+	import mx.rpc.AsyncToken;
 	
 	public class UserService extends RemoteService
 	{
@@ -17,6 +18,10 @@ package com.csc.dashboard.busniess.service
 		
 		public function getData():AsyncToken {
 			return remoteObject.getData();
+		}
+		
+		public function getUserName():AsyncToken{
+			return remoteObject.getUserName();	
 		}
 	}
 }
