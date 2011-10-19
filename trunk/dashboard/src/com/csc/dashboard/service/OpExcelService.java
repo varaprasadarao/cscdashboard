@@ -16,12 +16,17 @@ import com.csc.dashboard.domain.Margins;
 import com.csc.dashboard.domain.NonBillability;
 import com.csc.dashboard.domain.Utilization;
 
+import flex.messaging.FlexContext;
+
 public class OpExcelService {
 	
 	OpExcelDao opExcelDao = new OpExcelDaoImpl();
 	
 	
 	public List<NonBillability> getNonBillability(int account, int month, int year) throws SQLException{
+		
+		System.out.println("Flex username = "+FlexContext.getFlexSession().getUserPrincipal().getName());
+		
 		List<NonBillability> res = opExcelDao.getNonBillability(account, month, year);
 		if(res != null && res.size() != 0){
 			NonBillability overall = new NonBillability();
@@ -88,7 +93,7 @@ public class OpExcelService {
 				if(dem.getDemandForecast() == 0){
 					dem.setDemandForecastDesc(0);
 				}else{
-					dem.setDemandForecastDesc((double)((dem.getDemandForecast() - dem.getOpenDemand())*100)/dem.getDemandForecast());
+					dem.setDemandForecastDesc(Utils.roundDecimal((double)((dem.getDemandForecast() - dem.getOpenDemand())*100)/dem.getDemandForecast()));
 				}
 				
 				
@@ -110,7 +115,11 @@ public class OpExcelService {
 			summ.setDemandForecastNew(totalDemandForecastNew);
 			summ.setDemandForecastRepl(totalDemandForecastRepl);
 			
-			
+			if(summ.getDemandForecast() == 0){
+				summ.setDemandForecastDesc(0);
+			}else{
+				summ.setDemandForecastDesc(Utils.roundDecimal((double)((summ.getDemandForecast() - summ.getOpenDemand())*100)/summ.getDemandForecast()));
+			}
 			
 			res.add(0, summ);
 			
@@ -120,6 +129,28 @@ public class OpExcelService {
 	
 	public List<ETesAccuracy> getETesAccuracy(int account, int month, int year) throws SQLException{
 		List<ETesAccuracy> res = opExcelDao.getETesAccuracy(account, month, year);
+		
+		if(res != null && res.size() !=0 ){
+			ETesAccuracy overall = new ETesAccuracy();
+			int totalMts = 0;
+			int totalInCompEtes = 0;
+			int totalHC = 0;
+			for(ETesAccuracy etes:res){
+				totalMts += etes.getMts();
+				totalInCompEtes += etes.getIncompleteEtes();
+				totalHC += etes.getHeadCount();
+				etes.seteTesAccuracy(Utils.roundDecimal((etes.getHeadCount() - etes.getMts() - etes.getIncompleteEtes())*100/(double)etes.getHeadCount()));
+			}
+			overall.setHeadCount(totalHC);
+			overall.setTeam("Overall");
+			overall.setIncompleteEtes(totalInCompEtes);
+			overall.setMts(totalMts);
+			overall.seteTesAccuracy(Utils.roundDecimal((overall.getHeadCount() - overall.getMts() - overall.getIncompleteEtes())*100/(double)overall.getHeadCount()));
+			
+			res.add(0, overall);
+			
+		}
+		
 		return res;
 	}
 	
@@ -155,6 +186,7 @@ public class OpExcelService {
 				totalHC += grade.getHeadCount();
 			}
 			GradeMix summary = new GradeMix();
+			summary.setHeadCount(totalHC);
 			summary.setTeam("Overall");
 			summary.setGradeMix(totalGrade);
 			summary.setGradeMixPer(Utils.roundDecimal((double)(totalGrade*100)/totalHC));
@@ -197,7 +229,7 @@ public class OpExcelService {
 			overall.setRevenue(totalRevenue);
 			overall.setContributingMargin(Utils.roundDecimal((double)(overall.getRevenue()*100/((double)overall.getRevenue()+overall.getCost()))));
 			overall.setOi(Utils.roundDecimal((double)((overall.getRevenue()-overall.getCost())*100/((double)overall.getRevenue()))));
-			res.add(overall);
+			res.add(0,overall);
 		}
 		
 		return res;

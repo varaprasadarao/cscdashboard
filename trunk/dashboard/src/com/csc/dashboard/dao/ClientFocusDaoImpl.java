@@ -126,5 +126,16 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 		List<VerticalLevelInit> li = (List<VerticalLevelInit>)sqlMap.queryForList("getVerticalLevelInitiatives" , parameters);
 		return li;
 	}
+	
+	public Integer getHeadCount(int account, int month, int year) throws SQLException{
+		Map parameters = new HashMap();
+		parameters.put("account", account);
+		parameters.put("month", month);
+		parameters.put("year", year);
+		
+		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
+		return (Integer)sqlMap.queryForObject("getHeadCount" , parameters);
+		
+	}
 
 }

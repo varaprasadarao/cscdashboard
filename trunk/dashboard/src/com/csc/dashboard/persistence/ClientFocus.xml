@@ -18,6 +18,9 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     	where t.id = a.team and t.account = #account# and a.month = (select id from months where month = #month# and year = #year#)
     </select>
     
+    <select id="getHeadCount" parameterClass="java.util.Map" resultClass="int">
+    	select closing_head_count from attrition where account = #account# and month = (select id from months where month = #month# and year = #year#)
+    </select>
     
     
     
@@ -44,11 +47,12 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         <result property="type" column="type" jdbcType="VARCHAR" javaType="string"/>
         <result property="effort" column="effort" jdbcType="VARCHAR" javaType="string" />
         <result property="briefDesc" column="briefDesc" jdbcType="VARCHAR" javaType="string"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="string"/>
         
  	</resultMap>
         
     <select id="getNewOrderClosed" parameterClass="java.util.Map" resultMap="resultNewOrderClosed">
-    	select c.id, t.name as team, c.type, c.effort, c.description as briefDesc from new_order_closed c, team t 
+    	select c.id, t.name as team, c.type, c.effort, c.description as briefDesc, c.status from new_order_closed c, team t 
     	where c.team = t.id and c.month = (select id from months where month = #month# and year = #year#) and t.account = #account#  
     	order by t.disp_order
     </select>
@@ -139,10 +143,11 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         <result property="nameOfInit" column="name_of_init" jdbcType="VARCHAR" javaType="string"/>
         <result property="sponsor" column="sponsor" jdbcType="VARCHAR" javaType="string"  />
         <result property="keyContributions" column="key_contributors" jdbcType="VARCHAR" javaType="string" />
+        <result property="remarks" column="remarks" jdbcType="VARCHAR" javaType="string" />
  	</resultMap>
         
     <select id="getVerticalLevelInitiatives" parameterClass="java.util.Map" resultMap="resultVerticalLevelInit">
-    	select name_of_init, sponsor, key_contributors
+    	select name_of_init, sponsor, key_contributors, remarks
 		from vertical_init where account = #account# and month = (select id from months where month = #month# and year = #year#)
 	</select>
     

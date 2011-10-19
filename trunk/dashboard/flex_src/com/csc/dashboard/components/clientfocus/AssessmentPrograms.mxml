@@ -105,9 +105,9 @@
 	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="75%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
 		<mx:columns>
 			<mx:DataGridColumn dataField="team" headerText="Team" wordWrap="true" width="100"/>
-			<mx:DataGridColumn dataField="knowledge" headerText="Knowledge" headerWordWrap="true" wordWrap="true" width="100"/>
-			<mx:DataGridColumn dataField="process" headerText="Process" headerWordWrap="true" wordWrap="true" width="100"/>
-			<mx:DataGridColumn dataField="technical" headerText="Technical" headerWordWrap="true" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="knowledge" headerText="Knowledge" headerWordWrap="true" wordWrap="true" width="100" itemRenderer="com.csc.dashboard.util.BackgroundRenderer"/>
+			<mx:DataGridColumn dataField="process" headerText="Process" headerWordWrap="true" wordWrap="true" width="100" itemRenderer="com.csc.dashboard.util.BackgroundRenderer"/>
+			<mx:DataGridColumn dataField="technical" headerText="Technical" headerWordWrap="true" wordWrap="true" width="100" itemRenderer="com.csc.dashboard.util.BackgroundRenderer"/>
 		</mx:columns>
 	</mx:DataGrid>
 </s:BorderContainer>

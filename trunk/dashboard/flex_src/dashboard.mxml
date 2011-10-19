@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- http://blog.flexexamples.com/2009/09/04/setting-the-corner-radius-on-a-spark-border-container-in-flex-4/ -->
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 			   xmlns:mx="library://ns.adobe.com/flex/mx" 
 			   xmlns:s="library://ns.adobe.com/flex/spark"
@@ -9,17 +8,7 @@
 		<![CDATA[
 		
 			import com.csc.dashboard.components.Header;
-			import mx.controls.Alert;
-			[Bindable]
-			private var mainTxt:String = '<font size="36">Main Content</font><br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br><br><br><font size="20">Sub Content</font><br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-			
-			[Bindable]                
-			private var sidebarTxt:String = '<font size="18">Sidebar</font><br><br>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.<br><br><br><font size="14">Sub Head</font><br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
-			
-			
-			private function init():void {
-				Alert.show("Hello World");
-			}
+
 		]]>
 	</fx:Script>
 	
@@ -28,10 +17,8 @@
 	<mx:Image source="@Embed(source='assets/circ.png')" x="0" y="-65" />
 	
 	<mx:VBox width="910" x="{(this.width - 910)/2}" y="10" styleName="body" height="100%" horizontalGap="0" verticalGap="10">
-	
-			<csc:Header/>
-			
-			<csc:MainComponent/>	
+		<csc:Header/>
+		<csc:MainComponent/>	
 		<mx:filters>
 			<mx:GlowFilter blurX="22" blurY="22" color="#111111" alpha="0.6" />
 		</mx:filters>

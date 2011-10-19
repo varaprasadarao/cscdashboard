@@ -140,7 +140,7 @@
 	<mx:ComboBox id="monthCB" dataProvider="{months}" x="695" y="20" change="changeEvt(event)"></mx:ComboBox>
 	<mx:ComboBox id="yearCB" dataProvider="{yearXML.year}" x="765" y="20" change="changeEvt(event)"></mx:ComboBox>
 
-	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="50%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
+	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="50%" height="65%" textAlign="center" x="20" y="70" variableRowHeight="true">
 		<mx:columns>
 			<mx:DataGridColumn dataField="month" headerText="Month" wordWrap="true"/>
 			<mx:DataGridColumn dataField="attrNum" headerText="Attrition Numbers" headerWordWrap="true" wordWrap="true"/>

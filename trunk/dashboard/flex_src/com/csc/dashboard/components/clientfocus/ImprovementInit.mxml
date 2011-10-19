@@ -93,6 +93,11 @@
 				trace(event);
 			}
 			
+			private function format(item:Object, column:DataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
+			}
+			
 			
 		]]>
 	</fx:Script>
@@ -112,7 +117,7 @@
 			<mx:DataGridColumn dataField="endDate" headerText="End Date" headerWordWrap="true" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="desiredScore" headerText="Desired Score" headerWordWrap="true" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="numPplAffected" headerText="# Ppl affected" headerWordWrap="true" wordWrap="true" width="100"/>
-			<mx:DataGridColumn dataField="pplAffectedHC" headerText="Ppl affected as %age of HC" headerWordWrap="true" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="pplAffectedHC" headerText="Ppl affected as %age of HC" headerWordWrap="true" wordWrap="true" width="100" labelFunction="format"/>
 			<mx:DataGridColumn dataField="internalTraining" headerText="Internal Training" headerWordWrap="true" wordWrap="true" width="100"/>
 			<mx:DataGridColumn dataField="progDesc" headerText="Program Desc" headerWordWrap="true" wordWrap="true"/>
 		</mx:columns>

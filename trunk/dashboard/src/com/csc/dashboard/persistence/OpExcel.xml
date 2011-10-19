@@ -123,12 +123,10 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         <result property="obfHours" column="obf_hours" jdbcType="int" javaType="int"/>
         <result property="valueAdds" column="value_adds" jdbcType="int" javaType="int"/>
         <result property="idleHrs" column="idle_hours" jdbcType="int" javaType="int"/>
-        <result property="utilizationMonth1" column="utilization_month1" jdbcType="int" javaType="int"/>
-        <result property="utilizationMonth2" column="utilization_month2" jdbcType="int" javaType="int"/>
     </resultMap>
         
     <select id="getUtilization" parameterClass="java.util.Map" resultMap="resultUtilization">
-        select t.id, t.name as team, u.utilization, u.ad_hours_devl, u.ams_hours_maint, u.obf_hours, u.value_adds, u.idle_hours, u.utilization_month1, u.utilization_month2
+        select t.id, t.name as team, u.utilization, u.ad_hours_devl, u.ams_hours_maint, u.obf_hours, u.value_adds, u.idle_hours
 		from team t left join utilization u on t.id = u.team 
 		where (u.month = (select id from months where month = #month# and year = #year#) or u.month is null) and t.account = #account# 
 		order by t.disp_order;

@@ -15,7 +15,7 @@
 		<s:NavigatorContent label="Client Appreciations"  width="100%" height="100%">
 			<csc:Appreciation/>
 		</s:NavigatorContent>
-		<s:NavigatorContent label="BACKCSAT / Surrogate CSAT" width="100%" height="100%" >
+		<s:NavigatorContent label="CSAT" width="100%" height="100%" >
 			<csc:Csat/>			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="New order closed" width="100%" height="100%" >
@@ -36,9 +36,6 @@
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Vertical Level Initiatives" width="100%" height="100%" >
 			<csc:VerticalLevelInit/>
-		</s:NavigatorContent>
-		<s:NavigatorContent label="Top 10 contributors" width="100%" height="100%" >
-			<csc:TopTenContribution/>
 		</s:NavigatorContent>
 	</mx:ViewStack>
 

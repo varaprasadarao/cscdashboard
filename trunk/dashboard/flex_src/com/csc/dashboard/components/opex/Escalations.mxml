@@ -104,7 +104,7 @@
 	
 	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="95%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
 		<mx:columns>
-			<mx:DataGridColumn dataField="escalation" headerText="Escalation" wordWrap="true" width="100"/>
+			<mx:DataGridColumn dataField="escalation" headerText="Escalation" wordWrap="true"/>
 			<mx:DataGridColumn dataField="status" headerText="Status" headerWordWrap="true" wordWrap="true"/>
 			<mx:DataGridColumn dataField="assignedTo" headerText="Assigned To" headerWordWrap="true" wordWrap="true"/>
 			<mx:DataGridColumn dataField="daysOpen" headerText="Days Open" headerWordWrap="true" wordWrap="true"/>

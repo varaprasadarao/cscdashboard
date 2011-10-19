@@ -93,7 +93,10 @@
 				trace(event);
 			}
 			
-			
+			private function format(item:Object, column:DataGridColumn):String{
+				var str:String=item[column.dataField];
+				return str+"%";
+			}
 		]]>
 	</fx:Script>
 	
@@ -105,14 +108,12 @@
 	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="50%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
 		<mx:columns>
 			<mx:DataGridColumn dataField="team" headerText="Team" wordWrap="true" width="100"/>
-			<mx:DataGridColumn dataField="utilization" headerText="Utilization" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="adHrsDevl" headerText="AD Hrs Devl" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="amsHrsMaint" headerText="AMS Hrs Maint" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="obfHours" headerText="OBF Hrs" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="valueAdds" headerText="Value Adds" headerWordWrap="true" wordWrap="true"/>
-			<mx:DataGridColumn dataField="idleHrs" headerText="Idle Hrs" headerWordWrap="true" wordWrap="true" />
-			<mx:DataGridColumn dataField="utilizationMonth1" headerText="Utilization Month-1" headerWordWrap="true" wordWrap="true" />
-			<mx:DataGridColumn dataField="utilizationMonth2" headerText="Utilization Month-2" headerWordWrap="true" wordWrap="true" />
+			<mx:DataGridColumn dataField="utilization" headerText="Utilization" headerWordWrap="true" wordWrap="true" labelFunction="format"/>
+			<mx:DataGridColumn dataField="adHrsDevl" headerText="AD Hrs Devl" headerWordWrap="true" wordWrap="true" labelFunction="format"/>
+			<mx:DataGridColumn dataField="amsHrsMaint" headerText="AMS Hrs Maint" headerWordWrap="true" wordWrap="true" labelFunction="format" itemRenderer="com.csc.dashboard.util.UtilizationRenderer1"/>
+			<mx:DataGridColumn dataField="obfHours" headerText="OBF Hrs" headerWordWrap="true" wordWrap="true" labelFunction="format" itemRenderer="com.csc.dashboard.util.UtilizationRenderer2"/>
+			<mx:DataGridColumn dataField="valueAdds" headerText="Value Adds" headerWordWrap="true" wordWrap="true" labelFunction="format"/>
+			<mx:DataGridColumn dataField="idleHrs" headerText="Idle Hrs" headerWordWrap="true" wordWrap="true" labelFunction="format"/>
 		</mx:columns>
 	</mx:DataGrid>
 	

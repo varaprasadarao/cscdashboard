@@ -2,8 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:security="http://www.springframework.org/schema/security"
     xsi:schemaLocation="http://www.springframework.org/schema/beans 
-    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
     
     
     <bean id="mySpringManagedMessageBroker" class="org.springframework.flex.core.MessageBrokerFactoryBean" />
@@ -23,41 +26,64 @@
     
     <bean id="UserInfoService" class="com.csc.dashboard.service.UserInfoService" />
     
-    <bean id="userInfo"
-        class="org.springframework.flex.remoting.RemotingDestinationExporter" 
-        p:messageBroker-ref="mySpringManagedMessageBroker"
-        p:service-ref="UserInfoService"/>
+  
         
 	<bean id="TeamDevService" class="com.csc.dashboard.service.TeamDevelopmentService" />
     
-    <bean id="teamDevService"
-        class="org.springframework.flex.remoting.RemotingDestinationExporter" 
-        p:messageBroker-ref="mySpringManagedMessageBroker"
-        p:service-ref="TeamDevService"/>  
+ 
         
         
     <bean id="OpExcelService" class="com.csc.dashboard.service.OpExcelService" />
-    
-    <bean id="opExcelService"
-        class="org.springframework.flex.remoting.RemotingDestinationExporter" 
-        p:messageBroker-ref="mySpringManagedMessageBroker"
-        p:service-ref="OpExcelService"/>        
-        
+  
+    <bean id="configProperties"	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/sql-map-config.properties</value>
+			</list>
+		</property>
+	</bean> 
         
 	<bean id="ClientFocusService" class="com.csc.dashboard.service.ClientFocusService" />
     
-    <bean id="clientFocusService"
-        class="org.springframework.flex.remoting.RemotingDestinationExporter" 
-        p:messageBroker-ref="mySpringManagedMessageBroker"
-        p:service-ref="ClientFocusService"/>  
-        
     <bean id="SLAAdherenceService" class="com.csc.dashboard.service.SLAAdherenceService" />
     
-    <bean id="slaAdherenceService"
-        class="org.springframework.flex.remoting.RemotingDestinationExporter" 
-        p:messageBroker-ref="mySpringManagedMessageBroker"
-        p:service-ref="SLAAdherenceService"/>     
-        
-        
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		  <property name="driverClassName" value="${driver}"/>
+		  <property name="url" value="${url}"/>
+		  <property name="username" value="${user}"/>
+		  <property name="password" value="${password}"/>
+		</bean>
+		
+		<bean id="userDetailsService" class="org.springframework.security.userdetails.jdbc.JdbcDaoImpl">
+		  <property name="dataSource" ref="dataSource"/>
+		</bean>  
+        <bean id="springSecurityFilterChain" class="org.springframework.security.util.FilterChainProxy">
+        	<security:filter-chain-map path-type="ant">
+	        	<security:filter-chain pattern="/assets/**" filters="none"/>
+	        	<security:filter-chain pattern="/swfobject/**" filters="none"/>
+	        	<security:filter-chain pattern="/com/esri/solutions/flexviewer/assets/**" filters="none"/>
+	        	<security:filter-chain pattern="/com/esri/solutions/flexviewer/themes/**" filters="none"/>
+	            <security:filter-chain pattern="/**" filters="none"/>
+       		</security:filter-chain-map>
+    	</bean> 
+    	
+       <security:http auto-config="true" > 
+			<security:intercept-url pattern="index.html" filters="none"/> 
+			<security:intercept-url pattern="/**/*.swf" filters="none" access="ROLE_USER"/> 
+			<security:intercept-url pattern="/**/*.html" access="ROLE_USER"/> 
+			<security:intercept-url pattern="/**" filters="none"/> 
+			<security:http-basic/>
+			<!-- <security:form-login login-page="/login.jsp" default-target-url="/dashboard.html" always-use-default-target="true"/>--> 
+		</security:http> 
+
+ 
+		<security:authentication-provider user-service-ref="userDetailsService"> 
+			<!-- <security:user-service > 
+
+			
+			<security:user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN"/> 
+			<security:user name="user" password="user" authorities="ROLE_USER"/>  
+			</security:user-service> -->
+		</security:authentication-provider> 
                
 </beans>
