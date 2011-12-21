@@ -28,15 +28,15 @@
 			
 			[Bindable]
 			public var verticalsAC:ArrayCollection = new ArrayCollection(
-				[ {label:"Overall", data:0},
-					{label:"TCG & CENR", data:1},
-					{label:"GIS", data:2},
-					{label:"FSG", data:3}]);
+				[ {label:"CENR", data:0}]);
 			[Bindable]
 			public var accountsAC:ArrayCollection = new ArrayCollection(
-				[ {label:"Overall", data:0},
-					{label:"DuPont", data:1},
-					{label:"Zurich", data:2}]);	
+				[ 	{label:"DuPont", data:1},
+					{label:"Scana", data:2},
+					{label:"BHP Billiton", data:3},
+					{label:"Rio Tinto", data:4},
+					{label:"Invista", data:5},
+					{label:"Chevron", data:6}]);	
 			
 			
 			public function init():void{
