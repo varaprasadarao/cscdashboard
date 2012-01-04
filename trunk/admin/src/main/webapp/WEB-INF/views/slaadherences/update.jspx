@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_csc_dashboard_admin_model_SlaAdherence" modelAttribute="slaAdherence" path="/slaadherences" versionField="none" z="bzFNBj/wECs5hz7AAbPibPQI4gE=">
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_SlaAdherence_month" itemValue="id" items="${monthses}" path="/monthses" z="dzcEaUfvMorWGkS9N1CXlgHfew4="/>
+        <field:select field="team" id="c_com_csc_dashboard_admin_model_SlaAdherence_team" itemValue="id" items="${teams}" path="/teams" z="hxlCMk/ZEIAtLofbCMkqIgEaqN4="/>
+        <field:input field="sev12" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev12" validationMessageCode="field_invalid_integer" z="cgINaXslANh/NPnGatvKrjbbEBE="/>
+        <field:input field="sev12success" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev12success" validationMessageCode="field_invalid_integer" z="xRxDqQiM/z010ZxiEoh5TmN+x10="/>
+        <field:input field="sev3" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev3" validationMessageCode="field_invalid_integer" z="ny/Pq3lkfdyL/SnlIV4+9TvNiv8="/>
+        <field:input field="sev3success" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev3success" validationMessageCode="field_invalid_integer" z="vV/EJiZ5/lfyY8LdPNQdqxOCycw="/>
+        <field:input field="sev4" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev4" validationMessageCode="field_invalid_integer" z="65QfTinEwfGSVUfZot5ALaIb1gQ="/>
+        <field:input field="sev4success" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev4success" validationMessageCode="field_invalid_integer" z="pGH9SK0r0LCfOjc7mE9k6ZsO2o4="/>
+        <field:input field="sev5" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev5" validationMessageCode="field_invalid_integer" z="JfLrcizECRG6mpTBds+JzEM9Opk="/>
+        <field:input field="sev5success" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev5success" validationMessageCode="field_invalid_integer" z="uuW+nRchpbsAVyKch44KQtWgKLA="/>
+        <field:input field="sev12sla" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev12sla" validationMessageCode="field_invalid_number" z="W39ATZq6mPeasY3VoN0/GqHBQxI="/>
+        <field:input field="sev3sla" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev3sla" validationMessageCode="field_invalid_number" z="jB5cZcZN7QgFAfmYHQRxBdKfV6Y="/>
+        <field:input field="sev4sla" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev4sla" validationMessageCode="field_invalid_number" z="8XX97lVWN1po/C0CJoSDjTJrO7c="/>
+        <field:input field="sev5sla" id="c_com_csc_dashboard_admin_model_SlaAdherence_sev5sla" validationMessageCode="field_invalid_number" z="5EKFRel2pJuiyveZ4FVXFOd9TSw="/>
+    </form:update>
+</div>

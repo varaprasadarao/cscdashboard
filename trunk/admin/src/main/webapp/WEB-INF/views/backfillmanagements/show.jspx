@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_BackfillManagement" object="${backfillmanagement}" path="/backfillmanagements" z="dA2QLZcxss178dtxnh/CfgRXRPQ=">
+        <field:display field="account" id="s_com_csc_dashboard_admin_model_BackfillManagement_account" object="${backfillmanagement}" z="vjEdOhKTgSeFXO6PGDtOC5S81lw="/>
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_BackfillManagement_month" object="${backfillmanagement}" z="19Ukhh+/YIGHqPbzN6KtyuKG5qs="/>
+        <field:display field="novient" id="s_com_csc_dashboard_admin_model_BackfillManagement_novient" object="${backfillmanagement}" z="JVlO3jfHtNbMOwgxUjNIlzrdr/k="/>
+        <field:display field="empServingNotice" id="s_com_csc_dashboard_admin_model_BackfillManagement_empServingNotice" object="${backfillmanagement}" z="xuyYmgDmlqrtx9+WIYOsDv6O7zc="/>
+        <field:display field="lastWorkingDate" id="s_com_csc_dashboard_admin_model_BackfillManagement_lastWorkingDate" object="${backfillmanagement}" z="DDk0Gru+EHyh9YAYH4B1HhE+9xo="/>
+        <field:display field="replacementDate" id="s_com_csc_dashboard_admin_model_BackfillManagement_replacementDate" object="${backfillmanagement}" z="wgWIpTDRlxNUD74lY0JXWu6Acdc="/>
+        <field:display field="replacementIdentified" id="s_com_csc_dashboard_admin_model_BackfillManagement_replacementIdentified" object="${backfillmanagement}" z="19ZZzaVo4Xez7WHYZCpCRHaUm80="/>
+        <field:display field="status" id="s_com_csc_dashboard_admin_model_BackfillManagement_status" object="${backfillmanagement}" z="382yUBgZxhH4Jpcfv4gvmcBROp8="/>
+    </page:show>
+</div>

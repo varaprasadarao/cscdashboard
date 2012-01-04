@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_NewOrderClosed" object="${neworderclosed}" path="/newordercloseds" z="daEqAjCIYNfVdnljm5MqK+t3kwo=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_NewOrderClosed_month" object="${neworderclosed}" z="8rKXI2DjDcRPtikYBi6l750BIQI="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_NewOrderClosed_team" object="${neworderclosed}" z="FLKnLJDmEh7bB8i/ZB0hHN+ZlnA="/>
+        <field:display field="type" id="s_com_csc_dashboard_admin_model_NewOrderClosed_type" object="${neworderclosed}" z="wlH9/vTuiMXfSPGwlepabhi0C+s="/>
+        <field:display field="effort" id="s_com_csc_dashboard_admin_model_NewOrderClosed_effort" object="${neworderclosed}" z="S3XpnADoz6WF8ntTTEEXJP8cbQk="/>
+        <field:display field="description" id="s_com_csc_dashboard_admin_model_NewOrderClosed_description" object="${neworderclosed}" z="bgZLFsXVZ5AbAZlRpDzRk6yQGTk="/>
+        <field:display field="status" id="s_com_csc_dashboard_admin_model_NewOrderClosed_status" object="${neworderclosed}" z="V+nWsAKU7ndz1UCv8SrFfpIGgic="/>
+    </page:show>
+</div>

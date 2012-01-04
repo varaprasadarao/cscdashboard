@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_MonthDef" items="${monthdefs}" z="ZVrt/FUlFhoTBN6eE6ddd1Rxzac=">
+        <table:table data="${monthdefs}" id="l_com_csc_dashboard_admin_model_MonthDef" path="/monthdefs" typeIdFieldName="monthNum" z="SeKl+yhslH3X754PLL3LEZzuH4A=">
+            <table:column id="c_com_csc_dashboard_admin_model_MonthDef_month" property="month" z="w0bCkJKseWBVQtUn/6QtjK0EeBY="/>
+        </table:table>
+    </page:list>
+</div>

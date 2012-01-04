@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_Margins" items="${marginses}" z="eWoA8zT69QLPdiZqfr//6Ei5WTM=">
+        <table:table data="${marginses}" id="l_com_csc_dashboard_admin_model_Margins" path="/marginses" z="tkwEUcCFS8Z3pYCPOmmgQUU3xc8=">
+            <table:column id="c_com_csc_dashboard_admin_model_Margins_month" property="month" z="lKz2X0ul7+3mFrWN0bATNyv1rh4="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Margins_team" property="team" z="ghxkTd2FMvtPRiHo7YOdSohOSyA="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Margins_revenue" property="revenue" z="GBcLTs3j2Em/fRcsx4hapFl4kHg="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Margins_cost" property="cost" z="55+A76daX2w9lSVFjVpq6tu0jM4="/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_ContributionToTop10" items="${contributiontotop10s}" z="g35e7HwhFIvG7iLo6sV+iJ0pB3E=">
+        <table:table data="${contributiontotop10s}" id="l_com_csc_dashboard_admin_model_ContributionToTop10" path="/contributiontotop10s" z="bSUy2OuKija35t+n7bFW1VezVVA=">
+            <table:column id="c_com_csc_dashboard_admin_model_ContributionToTop10_month" property="month" z="6WQ0ZRMbhpyacngxXEe0q6qRtaw="/>
+            <table:column id="c_com_csc_dashboard_admin_model_ContributionToTop10_team" property="team" z="3AZrMUe16WhbwPqnVht7V4EZ7vA="/>
+            <table:column id="c_com_csc_dashboard_admin_model_ContributionToTop10_nameOfContributor" property="nameOfContributor" z="NsrawyMD/BwRo/4tNHyVIK2FG0c="/>
+            <table:column id="c_com_csc_dashboard_admin_model_ContributionToTop10_positionInTop10" property="positionInTop10" z="9TJRy+FHi9OTrzJKq5Rn35KCYEw="/>
+        </table:table>
+    </page:list>
+</div>

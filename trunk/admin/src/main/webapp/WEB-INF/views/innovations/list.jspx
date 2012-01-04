@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_Innovation" items="${innovations}" z="6oUH0UUIlDSVNaN0vhW+as9KQ2s=">
+        <table:table data="${innovations}" id="l_com_csc_dashboard_admin_model_Innovation" path="/innovations" z="RnD0MTtLth2yzvNHf8gRnXuVtUg=">
+            <table:column id="c_com_csc_dashboard_admin_model_Innovation_month" property="month" z="hir08YDji/v+i5H3RUuaS6HGfP8="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Innovation_team" property="team" z="zS7mO38k5dxjeVo408UW4YA3dkk="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Innovation_avgHc" property="avgHc" z="S3QC/zeaYPRi8SFjFZGdH/PPc7w="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Innovation_innoSubmitted" property="innoSubmitted" z="ZY81fbq6EXwP5nf5/OZpYWId/kg="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Innovation_innoQualified" property="innoQualified" z="mNzdVERJEidVdO2bZxdsNaCCQeo="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Innovation_manhrsOfQualifiedInno" property="manhrsOfQualifiedInno" z="CqPFyco/fonWT1jV3Ul0F7U/HGQ="/>
+        </table:table>
+    </page:list>
+</div>

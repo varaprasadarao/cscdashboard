@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_csc_dashboard_admin_model_Escalations" modelAttribute="escalations" path="/escalationses" render="${empty dependencies}" z="oskl3V/Q46Su8j2l4VtQOcV3pGo=">
+        <field:select field="account" id="c_com_csc_dashboard_admin_model_Escalations_account" itemValue="id" items="${accounts}" path="/accounts" z="V4XcNxwEeJsvSMhJmVGkjQcLU4I="/>
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_Escalations_month" itemValue="id" items="${monthses}" path="/monthses" z="2ruVqywEHrUi8Xvl8r8r1nMwEcI="/>
+        <field:input field="escalation" id="c_com_csc_dashboard_admin_model_Escalations_escalation" required="true" z="Gv9b7Up/+DJ2r8DsCmv+KreKQkY="/>
+        <field:input field="status" id="c_com_csc_dashboard_admin_model_Escalations_status" z="3a07eoq/TojlCwtY/HmAGjI+t6o="/>
+        <field:input field="assignedTo" id="c_com_csc_dashboard_admin_model_Escalations_assignedTo" z="bJloo/fMqbvd7tCKT2V+TZH/kZg="/>
+        <field:input field="daysOpen" id="c_com_csc_dashboard_admin_model_Escalations_daysOpen" validationMessageCode="field_invalid_integer" z="gb02IOHRBT7NeaJucWzRFZcRuOY="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_csc_dashboard_admin_model_Escalations" render="${not empty dependencies}" z="vPSdytWjB4wWZ8diQRDOftDb3lQ="/>
+</div>

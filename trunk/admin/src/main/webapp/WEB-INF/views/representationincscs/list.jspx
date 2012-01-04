@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_RepresentationInCsc" items="${representationincscs}" z="hMPNHp0qzmIERzz1taMqb8CqLMM=">
+        <table:table data="${representationincscs}" id="l_com_csc_dashboard_admin_model_RepresentationInCsc" path="/representationincscs" z="EU54F6lZri1XL65IE+vZ3+1Xtmc=">
+            <table:column id="c_com_csc_dashboard_admin_model_RepresentationInCsc_account" property="account" z="jNG1dsuLWgaXJO8yGrqAS87ardk="/>
+            <table:column id="c_com_csc_dashboard_admin_model_RepresentationInCsc_month" property="month" z="UVzO1T13pu/g4YCC43aRVTTjUoQ="/>
+            <table:column id="c_com_csc_dashboard_admin_model_RepresentationInCsc_team" property="team" z="SIwM0OU6ArRSiT9ct5KnWxPFysA="/>
+            <table:column id="c_com_csc_dashboard_admin_model_RepresentationInCsc_nameOfForum" property="nameOfForum" z="dVofGDz/8BD+UYhEJ6Waue6xC8s="/>
+            <table:column id="c_com_csc_dashboard_admin_model_RepresentationInCsc_resource" property="resource" z="dr8OZS1cIMA6xgJWPFrgXiDp7YA="/>
+            <table:column id="c_com_csc_dashboard_admin_model_RepresentationInCsc_status" property="status" z="DAyf6Z0f1ufETAuX3m7R6suZWFk="/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_ImproveIniti" items="${improveinitis}" z="eye2hgKlzuhw7P4/LmF3ijAdcdU=">
+        <table:table data="${improveinitis}" id="l_com_csc_dashboard_admin_model_ImproveIniti" path="/improveinitis" z="ynTWyuxL/vzzP9kpkjeS+yP87Kw=">
+            <table:column id="c_com_csc_dashboard_admin_model_ImproveIniti_account" property="account" z="Y7OuBhYWOEKmQm8pkMsnlH7eJoE="/>
+            <table:column id="c_com_csc_dashboard_admin_model_ImproveIniti_month" property="month" z="WOiFQRfWXgF9stBh5SSHUHjt35k="/>
+            <table:column id="c_com_csc_dashboard_admin_model_ImproveIniti_nameOfProg" property="nameOfProg" z="hyCcYo61osfxpJrNbOhFRci07So="/>
+            <table:column id="c_com_csc_dashboard_admin_model_ImproveIniti_primaryTeam" property="primaryTeam" z="clYw2c5h47ScAbCl7eNCGE3Ov6Q="/>
+            <table:column id="c_com_csc_dashboard_admin_model_ImproveIniti_owner" property="owner" z="qcY4MngIetLkrnZ/7zhlzvE3C/I="/>
+            <table:column date="true" dateTimePattern="${improveIniti_startdate_date_format}" id="c_com_csc_dashboard_admin_model_ImproveIniti_startDate" property="startDate" z="Src3eXo4t0ZCbxjfw9qeMADuQPU="/>
+        </table:table>
+    </page:list>
+</div>

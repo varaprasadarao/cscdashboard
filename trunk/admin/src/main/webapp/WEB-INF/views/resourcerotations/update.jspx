@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_csc_dashboard_admin_model_ResourceRotation" modelAttribute="resourceRotation" path="/resourcerotations" versionField="none" z="BsoHXqNjnVTd6+vkgvhhupeayGk=">
+        <field:select field="account" id="c_com_csc_dashboard_admin_model_ResourceRotation_account" itemValue="id" items="${accounts}" path="/accounts" z="fHEqxkZPzGJR9D4WywulvFkII24="/>
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_ResourceRotation_month" itemValue="id" items="${monthses}" path="/monthses" z="FQytIPlIdFqBLJCaCYAKawj7JVM="/>
+        <field:input field="statistics" id="c_com_csc_dashboard_admin_model_ResourceRotation_statistics" z="b8S6rW7NecedfIkdAvTm8nVkb4E="/>
+        <field:input field="groupTxt" id="c_com_csc_dashboard_admin_model_ResourceRotation_groupTxt" z="hVkZjElwGFEkQY/0KUDCIqdcpbA="/>
+    </form:update>
+</div>

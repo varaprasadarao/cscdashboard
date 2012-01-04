@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="marginses/list">
+        <put-attribute name="body" value="/WEB-INF/views/marginses/list.jspx"/>
+    </definition>
+<definition extends="default" name="marginses/show">
+        <put-attribute name="body" value="/WEB-INF/views/marginses/show.jspx"/>
+    </definition>
+<definition extends="default" name="marginses/create">
+        <put-attribute name="body" value="/WEB-INF/views/marginses/create.jspx"/>
+    </definition>
+<definition extends="default" name="marginses/update">
+        <put-attribute name="body" value="/WEB-INF/views/marginses/update.jspx"/>
+    </definition>
+</tiles-definitions>

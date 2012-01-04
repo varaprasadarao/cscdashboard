@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_csc_dashboard_admin_model_BackfillManagement" modelAttribute="backfillManagement" path="/backfillmanagements" render="${empty dependencies}" z="X3TsyqARdQjMtZbn7O8sCuvOg5E=">
+        <field:select field="account" id="c_com_csc_dashboard_admin_model_BackfillManagement_account" itemValue="id" items="${accounts}" path="/accounts" z="4y2MQaYMODNE8W3MfyjVrMEMcJk="/>
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_BackfillManagement_month" itemValue="id" items="${monthses}" path="/monthses" z="HEQG+XAyh4fJVdOFFmwAzumKLU8="/>
+        <field:input field="novient" id="c_com_csc_dashboard_admin_model_BackfillManagement_novient" z="q6HA2NNRr2C7sdHwkBZwWLuvUA0="/>
+        <field:input field="empServingNotice" id="c_com_csc_dashboard_admin_model_BackfillManagement_empServingNotice" z="8FvjdsjOJQTHwlhOGpkfgeBXWR4="/>
+        <field:input field="lastWorkingDate" id="c_com_csc_dashboard_admin_model_BackfillManagement_lastWorkingDate" z="9A+769RITeOER5RAeI15jhhLHu4="/>
+        <field:input field="replacementDate" id="c_com_csc_dashboard_admin_model_BackfillManagement_replacementDate" z="m9j/DXP3Btjz/CLDnbBdN+888rU="/>
+        <field:input field="replacementIdentified" id="c_com_csc_dashboard_admin_model_BackfillManagement_replacementIdentified" z="4xVbpwmd/0TELCQEmd76ufLZpW0="/>
+        <field:input field="status" id="c_com_csc_dashboard_admin_model_BackfillManagement_status" z="TG9pf87uVKktnkanWXf+OujyTlg="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_csc_dashboard_admin_model_BackfillManagement" render="${not empty dependencies}" z="uXCGSt8m1XQkQHwAQ5bQKj9pjMs="/>
+</div>

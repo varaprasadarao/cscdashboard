@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_KmScorecard" object="${kmscorecard}" path="/kmscorecards" z="iQ7aLCI6VsQvF7F1J2NrTGA3p+U=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_KmScorecard_month" object="${kmscorecard}" z="QiZWvfGFo2E0LjryzzMwdLCMlhA="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_KmScorecard_team" object="${kmscorecard}" z="OIT94tGNkUBzRm4ATID7EDYfNRQ="/>
+        <field:display field="numKmcontrib" id="s_com_csc_dashboard_admin_model_KmScorecard_numKmcontrib" object="${kmscorecard}" z="vx47HCal1lSec7FOE42mJBS15jU="/>
+        <field:display field="qualTop10" id="s_com_csc_dashboard_admin_model_KmScorecard_qualTop10" object="${kmscorecard}" z="Ojf8LELvlNQLzvgsja8QEyUv3w4="/>
+        <field:display field="hc" id="s_com_csc_dashboard_admin_model_KmScorecard_hc" object="${kmscorecard}" z="dt69F5Db9+N0+i+fzc7fdSqp+UQ="/>
+    </page:show>
+</div>
