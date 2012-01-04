@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_csc_dashboard_admin_model_Billing" modelAttribute="billing" path="/billings" render="${empty dependencies}" z="eFHFwW1MSHk0vb4kDTc0pHEIjB4=">
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_Billing_month" itemValue="id" items="${monthses}" path="/monthses" z="CYpA0+yd6JQ3nkxgG1lPp9GvaXw="/>
+        <field:select field="team" id="c_com_csc_dashboard_admin_model_Billing_team" itemValue="id" items="${teams}" path="/teams" z="iulkmb1+87/V05ioTF1rfzqFesk="/>
+        <field:input field="headCount" id="c_com_csc_dashboard_admin_model_Billing_headCount" required="true" validationMessageCode="field_invalid_integer" z="2J/tGRpiWs0nS8yaluAEbE9jgjw="/>
+        <field:input field="offshoreBillingHc" id="c_com_csc_dashboard_admin_model_Billing_offshoreBillingHc" validationMessageCode="field_invalid_integer" z="6k79vNBvh8qAOSPZEQhylC3dcxM="/>
+        <field:input field="onshoreBillingHc" id="c_com_csc_dashboard_admin_model_Billing_onshoreBillingHc" validationMessageCode="field_invalid_integer" z="Riky1SVEsRJlKWjxgREDRZoRR2o="/>
+        <field:input field="lossOfBillingAvgHc" id="c_com_csc_dashboard_admin_model_Billing_lossOfBillingAvgHc" validationMessageCode="field_invalid_integer" z="Xre2JGVjCy/J/Or63dOPdnn4+/E="/>
+        <field:input field="partialBilling" id="c_com_csc_dashboard_admin_model_Billing_partialBilling" validationMessageCode="field_invalid_integer" z="TsOjkfvk6wjp6nVF3eSx3NlrYTE="/>
+        <field:input field="emanageSapDisc" id="c_com_csc_dashboard_admin_model_Billing_emanageSapDisc" validationMessageCode="field_invalid_integer" z="EdxOHgNSFuS2GeKi4NnIIAtrBFI="/>
+        <field:input field="openDemandReplacement" id="c_com_csc_dashboard_admin_model_Billing_openDemandReplacement" validationMessageCode="field_invalid_integer" z="WvqM/ZALBMO8CScidkZIxaP7JZc="/>
+        <field:input field="openDemandNew" id="c_com_csc_dashboard_admin_model_Billing_openDemandNew" validationMessageCode="field_invalid_integer" z="5+ARPHOq649zouIFBxrQLgYwGqM="/>
+        <field:input field="demandForecastReplacement" id="c_com_csc_dashboard_admin_model_Billing_demandForecastReplacement" validationMessageCode="field_invalid_integer" z="GQsfoBK7gBpRUTQms8olCbwzEhs="/>
+        <field:input field="demandForecastNew" id="c_com_csc_dashboard_admin_model_Billing_demandForecastNew" validationMessageCode="field_invalid_integer" z="1GJYYmMhk7OEEepYE/TcFYBKAMQ="/>
+        <field:input field="mts" id="c_com_csc_dashboard_admin_model_Billing_mts" validationMessageCode="field_invalid_integer" z="0zrErwhgyUonsXSg1DKhdiPOcgs="/>
+        <field:input field="incompleteEtes" id="c_com_csc_dashboard_admin_model_Billing_incompleteEtes" validationMessageCode="field_invalid_integer" z="JcsQySUDueHLjhdjqBNt0F1GlTY="/>
+        <field:input field="maxPossibleBillingHrs" id="c_com_csc_dashboard_admin_model_Billing_maxPossibleBillingHrs" validationMessageCode="field_invalid_number" z="qxiKaVf2/o9cRUh02KarEVNr/RE="/>
+        <field:input field="billedHrs" id="c_com_csc_dashboard_admin_model_Billing_billedHrs" validationMessageCode="field_invalid_number" z="5PzVNwwpnK6aNI0FgnH9wULftHM="/>
+        <field:input field="gradeMix" id="c_com_csc_dashboard_admin_model_Billing_gradeMix" validationMessageCode="field_invalid_integer" z="q6Ng9pSRWPdgEV9hAocnmE/7mTw="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_csc_dashboard_admin_model_Billing" render="${not empty dependencies}" z="xVwQC7gRaIwBwSWk8Izap0tcCQ4="/>
+</div>

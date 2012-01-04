@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_csc_dashboard_admin_model_KmScorecard" modelAttribute="kmScorecard" path="/kmscorecards" versionField="none" z="B+tbcSTRZksXrRtO6z1STE97S4Y=">
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_KmScorecard_month" itemValue="id" items="${monthses}" path="/monthses" z="cXyBaRk6q8vAfu0RFH4MN+WuRPY="/>
+        <field:select field="team" id="c_com_csc_dashboard_admin_model_KmScorecard_team" itemValue="id" items="${teams}" path="/teams" z="Fuq3kshAGcA+zNdA2dw7jFEXNcA="/>
+        <field:input field="numKmcontrib" id="c_com_csc_dashboard_admin_model_KmScorecard_numKmcontrib" validationMessageCode="field_invalid_integer" z="MAQnePj+YzuHfPwAPMr2tdcOfaI="/>
+        <field:input field="qualTop10" id="c_com_csc_dashboard_admin_model_KmScorecard_qualTop10" validationMessageCode="field_invalid_integer" z="N7sSvav+fCzWDBAAnjNm0hGqchc="/>
+        <field:input field="hc" id="c_com_csc_dashboard_admin_model_KmScorecard_hc" validationMessageCode="field_invalid_integer" z="N3goL+Oq2ozXEQd3WlOj4Cl7vgg="/>
+    </form:update>
+</div>

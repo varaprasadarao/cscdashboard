@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_Appreciation" object="${appreciation}" path="/appreciations" z="tBJ3+fuNiFrLMURHHEjtanAz7EI=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_Appreciation_month" object="${appreciation}" z="jMmAeohgDhm4Q5UYE3avZPitHz4="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_Appreciation_team" object="${appreciation}" z="4NdZeV9W82b6NSK/iJiGgAJ5O3I="/>
+        <field:display field="appreciationFor" id="s_com_csc_dashboard_admin_model_Appreciation_appreciationFor" object="${appreciation}" z="oRJmbMwr4FFSbMeoSUKnCGM1Hq0="/>
+        <field:display field="appreciation" id="s_com_csc_dashboard_admin_model_Appreciation_appreciation" object="${appreciation}" z="UhBdqOIECEmR8rWEs8kAYHGTWAc="/>
+        <field:display field="appreciatedBy" id="s_com_csc_dashboard_admin_model_Appreciation_appreciatedBy" object="${appreciation}" z="9zIznpSZpsHdqTy9x05TZrdnJgo="/>
+        <field:display field="relevance" id="s_com_csc_dashboard_admin_model_Appreciation_relevance" object="${appreciation}" z="jYn0ZUkRKigNMn7ttg6YaiPkR0E="/>
+    </page:show>
+</div>

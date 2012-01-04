@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_Innovation" object="${innovation}" path="/innovations" z="2pNjxt61vI3iBJ/l1FwfVeyEOxo=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_Innovation_month" object="${innovation}" z="Rn7HuV33tn+2hWa/V9kdGOLZVE4="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_Innovation_team" object="${innovation}" z="UN+xoQfwONQl6nQoUHsNzW/gAz8="/>
+        <field:display field="avgHc" id="s_com_csc_dashboard_admin_model_Innovation_avgHc" object="${innovation}" z="plpFz8NgoMcCWX6x6GZnzW7vSPg="/>
+        <field:display field="innoSubmitted" id="s_com_csc_dashboard_admin_model_Innovation_innoSubmitted" object="${innovation}" z="nMJ68h+ciHkSU3Wp/fc7Bl+dJE8="/>
+        <field:display field="innoQualified" id="s_com_csc_dashboard_admin_model_Innovation_innoQualified" object="${innovation}" z="x7ojL/MJ8h+ZIymPO788VqMxhzo="/>
+        <field:display field="manhrsOfQualifiedInno" id="s_com_csc_dashboard_admin_model_Innovation_manhrsOfQualifiedInno" object="${innovation}" z="rf+m0DXCs/d2TrjmzGKDUh/PEKk="/>
+    </page:show>
+</div>

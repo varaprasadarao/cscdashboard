@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_VerticalInit" object="${verticalinit}" path="/verticalinits" z="001wDvUw6RfsajamsDHz+osMeB4=">
+        <field:display field="account" id="s_com_csc_dashboard_admin_model_VerticalInit_account" object="${verticalinit}" z="g02e0alJzu0VQvFiOLcpARgv78Q="/>
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_VerticalInit_month" object="${verticalinit}" z="5iMgEsYwVqfprXXSJNAFhe4N8cU="/>
+        <field:display field="nameOfInit" id="s_com_csc_dashboard_admin_model_VerticalInit_nameOfInit" object="${verticalinit}" z="Tch+sicHimpyT+5q0xwg/kMOyzU="/>
+        <field:display field="sponsor" id="s_com_csc_dashboard_admin_model_VerticalInit_sponsor" object="${verticalinit}" z="eoa/6ssKps3WEhnpIy8uBcdpZmY="/>
+        <field:display field="keyContributors" id="s_com_csc_dashboard_admin_model_VerticalInit_keyContributors" object="${verticalinit}" z="4MVzJMcgfxMQjoyRqyUT51zUHZk="/>
+        <field:display field="remarks" id="s_com_csc_dashboard_admin_model_VerticalInit_remarks" object="${verticalinit}" z="Xs8FpBBnkjD/7eXv3VIKGSvhs2k="/>
+    </page:show>
+</div>

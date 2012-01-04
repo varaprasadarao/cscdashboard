@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_ImproveIniti" object="${improveiniti}" path="/improveinitis" z="95ZDhKedKXQ0X0IlKsObd8AUH34=">
+        <field:display field="account" id="s_com_csc_dashboard_admin_model_ImproveIniti_account" object="${improveiniti}" z="fqH85AOEWTn22NKzuZOAUNysKlQ="/>
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_ImproveIniti_month" object="${improveiniti}" z="CdKPkkOJh9/r2ZHuPB4ffZYreGQ="/>
+        <field:display field="nameOfProg" id="s_com_csc_dashboard_admin_model_ImproveIniti_nameOfProg" object="${improveiniti}" z="3XYZQ8+J1cbpQzrVfbBHqXeVD6Q="/>
+        <field:display field="primaryTeam" id="s_com_csc_dashboard_admin_model_ImproveIniti_primaryTeam" object="${improveiniti}" z="eVEAKcCKA376SNszBjSq0K/9Vdw="/>
+        <field:display field="owner" id="s_com_csc_dashboard_admin_model_ImproveIniti_owner" object="${improveiniti}" z="+9jb6jJdtNAiRl6z+rmcErmDxX8="/>
+        <field:display date="true" dateTimePattern="${improveIniti_startdate_date_format}" field="startDate" id="s_com_csc_dashboard_admin_model_ImproveIniti_startDate" object="${improveiniti}" z="GkuVGu5K+umMupJCaH7yADNB+vw="/>
+        <field:display field="startScore" id="s_com_csc_dashboard_admin_model_ImproveIniti_startScore" object="${improveiniti}" z="AHwxaJ6WG0aa4J3IOduAJ1vvs20="/>
+        <field:display date="true" dateTimePattern="${improveIniti_enddate_date_format}" field="endDate" id="s_com_csc_dashboard_admin_model_ImproveIniti_endDate" object="${improveiniti}" z="9XmNnsy7T+9H1/sqslTxY/sQRuM="/>
+        <field:display field="desiredScore" id="s_com_csc_dashboard_admin_model_ImproveIniti_desiredScore" object="${improveiniti}" z="hU06b3wDm5F8YDNl1z2+enAsx0U="/>
+        <field:display field="numPplAffected" id="s_com_csc_dashboard_admin_model_ImproveIniti_numPplAffected" object="${improveiniti}" z="y+I3cv6EqDXnswV0qGVgH8gScX4="/>
+        <field:display field="internalTrainingConducted" id="s_com_csc_dashboard_admin_model_ImproveIniti_internalTrainingConducted" object="${improveiniti}" z="f4f8cyPnwFCApf/Xw8vJpc3d25s="/>
+        <field:display field="progDesc" id="s_com_csc_dashboard_admin_model_ImproveIniti_progDesc" object="${improveiniti}" z="yO0gapQWWdfRfBS7jqveDHMrtSs="/>
+    </page:show>
+</div>

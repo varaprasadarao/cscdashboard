@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_RepresentationInCsc" object="${representationincsc}" path="/representationincscs" z="x5wJ+73a8uxvW57Clbq9sEcOr9s=">
+        <field:display field="account" id="s_com_csc_dashboard_admin_model_RepresentationInCsc_account" object="${representationincsc}" z="f94FeRGbn4CE5ogM6LlEJvey5Mw="/>
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_RepresentationInCsc_month" object="${representationincsc}" z="mXZ/AEJqT+4X5QlnE555MRG94hY="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_RepresentationInCsc_team" object="${representationincsc}" z="OKf5J86X8pV6NaWgFLxqrtR19o0="/>
+        <field:display field="nameOfForum" id="s_com_csc_dashboard_admin_model_RepresentationInCsc_nameOfForum" object="${representationincsc}" z="a9/+fk6IM0yiR4IP5iIPcgjBe0c="/>
+        <field:display field="resource" id="s_com_csc_dashboard_admin_model_RepresentationInCsc_resource" object="${representationincsc}" z="P6UCaIznqnG4SKpVoeAHvHu7dv0="/>
+        <field:display field="status" id="s_com_csc_dashboard_admin_model_RepresentationInCsc_status" object="${representationincsc}" z="+97yTaPGfnW9C7gJtBI9kd6fPOY="/>
+        <field:display field="supportRequired" id="s_com_csc_dashboard_admin_model_RepresentationInCsc_supportRequired" object="${representationincsc}" z="rddnFlcGdZLTKpzwrRJGjtsmyF4="/>
+    </page:show>
+</div>

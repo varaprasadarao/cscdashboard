@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_Csat" items="${csats}" z="vK0OKjdrEQZxvBKpIyT0XLW/2+A=">
+        <table:table data="${csats}" id="l_com_csc_dashboard_admin_model_Csat" path="/csats" z="xZXCWWKkM6ekCfmH7ATT2Gvhjoc=">
+            <table:column id="c_com_csc_dashboard_admin_model_Csat_month" property="month" z="CykEvSqN02Br7bVCgO4naPMRxy4="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Csat_team" property="team" z="6Xl6oOPIEbQb9beOrB2KZZnZtAU="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Csat_description" property="description" z="mZvQGo63YJvwUH7YZNgJyRs8tHk="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Csat_rating" property="rating" z="uD3laKqofZ5MSrwFguLP1hI0nOc="/>
+        </table:table>
+    </page:list>
+</div>

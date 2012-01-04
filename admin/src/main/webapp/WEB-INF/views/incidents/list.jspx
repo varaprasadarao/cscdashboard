@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_Incident" items="${incidents}" z="fApaHybOwTNSU5H2sSTIVWVmLbg=">
+        <table:table data="${incidents}" id="l_com_csc_dashboard_admin_model_Incident" path="/incidents" z="GUeTZoZ5gEI0sj7EeH2JYbLj1x8=">
+            <table:column id="c_com_csc_dashboard_admin_model_Incident_month" property="month" z="s406U2aT3l1nA1VquabX0T7IT6U="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Incident_team" property="team" z="PDZOA2gZvQAl4YPcnwGYQs3E5i0="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Incident_cat12Count" property="cat12Count" z="U31fOczP2BdRDn5c35IOvbmkG94="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Incident_cat12Success" property="cat12Success" z="X9GzXWp3NodE28oY18u9BI5tPBQ="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Incident_cat12Fail" property="cat12Fail" z="95Ig1Bu+L74HzUzUA6CSK2qeoKo="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Incident_cat3Count" property="cat3Count" z="S75bphqajDoyk8axWUKHQzJm5os="/>
+        </table:table>
+    </page:list>
+</div>

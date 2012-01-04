@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="newordercloseds/list">
+        <put-attribute name="body" value="/WEB-INF/views/newordercloseds/list.jspx"/>
+    </definition>
+<definition extends="default" name="newordercloseds/show">
+        <put-attribute name="body" value="/WEB-INF/views/newordercloseds/show.jspx"/>
+    </definition>
+<definition extends="default" name="newordercloseds/create">
+        <put-attribute name="body" value="/WEB-INF/views/newordercloseds/create.jspx"/>
+    </definition>
+<definition extends="default" name="newordercloseds/update">
+        <put-attribute name="body" value="/WEB-INF/views/newordercloseds/update.jspx"/>
+    </definition>
+</tiles-definitions>

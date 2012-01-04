@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_csc_dashboard_admin_model_Margins" modelAttribute="margins" path="/marginses" render="${empty dependencies}" z="PXNcVyJFuHs64o6NP4SIhrFUV2U=">
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_Margins_month" itemValue="id" items="${monthses}" path="/monthses" z="xPtpQbNoSvhsfikMoiPf4IrtVE0="/>
+        <field:select field="team" id="c_com_csc_dashboard_admin_model_Margins_team" itemValue="id" items="${teams}" path="/teams" z="SMXiwnhp+aeko+KEurCkW0QdkeU="/>
+        <field:input field="revenue" id="c_com_csc_dashboard_admin_model_Margins_revenue" validationMessageCode="field_invalid_number" z="D+rVsHuyiDa41hhlKibHB4SGCwA="/>
+        <field:input field="cost" id="c_com_csc_dashboard_admin_model_Margins_cost" validationMessageCode="field_invalid_number" z="QW0trMGSeVZm6gbQr070jQJDtkk="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_csc_dashboard_admin_model_Margins" render="${not empty dependencies}" z="rnQ+jGMSD2al0O7uTNTyVi6p308="/>
+</div>

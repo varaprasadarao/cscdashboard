@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_ResourceRotation" object="${resourcerotation}" path="/resourcerotations" z="2T983tbHSTc6VCns/ezACxN0w1A=">
+        <field:display field="account" id="s_com_csc_dashboard_admin_model_ResourceRotation_account" object="${resourcerotation}" z="T4oJecxMv3pHEoXPFBNYDoJNNOI="/>
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_ResourceRotation_month" object="${resourcerotation}" z="aogshJwp4Nka3TF+p6DgDLzbWZ8="/>
+        <field:display field="statistics" id="s_com_csc_dashboard_admin_model_ResourceRotation_statistics" object="${resourcerotation}" z="Z77xtUBsBD26TUHFUC57KhYjzvA="/>
+        <field:display field="groupTxt" id="s_com_csc_dashboard_admin_model_ResourceRotation_groupTxt" object="${resourcerotation}" z="cuPgimjSUySOaFUtKwfrubhmL2E="/>
+    </page:show>
+</div>

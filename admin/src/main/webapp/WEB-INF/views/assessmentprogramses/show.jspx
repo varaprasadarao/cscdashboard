@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_AssessmentPrograms" object="${assessmentprograms}" path="/assessmentprogramses" z="26lin0t/Ca+xik8tNAikKr8na2Y=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_AssessmentPrograms_month" object="${assessmentprograms}" z="ZA+kBcH9AMYZnnWjy9nZX761qeA="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_AssessmentPrograms_team" object="${assessmentprograms}" z="GzzLakebl2g34Udlso59b8lAKVY="/>
+        <field:display field="knowledge" id="s_com_csc_dashboard_admin_model_AssessmentPrograms_knowledge" object="${assessmentprograms}" z="AiHz6r3Vx8+kQJRO+qWz73qSTDk="/>
+        <field:display field="process" id="s_com_csc_dashboard_admin_model_AssessmentPrograms_process" object="${assessmentprograms}" z="p/ZpKR4OspDTf/RZThBDzOZWsms="/>
+        <field:display field="technical" id="s_com_csc_dashboard_admin_model_AssessmentPrograms_technical" object="${assessmentprograms}" z="cFSabvl4qz9Dg78N6ZaSZ8rmODk="/>
+    </page:show>
+</div>

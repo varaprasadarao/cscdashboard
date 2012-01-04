@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_Utilization" object="${utilization}" path="/utilizations" z="R6Kki15xkC3ET9m1RlUmdG3+Avw=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_Utilization_month" object="${utilization}" z="+e+hAkfPbT3zSWYpNond7emxNyQ="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_Utilization_team" object="${utilization}" z="Gr4c+XyQDjN6Y99641qeNDLIoCw="/>
+        <field:display field="utilization" id="s_com_csc_dashboard_admin_model_Utilization_utilization" object="${utilization}" z="rxt82vMXJp0zr2erubzThRRS4RI="/>
+        <field:display field="adHoursDevl" id="s_com_csc_dashboard_admin_model_Utilization_adHoursDevl" object="${utilization}" z="L5VJg792YbLLS2MeviDTZUPqoIo="/>
+        <field:display field="amsHoursMaint" id="s_com_csc_dashboard_admin_model_Utilization_amsHoursMaint" object="${utilization}" z="2NTvU05WSxjEJrlOSCDo5PuP+K8="/>
+        <field:display field="obfHours" id="s_com_csc_dashboard_admin_model_Utilization_obfHours" object="${utilization}" z="M9i5o2UxWURd8DI7Trx/t1+XP+k="/>
+        <field:display field="valueAdds" id="s_com_csc_dashboard_admin_model_Utilization_valueAdds" object="${utilization}" z="XFQAYFTDexwAjXeH4xWTmmsJraY="/>
+        <field:display field="idleHours" id="s_com_csc_dashboard_admin_model_Utilization_idleHours" object="${utilization}" z="zZt9dct2caQQrE3PR4dd8zqCzh4="/>
+    </page:show>
+</div>

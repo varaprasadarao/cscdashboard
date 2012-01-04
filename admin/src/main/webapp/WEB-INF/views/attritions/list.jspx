@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_csc_dashboard_admin_model_Attrition" items="${attritions}" z="oZ77xNIPQNZddtVauetMiZkdCPQ=">
+        <table:table data="${attritions}" id="l_com_csc_dashboard_admin_model_Attrition" path="/attritions" z="cYrcV8EojBZUV4/bwb5kXXplm2w=">
+            <table:column id="c_com_csc_dashboard_admin_model_Attrition_account" property="account" z="Zk1aSLGRoHXtJxCqYmJ29Yod5f4="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Attrition_month" property="month" z="lZ+eEdMG1KCNB5ikJ2SlBlDESWk="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Attrition_attritionNum" property="attritionNum" z="aLcvxMme30VC/3wFn2VrBC8Pkwo="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Attrition_openingHeadCount" property="openingHeadCount" z="8OrxNSraD121O/W/6fGqjIn0meo="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Attrition_closingHeadCount" property="closingHeadCount" z="M5oLdiZbDFusNVUHOhcd8p+PIFY="/>
+        </table:table>
+    </page:list>
+</div>

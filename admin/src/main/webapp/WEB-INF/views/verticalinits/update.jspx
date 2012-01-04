@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_csc_dashboard_admin_model_VerticalInit" modelAttribute="verticalInit" path="/verticalinits" versionField="none" z="wxZ22weT1TQBr2dm78fX0eNf+GE=">
+        <field:select field="account" id="c_com_csc_dashboard_admin_model_VerticalInit_account" itemValue="id" items="${accounts}" path="/accounts" z="m9tEu1jEnr4V8tKu92L3B278o7M="/>
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_VerticalInit_month" itemValue="id" items="${monthses}" path="/monthses" z="siG7tTywmIhOM02zRfkOcbA9O7o="/>
+        <field:input field="nameOfInit" id="c_com_csc_dashboard_admin_model_VerticalInit_nameOfInit" required="true" z="jcqP98D1Vb1zNxBsiu2yrBi3BDY="/>
+        <field:input field="sponsor" id="c_com_csc_dashboard_admin_model_VerticalInit_sponsor" z="EO3mBQ1OkF3N2g/swoCRF0a100k="/>
+        <field:input field="keyContributors" id="c_com_csc_dashboard_admin_model_VerticalInit_keyContributors" z="JOXUcMa2BiO0bjOUeGl4BSv7nbI="/>
+        <field:input field="remarks" id="c_com_csc_dashboard_admin_model_VerticalInit_remarks" z="nAmL9w2mJ1hePcPY0Q/ipml86qU="/>
+    </form:update>
+</div>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_TeamBuilding" object="${teambuilding}" path="/teambuildings" z="r+Aq8rvShqZ8P3mUzqp1UrN4Th0=">
+        <field:display field="account" id="s_com_csc_dashboard_admin_model_TeamBuilding_account" object="${teambuilding}" z="85eq0OdK0EreWHfJfD2z7TQjB0I="/>
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_TeamBuilding_month" object="${teambuilding}" z="JkrT84xx9TL1nfuGyOTEazrZOPI="/>
+        <field:display field="activity" id="s_com_csc_dashboard_admin_model_TeamBuilding_activity" object="${teambuilding}" z="aimmuwvMXB4GZ6LITJCYA7PTFm0="/>
+        <field:display field="resourceImpacted" id="s_com_csc_dashboard_admin_model_TeamBuilding_resourceImpacted" object="${teambuilding}" z="k/t6ScR+05iHUTm6eUFUQ1RyQG8="/>
+        <field:display field="impact" id="s_com_csc_dashboard_admin_model_TeamBuilding_impact" object="${teambuilding}" z="8QwAosKjutK567fpvdjPhhvfhyo="/>
+    </page:show>
+</div>

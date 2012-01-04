@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_SlaAdherence" object="${slaadherence}" path="/slaadherences" z="Rk560zYaWYVtKKMCuU85v6QQo+0=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_SlaAdherence_month" object="${slaadherence}" z="iGkxDkCaWVa3azZKvfYPaB1OzCo="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_SlaAdherence_team" object="${slaadherence}" z="1tCamUKHvHOkJJPaWybDtiN7iAY="/>
+        <field:display field="sev12" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev12" object="${slaadherence}" z="iCzLftTbUObXX5drY8PhyI9J0CY="/>
+        <field:display field="sev12success" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev12success" object="${slaadherence}" z="ZZYoKx5/Jq2CotaI7g0Tdgq66+4="/>
+        <field:display field="sev3" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev3" object="${slaadherence}" z="rSNCNb/BI/6qIQJIYGCYsd6AghI="/>
+        <field:display field="sev3success" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev3success" object="${slaadherence}" z="YkDtmuNLDB2ZyAJMfwlTR/yOflw="/>
+        <field:display field="sev4" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev4" object="${slaadherence}" z="ERdLGOaRzvjp9u8pt01Ammlq5N8="/>
+        <field:display field="sev4success" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev4success" object="${slaadherence}" z="ZykA5e7X0FSO//RQSs/iQjiEIp4="/>
+        <field:display field="sev5" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev5" object="${slaadherence}" z="FrZqzyZBcs1qz0K/D/16uOnInrs="/>
+        <field:display field="sev5success" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev5success" object="${slaadherence}" z="gJgbdX7il2FDH5oKaetLfMdA1fY="/>
+        <field:display field="sev12sla" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev12sla" object="${slaadherence}" z="pCwpLaBFaESAxy0Kd6nfyk5fVc4="/>
+        <field:display field="sev3sla" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev3sla" object="${slaadherence}" z="HY/EDuihplqTePEVR8ewfT2BZ60="/>
+        <field:display field="sev4sla" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev4sla" object="${slaadherence}" z="zMruTKlwrTclhceovIZpIeF44uo="/>
+        <field:display field="sev5sla" id="s_com_csc_dashboard_admin_model_SlaAdherence_sev5sla" object="${slaadherence}" z="QuTexWMvZP8l2/xyvPgoaMGaWLA="/>
+    </page:show>
+</div>

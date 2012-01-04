@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_csc_dashboard_admin_model_Innovation" modelAttribute="innovation" path="/innovations" render="${empty dependencies}" z="75mOCQn9RWuikZWcQ231ninSvu0=">
+        <field:select field="month" id="c_com_csc_dashboard_admin_model_Innovation_month" itemValue="id" items="${monthses}" path="/monthses" z="0Rs7V/9Pg7tmXydtPFNE/eqN/30="/>
+        <field:select field="team" id="c_com_csc_dashboard_admin_model_Innovation_team" itemValue="id" items="${teams}" path="/teams" z="sruRF6x+htNNxDp9dW6gGBcYAko="/>
+        <field:input field="avgHc" id="c_com_csc_dashboard_admin_model_Innovation_avgHc" required="true" validationMessageCode="field_invalid_integer" z="38rUoJ/+wTlheV556t9B6tEmcF8="/>
+        <field:input field="innoSubmitted" id="c_com_csc_dashboard_admin_model_Innovation_innoSubmitted" validationMessageCode="field_invalid_integer" z="jccNjTk4W1pW8yFK4A56CzfT3nc="/>
+        <field:input field="innoQualified" id="c_com_csc_dashboard_admin_model_Innovation_innoQualified" validationMessageCode="field_invalid_integer" z="9ahuHAbEkc/2W6Miy8aQNZP8HOU="/>
+        <field:input field="manhrsOfQualifiedInno" id="c_com_csc_dashboard_admin_model_Innovation_manhrsOfQualifiedInno" validationMessageCode="field_invalid_integer" z="Ko/u9Fu52WNZVWmcgMQFbmpvOqY="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_csc_dashboard_admin_model_Innovation" render="${not empty dependencies}" z="B8dYTNVTuneLOp6ryUQ94dJh9uk="/>
+</div>

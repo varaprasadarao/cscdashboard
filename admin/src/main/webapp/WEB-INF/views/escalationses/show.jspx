@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_Escalations" object="${escalations}" path="/escalationses" z="uDljIfzuhiAtLG7o5jqWEXbUd5s=">
+        <field:display field="account" id="s_com_csc_dashboard_admin_model_Escalations_account" object="${escalations}" z="E+2O/YM3ukL2T9mODK42R9dzH8k="/>
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_Escalations_month" object="${escalations}" z="ZZX4QKHtaEpsE45teqHi0bjvqpc="/>
+        <field:display field="escalation" id="s_com_csc_dashboard_admin_model_Escalations_escalation" object="${escalations}" z="x7sTGPVj2ufHZwFSf1F26SXD58g="/>
+        <field:display field="status" id="s_com_csc_dashboard_admin_model_Escalations_status" object="${escalations}" z="dkKGNguau+mFRovt6VAf3FZOggg="/>
+        <field:display field="assignedTo" id="s_com_csc_dashboard_admin_model_Escalations_assignedTo" object="${escalations}" z="LuZXQk/H2vjjP2zMC4tY2g8+v60="/>
+        <field:display field="daysOpen" id="s_com_csc_dashboard_admin_model_Escalations_daysOpen" object="${escalations}" z="995UC1xagaBOJopdkkm2rEVHF4Y="/>
+    </page:show>
+</div>

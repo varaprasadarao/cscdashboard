@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_Csat" object="${csat}" path="/csats" z="16RK9dPQbaEIDXIjZT2VAOoD8jA=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_Csat_month" object="${csat}" z="Hl/aJw3j+WPaX2PERSPvSkZy/4M="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_Csat_team" object="${csat}" z="MR2p2t9RBV2VkzsXHqCq2p1/yVY="/>
+        <field:display field="description" id="s_com_csc_dashboard_admin_model_Csat_description" object="${csat}" z="beBHD7dFGpA7LdcJGNrY3muL7Nc="/>
+        <field:display field="rating" id="s_com_csc_dashboard_admin_model_Csat_rating" object="${csat}" z="v6cNcE9pl4prpQYP4MRSAXlfaQ8="/>
+    </page:show>
+</div>

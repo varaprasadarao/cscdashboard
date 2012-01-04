@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_ContributionToTop10" object="${contributiontotop10}" path="/contributiontotop10s" z="J4em8fWWBxlUtVWdRL4aG8Xg6A4=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_ContributionToTop10_month" object="${contributiontotop10}" z="vrbt74Gqn5rNM5ktovcOBTRVQ6A="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_ContributionToTop10_team" object="${contributiontotop10}" z="bsuuDXoiXOv/ZAlpdOLRR7mHdq4="/>
+        <field:display field="nameOfContributor" id="s_com_csc_dashboard_admin_model_ContributionToTop10_nameOfContributor" object="${contributiontotop10}" z="l7eF2JSRa67gRStRRbZzO0YiaSw="/>
+        <field:display field="positionInTop10" id="s_com_csc_dashboard_admin_model_ContributionToTop10_positionInTop10" object="${contributiontotop10}" z="p1CICl9lKyae9SBlWX3UQllyeyI="/>
+    </page:show>
+</div>

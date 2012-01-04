@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_csc_dashboard_admin_model_Billing" object="${billing}" path="/billings" z="rJvDWkBdnyQW/fRrdSUbDBWuXRc=">
+        <field:display field="month" id="s_com_csc_dashboard_admin_model_Billing_month" object="${billing}" z="9Bn5lSIEkBAx+wbJ9t6xOOzpBGQ="/>
+        <field:display field="team" id="s_com_csc_dashboard_admin_model_Billing_team" object="${billing}" z="bsBfGtcNEDj5BYVKvRz9r6lYDiE="/>
+        <field:display field="headCount" id="s_com_csc_dashboard_admin_model_Billing_headCount" object="${billing}" z="MjShm2AGe13Ok0losnSeqOpTv6E="/>
+        <field:display field="offshoreBillingHc" id="s_com_csc_dashboard_admin_model_Billing_offshoreBillingHc" object="${billing}" z="Stg/dyZU/oqeAvFSiAyM0oMrd2s="/>
+        <field:display field="onshoreBillingHc" id="s_com_csc_dashboard_admin_model_Billing_onshoreBillingHc" object="${billing}" z="Kgq/6Wq/3qO7gDya2fZmVQIoX08="/>
+        <field:display field="lossOfBillingAvgHc" id="s_com_csc_dashboard_admin_model_Billing_lossOfBillingAvgHc" object="${billing}" z="gTTNlJhKxcP1XoWLk/Uxu3wMUMg="/>
+        <field:display field="partialBilling" id="s_com_csc_dashboard_admin_model_Billing_partialBilling" object="${billing}" z="CNK42gIzv4CB3XMdYsdE92mSCCc="/>
+        <field:display field="emanageSapDisc" id="s_com_csc_dashboard_admin_model_Billing_emanageSapDisc" object="${billing}" z="xE5NoCP3tF6ySQQvvj/RZH5PVIE="/>
+        <field:display field="openDemandReplacement" id="s_com_csc_dashboard_admin_model_Billing_openDemandReplacement" object="${billing}" z="gZBAGhOkXt6mVUpUfH0BENFqzQI="/>
+        <field:display field="openDemandNew" id="s_com_csc_dashboard_admin_model_Billing_openDemandNew" object="${billing}" z="jsl/+NN9IJZtOsHuYmYkIedm/V0="/>
+        <field:display field="demandForecastReplacement" id="s_com_csc_dashboard_admin_model_Billing_demandForecastReplacement" object="${billing}" z="EOCSsl+p0Szv7DqAih3uqn0N+1Q="/>
+        <field:display field="demandForecastNew" id="s_com_csc_dashboard_admin_model_Billing_demandForecastNew" object="${billing}" z="fWImNgVYv4e4gsVF3FkWoBlUtzc="/>
+        <field:display field="mts" id="s_com_csc_dashboard_admin_model_Billing_mts" object="${billing}" z="kdpUPXy45bFrB+sO/hhee9VrFKs="/>
+        <field:display field="incompleteEtes" id="s_com_csc_dashboard_admin_model_Billing_incompleteEtes" object="${billing}" z="L726ICLh21raOHxKwkeAOAm9sEM="/>
+        <field:display field="maxPossibleBillingHrs" id="s_com_csc_dashboard_admin_model_Billing_maxPossibleBillingHrs" object="${billing}" z="LSfbK4h1CDOSVMyTTn4s/Dna2H8="/>
+        <field:display field="billedHrs" id="s_com_csc_dashboard_admin_model_Billing_billedHrs" object="${billing}" z="NDZA1yqXBs4s9523fEWt7Xczf5E="/>
+        <field:display field="gradeMix" id="s_com_csc_dashboard_admin_model_Billing_gradeMix" object="${billing}" z="0YsC1PCHyPFMEdZIvwxFO5srTf4="/>
+    </page:show>
+</div>

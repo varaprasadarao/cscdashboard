@@ -1,0 +1,25 @@
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2011-11-01 12:38:50
+project --topLevelPackage com.csc.dashboard.admin --projectName admin --java 6
+persistence setup --provider HIBERNATE --database MYSQL --databaseName dashboard --userName root --password root --hostName localhost
+database reverse engineer --schema no-schema-required --package ~.model
+// [failed] web mvc setup
+web mvc setup
+web mvc all --package ~.web
+exit
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log closed at 2011-11-01 12:44:52
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2011-11-01 12:52:07
+web mvc all --package ~.web
+web mvc update tags 
+web mvc all --package ~.web
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2011-11-01 13:53:50
+project --topLevelPackage com.csc.dashboard.admin --projectName admin --java 6
+persistence setup --provider HIBERNATE --database MYSQL --databaseName dashboard --userName root --password root --hostName localhost
+database reverse engineer --schema no-schema-required --package ~.model
+web mvc setup
+web mvc all --package ~.web
+exit
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log closed at 2011-11-01 16:30:03
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log opened at 2011-11-01 16:50:02
+// [failed] exit
+exit
+// Spring Roo 1.2.0.M1 [rev 1fa252f] log closed at 2011-11-01 17:12:23
