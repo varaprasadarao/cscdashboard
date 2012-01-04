@@ -3,22 +3,20 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-        <menu:category id="c_account" z="/ObionklNVMvfxU5oSj2hEUJNu0=">
-            <menu:item id="i_account_new" messageCode="global_menu_new" url="/accounts?form" z="7ISq6pJsfrDJexgk1yAmzNiIcp8="/>
-            <menu:item id="i_account_list" messageCode="global_menu_list" url="/accounts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="VeXZsM9n5bR9ZvhjdYhrVsG24uw="/>
-        </menu:category>
+        
         <menu:category id="c_appreciation" z="byJ5J+WzVzU0bOJxo9svejfVisg=">
             <menu:item id="i_appreciation_new" messageCode="global_menu_new" url="/appreciations?form" z="MjNDF/E7+Yzdm8q8LGgzZn0EAAo="/>
             <menu:item id="i_appreciation_list" messageCode="global_menu_list" url="/appreciations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vbfW0l2jyurOxqm9utlB66ildjE="/>
-        </menu:category>
-        <menu:category id="c_attrition" z="/+EN1Ymr5FPQo0qWkmx/53hZeWo=">
-            <menu:item id="i_attrition_new" messageCode="global_menu_new" url="/attritions?form" z="acg9+2y57BbhyIoyG5PJ1tNF6Mw="/>
-            <menu:item id="i_attrition_list" messageCode="global_menu_list" url="/attritions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ayQ4bavbfIvdPF5S+ZtNsR29INA="/>
         </menu:category>
         <menu:category id="c_assessmentprograms" z="qgk0fkg4KpwQZTIBuAVkhMtHwRg=">
             <menu:item id="i_assessmentprograms_new" messageCode="global_menu_new" url="/assessmentprogramses?form" z="lENYbZkmbmtLhkI7avU3avhQRJs="/>
             <menu:item id="i_assessmentprograms_list" messageCode="global_menu_list" url="/assessmentprogramses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="WkzfwgcXrizVv+E/h3B4HpzJsBE="/>
         </menu:category>
+        <menu:category id="c_attrition" z="/+EN1Ymr5FPQo0qWkmx/53hZeWo=">
+            <menu:item id="i_attrition_new" messageCode="global_menu_new" url="/attritions?form" z="acg9+2y57BbhyIoyG5PJ1tNF6Mw="/>
+            <menu:item id="i_attrition_list" messageCode="global_menu_list" url="/attritions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ayQ4bavbfIvdPF5S+ZtNsR29INA="/>
+        </menu:category>
+
         <menu:category id="c_backfillmanagement" z="2q5IqlGdyxkvgfj94p7QocVOS74=">
             <menu:item id="i_backfillmanagement_new" messageCode="global_menu_new" url="/backfillmanagements?form" z="3T3UNvS380qF7BgcTEuETzYDA4M="/>
             <menu:item id="i_backfillmanagement_list" messageCode="global_menu_list" url="/backfillmanagements?page=1&amp;size=${empty param.size ? 10 : param.size}" z="g1fcAqrnQ9v+xqoEGth3Y/BuCY8="/>
@@ -43,10 +41,7 @@
             <menu:item id="i_improveiniti_new" messageCode="global_menu_new" url="/improveinitis?form" z="kjSDoXSllMorSX277pUf9LPmXYA="/>
             <menu:item id="i_improveiniti_list" messageCode="global_menu_list" url="/improveinitis?page=1&amp;size=${empty param.size ? 10 : param.size}" z="dIMjx+PDCREBzKehLz9KSCNM/4I="/>
         </menu:category>
-        <menu:category id="c_incident" z="Dkza8k+BjMrFc7W4KwMKiUtdZWo=">
-            <menu:item id="i_incident_new" messageCode="global_menu_new" url="/incidents?form" z="GPSbsvuNXUF8EJMTjawiW08y3Vs="/>
-            <menu:item id="i_incident_list" messageCode="global_menu_list" url="/incidents?page=1&amp;size=${empty param.size ? 10 : param.size}" z="an8IH+AmV9GynCdvimIxEaYBCAQ="/>
-        </menu:category>
+       
         <menu:category id="c_innovation" z="LU2Uu25IVKT4LQaUAdfPOZ8vjfk=">
             <menu:item id="i_innovation_new" messageCode="global_menu_new" url="/innovations?form" z="GOeWWE5P+79dwtyJh5zg1ZAZvcU="/>
             <menu:item id="i_innovation_list" messageCode="global_menu_list" url="/innovations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="qcEdSFyu1hL33a4sRPJEsgWnLdY="/>
@@ -86,34 +81,6 @@
         <menu:category id="c_verticalinit" z="2abJP8wdh44HV/gnDhdyq0hjlvs=">
             <menu:item id="i_verticalinit_new" messageCode="global_menu_new" url="/verticalinits?form" z="/f9MJ1A47cuumZxU6qwB3UtXIyk="/>
             <menu:item id="i_verticalinit_list" messageCode="global_menu_list" url="/verticalinits?page=1&amp;size=${empty param.size ? 10 : param.size}" z="dW9qFM9p+Q7v4JhY/U7+h9MiajY="/>
-        </menu:category>
-        <menu:category id="c_team" z="ohZmKV2mHAiozGa+l7W8lVsp36Q=">
-            <menu:item id="i_team_new" messageCode="global_menu_new" url="/teams?form" z="4tXqOwL6AGKXY3eI3MjIlHBiYRc="/>
-            <menu:item id="i_team_list" messageCode="global_menu_list" url="/teams?page=1&amp;size=${empty param.size ? 10 : param.size}" z="e0UEGo6L31cC31D4lgkjPEbpROM="/>
-        </menu:category>
-        <menu:category id="c_monthdef" z="Q1DIDwHpnt65d5vgbpmzebstojs=">
-            <menu:item id="i_monthdef_new" messageCode="global_menu_new" url="/monthdefs?form" z="xRdK15c9aBKsoTvcWHpg2f6b8iY="/>
-            <menu:item id="i_monthdef_list" messageCode="global_menu_list" url="/monthdefs?page=1&amp;size=${empty param.size ? 10 : param.size}" z="btiOeXxVMsLCQoSqBjNJ4IeQVNk="/>
-        </menu:category>
-        <menu:category id="c_authorities" z="GIjKsVX7q9V5I+B/i5YP+XPvlK0=">
-            <menu:item id="i_authorities_new" messageCode="global_menu_new" url="/authoritieses?form" z="2mmPz62GZozb3OilbywIxJnKcBc="/>
-            <menu:item id="i_authorities_list" messageCode="global_menu_list" url="/authoritieses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="on1x7LkbV2LweGhXOBmPjrzwbMo="/>
-        </menu:category>
-        <menu:category id="c_sla" z="lxdDPEuNCOpAtXpg620HBWXTrvQ=">
-            <menu:item id="i_sla_new" messageCode="global_menu_new" url="/slas?form" z="kv05np4Oo0RDjzOGAwK92NnhDd4="/>
-            <menu:item id="i_sla_list" messageCode="global_menu_list" url="/slas?page=1&amp;size=${empty param.size ? 10 : param.size}" z="fJTzK4P55Je+XX/2b+V2Zs7qNFw="/>
-        </menu:category>
-        <menu:category id="c_months" z="FFz0uL0RsOtS2WzNFnmSac4zemQ=">
-            <menu:item id="i_months_new" messageCode="global_menu_new" url="/monthses?form" z="L+lj9pB+pkDNxNpdMeJcqSmr68c="/>
-            <menu:item id="i_months_list" messageCode="global_menu_list" url="/monthses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="T/rU7vbDuoDV7peq58LdZYAQUcY="/>
-        </menu:category>
-        <menu:category id="c_users" z="Ysam8XVhG5uotPoUGGxkia1RE/s=">
-            <menu:item id="i_users_new" messageCode="global_menu_new" url="/userses?form" z="utrdLkYms6xk5f4IDxc9zrg5FWs="/>
-            <menu:item id="i_users_list" messageCode="global_menu_list" url="/userses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="tqSwojZmRduyx4xtHWcJzgbgtJk="/>
-        </menu:category>
-        <menu:category id="c_vertical" z="EZSFd98KF68gkwjtDVafgYq9yjU=">
-            <menu:item id="i_vertical_new" messageCode="global_menu_new" url="/verticals?form" z="AsnnNIg19264NjWUdYONwXnJqNA="/>
-            <menu:item id="i_vertical_list" messageCode="global_menu_list" url="/verticals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="StHqnv/Doozx7Vdz/X6R5BJhkZE="/>
         </menu:category>
     </menu:menu>
 </div>
