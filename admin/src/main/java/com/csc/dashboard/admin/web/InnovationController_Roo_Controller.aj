@@ -36,7 +36,11 @@ privileged aspect InnovationController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String InnovationController.createForm(Model uiModel) {
+    public String InnovationController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("innovation", new Innovation());
         return "innovations/create";
     }
@@ -49,15 +53,16 @@ privileged aspect InnovationController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String InnovationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String InnovationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("innovations", Innovation.findInnovationEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Innovation.countInnovations() / sizeNo;
+            uiModel.addAttribute("innovations", Innovation.findInnovationEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) Innovation.countInnovations(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("innovations", Innovation.findAllInnovations());
+            uiModel.addAttribute("innovations", Innovation.findAllInnovations(remoteUser));
         }
         return "innovations/list";
     }
@@ -90,8 +95,9 @@ privileged aspect InnovationController_Roo_Controller {
     }
     
     @ModelAttribute("innovations")
-    public Collection<Innovation> InnovationController.populateInnovations() {
-        return Innovation.findAllInnovations();
+    public Collection<Innovation> InnovationController.populateInnovations(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Innovation.findAllInnovations(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -100,8 +106,9 @@ privileged aspect InnovationController_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> InnovationController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> InnovationController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String InnovationController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

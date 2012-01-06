@@ -36,7 +36,11 @@ privileged aspect MarginsController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String MarginsController.createForm(Model uiModel) {
+    public String MarginsController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("margins", new Margins());
         return "marginses/create";
     }
@@ -49,15 +53,16 @@ privileged aspect MarginsController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String MarginsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String MarginsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("marginses", Margins.findMarginsEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Margins.countMarginses() / sizeNo;
+            uiModel.addAttribute("marginses", Margins.findMarginsEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) Margins.countMarginses(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("marginses", Margins.findAllMarginses());
+            uiModel.addAttribute("marginses", Margins.findAllMarginses(remoteUser));
         }
         return "marginses/list";
     }
@@ -90,8 +95,9 @@ privileged aspect MarginsController_Roo_Controller {
     }
     
     @ModelAttribute("marginses")
-    public Collection<Margins> MarginsController.populateMarginses() {
-        return Margins.findAllMarginses();
+    public Collection<Margins> MarginsController.populateMarginses(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Margins.findAllMarginses(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -100,8 +106,9 @@ privileged aspect MarginsController_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> MarginsController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> MarginsController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String MarginsController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

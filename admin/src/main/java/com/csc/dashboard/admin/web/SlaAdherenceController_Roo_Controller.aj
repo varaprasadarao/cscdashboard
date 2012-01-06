@@ -36,7 +36,11 @@ privileged aspect SlaAdherenceController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String SlaAdherenceController.createForm(Model uiModel) {
+    public String SlaAdherenceController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("slaAdherence", new SlaAdherence());
         return "slaadherences/create";
     }
@@ -49,15 +53,16 @@ privileged aspect SlaAdherenceController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String SlaAdherenceController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String SlaAdherenceController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("slaadherences", SlaAdherence.findSlaAdherenceEntries(firstResult, sizeNo));
-            float nrOfPages = (float) SlaAdherence.countSlaAdherences() / sizeNo;
+            uiModel.addAttribute("slaadherences", SlaAdherence.findSlaAdherenceEntries(firstResult, sizeNo, remoteUser));
+            float nrOfPages = (float) SlaAdherence.countSlaAdherences(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("slaadherences", SlaAdherence.findAllSlaAdherences());
+            uiModel.addAttribute("slaadherences", SlaAdherence.findAllSlaAdherences(remoteUser));
         }
         return "slaadherences/list";
     }
@@ -95,13 +100,15 @@ privileged aspect SlaAdherenceController_Roo_Controller {
     }
     
     @ModelAttribute("slaadherences")
-    public Collection<SlaAdherence> SlaAdherenceController.populateSlaAdherences() {
-        return SlaAdherence.findAllSlaAdherences();
+    public Collection<SlaAdherence> SlaAdherenceController.populateSlaAdherences(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return SlaAdherence.findAllSlaAdherences(remoteUser);
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> SlaAdherenceController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> SlaAdherenceController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String SlaAdherenceController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

@@ -36,7 +36,12 @@ privileged aspect AttritionController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String AttritionController.createForm(Model uiModel) {
+    public String AttritionController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	long accCount = Account.findAllAccounts(remoteUser).size();
+    	if(accCount==0)
+    		return "noTeam";
+    	
         uiModel.addAttribute("attrition", new Attrition());
         return "attritions/create";
     }
@@ -49,15 +54,16 @@ privileged aspect AttritionController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String AttritionController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String AttritionController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("attritions", Attrition.findAttritionEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Attrition.countAttritions() / sizeNo;
+            uiModel.addAttribute("attritions", Attrition.findAttritionEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) Attrition.countAttritions(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("attritions", Attrition.findAllAttritions());
+            uiModel.addAttribute("attritions", Attrition.findAllAttritions(remoteUser));
         }
         return "attritions/list";
     }
@@ -90,13 +96,15 @@ privileged aspect AttritionController_Roo_Controller {
     }
     
     @ModelAttribute("accounts")
-    public Collection<Account> AttritionController.populateAccounts() {
-        return Account.findAllAccounts();
+    public Collection<Account> AttritionController.populateAccounts(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return Account.findAllAccounts(remoteUser);
     }
     
     @ModelAttribute("attritions")
-    public Collection<Attrition> AttritionController.populateAttritions() {
-        return Attrition.findAllAttritions();
+    public Collection<Attrition> AttritionController.populateAttritions(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return Attrition.findAllAttritions(remoteUser);
     }
     
     @ModelAttribute("monthses")

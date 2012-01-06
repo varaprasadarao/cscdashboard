@@ -36,7 +36,11 @@ privileged aspect ContributionToTop10Controller_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String ContributionToTop10Controller.createForm(Model uiModel) {
+    public String ContributionToTop10Controller.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("contributionToTop10", new ContributionToTop10());
         return "contributiontotop10s/create";
     }
@@ -49,15 +53,16 @@ privileged aspect ContributionToTop10Controller_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String ContributionToTop10Controller.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String ContributionToTop10Controller.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("contributiontotop10s", ContributionToTop10.findContributionToTop10Entries(firstResult, sizeNo));
-            float nrOfPages = (float) ContributionToTop10.countContributionToTop10s() / sizeNo;
+            uiModel.addAttribute("contributiontotop10s", ContributionToTop10.findContributionToTop10Entries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) ContributionToTop10.countContributionToTop10s(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("contributiontotop10s", ContributionToTop10.findAllContributionToTop10s());
+            uiModel.addAttribute("contributiontotop10s", ContributionToTop10.findAllContributionToTop10s(remoteUser));
         }
         return "contributiontotop10s/list";
     }
@@ -90,8 +95,10 @@ privileged aspect ContributionToTop10Controller_Roo_Controller {
     }
     
     @ModelAttribute("contributiontotop10s")
-    public Collection<ContributionToTop10> ContributionToTop10Controller.populateContributionToTop10s() {
-        return ContributionToTop10.findAllContributionToTop10s();
+    public Collection<ContributionToTop10> ContributionToTop10Controller.populateContributionToTop10s(HttpServletRequest httpServletRequest) {
+        
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	return ContributionToTop10.findAllContributionToTop10s(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -100,8 +107,9 @@ privileged aspect ContributionToTop10Controller_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> ContributionToTop10Controller.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> ContributionToTop10Controller.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String ContributionToTop10Controller.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

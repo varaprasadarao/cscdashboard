@@ -36,7 +36,11 @@ privileged aspect NewOrderClosedController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String NewOrderClosedController.createForm(Model uiModel) {
+    public String NewOrderClosedController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("newOrderClosed", new NewOrderClosed());
         return "newordercloseds/create";
     }
@@ -49,15 +53,16 @@ privileged aspect NewOrderClosedController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String NewOrderClosedController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String NewOrderClosedController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("newordercloseds", NewOrderClosed.findNewOrderClosedEntries(firstResult, sizeNo));
-            float nrOfPages = (float) NewOrderClosed.countNewOrderCloseds() / sizeNo;
+            uiModel.addAttribute("newordercloseds", NewOrderClosed.findNewOrderClosedEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) NewOrderClosed.countNewOrderCloseds(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("newordercloseds", NewOrderClosed.findAllNewOrderCloseds());
+            uiModel.addAttribute("newordercloseds", NewOrderClosed.findAllNewOrderCloseds(remoteUser));
         }
         return "newordercloseds/list";
     }
@@ -95,13 +100,15 @@ privileged aspect NewOrderClosedController_Roo_Controller {
     }
     
     @ModelAttribute("newordercloseds")
-    public Collection<NewOrderClosed> NewOrderClosedController.populateNewOrderCloseds() {
-        return NewOrderClosed.findAllNewOrderCloseds();
+    public Collection<NewOrderClosed> NewOrderClosedController.populateNewOrderCloseds(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return NewOrderClosed.findAllNewOrderCloseds(remoteUser);
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> NewOrderClosedController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> NewOrderClosedController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String NewOrderClosedController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

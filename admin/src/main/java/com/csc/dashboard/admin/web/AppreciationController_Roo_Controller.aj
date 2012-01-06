@@ -4,11 +4,13 @@
 package com.csc.dashboard.admin.web;
 
 import com.csc.dashboard.admin.model.Appreciation;
+import com.csc.dashboard.admin.model.DropDown;
 import com.csc.dashboard.admin.model.Months;
 import com.csc.dashboard.admin.model.Team;
 import java.io.UnsupportedEncodingException;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -36,7 +38,11 @@ privileged aspect AppreciationController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String AppreciationController.createForm(Model uiModel) {
+    public String AppreciationController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("appreciation", new Appreciation());
         return "appreciations/create";
     }
@@ -49,15 +55,17 @@ privileged aspect AppreciationController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String AppreciationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String AppreciationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	System.out.println("Remote User = " + remoteUser);
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("appreciations", Appreciation.findAppreciationEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Appreciation.countAppreciations() / sizeNo;
+            uiModel.addAttribute("appreciations", Appreciation.findAppreciationEntries(firstResult, sizeNo, remoteUser));
+            float nrOfPages = (float) Appreciation.countAppreciations(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("appreciations", Appreciation.findAllAppreciations());
+            uiModel.addAttribute("appreciations", Appreciation.findAllAppreciations(remoteUser));
         }
         return "appreciations/list";
     }
@@ -90,8 +98,9 @@ privileged aspect AppreciationController_Roo_Controller {
     }
     
     @ModelAttribute("appreciations")
-    public Collection<Appreciation> AppreciationController.populateAppreciations() {
-        return Appreciation.findAllAppreciations();
+    public Collection<Appreciation> AppreciationController.populateAppreciations(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Appreciation.findAllAppreciations(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -100,8 +109,9 @@ privileged aspect AppreciationController_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> AppreciationController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> AppreciationController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String AppreciationController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
@@ -114,6 +124,18 @@ privileged aspect AppreciationController_Roo_Controller {
         }
         catch (UnsupportedEncodingException uee) {}
         return pathSegment;
+    }
+    
+    @ModelAttribute("relevance")
+    public Collection<DropDown> AppreciationController.populateRelevance() {
+
+    	Collection<DropDown> dd = new ArrayList<DropDown>();
+    	dd.add(new DropDown("High","High"));
+    	dd.add(new DropDown("Medium","Medium"));
+    	dd.add(new DropDown("Low","Low"));
+    	
+    	return dd;
+    	
     }
     
 }

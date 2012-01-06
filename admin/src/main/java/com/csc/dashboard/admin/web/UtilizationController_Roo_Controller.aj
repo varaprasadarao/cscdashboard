@@ -36,7 +36,11 @@ privileged aspect UtilizationController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String UtilizationController.createForm(Model uiModel) {
+    public String UtilizationController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("utilization", new Utilization());
         return "utilizations/create";
     }
@@ -49,15 +53,16 @@ privileged aspect UtilizationController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String UtilizationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String UtilizationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("utilizations", Utilization.findUtilizationEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Utilization.countUtilizations() / sizeNo;
+            uiModel.addAttribute("utilizations", Utilization.findUtilizationEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) Utilization.countUtilizations(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("utilizations", Utilization.findAllUtilizations());
+            uiModel.addAttribute("utilizations", Utilization.findAllUtilizations(remoteUser));
         }
         return "utilizations/list";
     }
@@ -95,13 +100,15 @@ privileged aspect UtilizationController_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> UtilizationController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> UtilizationController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     @ModelAttribute("utilizations")
-    public Collection<Utilization> UtilizationController.populateUtilizations() {
-        return Utilization.findAllUtilizations();
+    public Collection<Utilization> UtilizationController.populateUtilizations(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Utilization.findAllUtilizations(remoteUser);
     }
     
     String UtilizationController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

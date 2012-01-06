@@ -36,7 +36,11 @@ privileged aspect EscalationsController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String EscalationsController.createForm(Model uiModel) {
+    public String EscalationsController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	long accCount = Account.findAllAccounts(remoteUser).size();
+    	if(accCount==0)
+    		return "noTeam";
         uiModel.addAttribute("escalations", new Escalations());
         return "escalationses/create";
     }
@@ -49,15 +53,16 @@ privileged aspect EscalationsController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String EscalationsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String EscalationsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("escalationses", Escalations.findEscalationsEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Escalations.countEscalationses() / sizeNo;
+            uiModel.addAttribute("escalationses", Escalations.findEscalationsEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) Escalations.countEscalationses(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("escalationses", Escalations.findAllEscalationses());
+            uiModel.addAttribute("escalationses", Escalations.findAllEscalationses(remoteUser));
         }
         return "escalationses/list";
     }
@@ -90,13 +95,15 @@ privileged aspect EscalationsController_Roo_Controller {
     }
     
     @ModelAttribute("accounts")
-    public Collection<Account> EscalationsController.populateAccounts() {
-        return Account.findAllAccounts();
+    public Collection<Account> EscalationsController.populateAccounts(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return Account.findAllAccounts(remoteUser);
     }
     
     @ModelAttribute("escalationses")
-    public Collection<Escalations> EscalationsController.populateEscalationses() {
-        return Escalations.findAllEscalationses();
+    public Collection<Escalations> EscalationsController.populateEscalationses(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return Escalations.findAllEscalationses(remoteUser);
     }
     
     @ModelAttribute("monthses")
