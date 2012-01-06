@@ -3,7 +3,6 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-        
         <menu:category id="c_appreciation" z="byJ5J+WzVzU0bOJxo9svejfVisg=">
             <menu:item id="i_appreciation_new" messageCode="global_menu_new" url="/appreciations?form" z="MjNDF/E7+Yzdm8q8LGgzZn0EAAo="/>
             <menu:item id="i_appreciation_list" messageCode="global_menu_list" url="/appreciations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="vbfW0l2jyurOxqm9utlB66ildjE="/>
@@ -16,7 +15,6 @@
             <menu:item id="i_attrition_new" messageCode="global_menu_new" url="/attritions?form" z="acg9+2y57BbhyIoyG5PJ1tNF6Mw="/>
             <menu:item id="i_attrition_list" messageCode="global_menu_list" url="/attritions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="ayQ4bavbfIvdPF5S+ZtNsR29INA="/>
         </menu:category>
-
         <menu:category id="c_backfillmanagement" z="2q5IqlGdyxkvgfj94p7QocVOS74=">
             <menu:item id="i_backfillmanagement_new" messageCode="global_menu_new" url="/backfillmanagements?form" z="3T3UNvS380qF7BgcTEuETzYDA4M="/>
             <menu:item id="i_backfillmanagement_list" messageCode="global_menu_list" url="/backfillmanagements?page=1&amp;size=${empty param.size ? 10 : param.size}" z="g1fcAqrnQ9v+xqoEGth3Y/BuCY8="/>
@@ -41,7 +39,6 @@
             <menu:item id="i_improveiniti_new" messageCode="global_menu_new" url="/improveinitis?form" z="kjSDoXSllMorSX277pUf9LPmXYA="/>
             <menu:item id="i_improveiniti_list" messageCode="global_menu_list" url="/improveinitis?page=1&amp;size=${empty param.size ? 10 : param.size}" z="dIMjx+PDCREBzKehLz9KSCNM/4I="/>
         </menu:category>
-       
         <menu:category id="c_innovation" z="LU2Uu25IVKT4LQaUAdfPOZ8vjfk=">
             <menu:item id="i_innovation_new" messageCode="global_menu_new" url="/innovations?form" z="GOeWWE5P+79dwtyJh5zg1ZAZvcU="/>
             <menu:item id="i_innovation_list" messageCode="global_menu_list" url="/innovations?page=1&amp;size=${empty param.size ? 10 : param.size}" z="qcEdSFyu1hL33a4sRPJEsgWnLdY="/>
@@ -82,5 +79,6 @@
             <menu:item id="i_verticalinit_new" messageCode="global_menu_new" url="/verticalinits?form" z="/f9MJ1A47cuumZxU6qwB3UtXIyk="/>
             <menu:item id="i_verticalinit_list" messageCode="global_menu_list" url="/verticalinits?page=1&amp;size=${empty param.size ? 10 : param.size}" z="dW9qFM9p+Q7v4JhY/U7+h9MiajY="/>
         </menu:category>
+        
     </menu:menu>
 </div>
