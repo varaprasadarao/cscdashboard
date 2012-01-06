@@ -58,12 +58,14 @@ privileged aspect TeamBuilding_Roo_Entity {
         return em;
     }
     
-    public static long TeamBuilding.countTeamBuildings() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM TeamBuilding o", Long.class).getSingleResult();
+    public static long TeamBuilding.countTeamBuildings(String username) {
+    	String query = "SELECT COUNT(o) FROM TeamBuilding o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<TeamBuilding> TeamBuilding.findAllTeamBuildings() {
-        return entityManager().createQuery("SELECT o FROM TeamBuilding o", TeamBuilding.class).getResultList();
+    public static List<TeamBuilding> TeamBuilding.findAllTeamBuildings(String username) {
+    	String query = "SELECT Distinct(o) FROM TeamBuilding o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, TeamBuilding.class).getResultList();
     }
     
     public static TeamBuilding TeamBuilding.findTeamBuilding(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect TeamBuilding_Roo_Entity {
         return entityManager().find(TeamBuilding.class, id);
     }
     
-    public static List<TeamBuilding> TeamBuilding.findTeamBuildingEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM TeamBuilding o", TeamBuilding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<TeamBuilding> TeamBuilding.findTeamBuildingEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT Distinct(o) FROM TeamBuilding o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, TeamBuilding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

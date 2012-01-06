@@ -58,12 +58,14 @@ privileged aspect ResourceRotation_Roo_Entity {
         return em;
     }
     
-    public static long ResourceRotation.countResourceRotations() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM ResourceRotation o", Long.class).getSingleResult();
+    public static long ResourceRotation.countResourceRotations(String username) {
+    	String query = "SELECT COUNT(o) FROM ResourceRotation o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<ResourceRotation> ResourceRotation.findAllResourceRotations() {
-        return entityManager().createQuery("SELECT o FROM ResourceRotation o", ResourceRotation.class).getResultList();
+    public static List<ResourceRotation> ResourceRotation.findAllResourceRotations(String username) {
+    	String query = "SELECT Distinct(o) FROM ResourceRotation o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, ResourceRotation.class).getResultList();
     }
     
     public static ResourceRotation ResourceRotation.findResourceRotation(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect ResourceRotation_Roo_Entity {
         return entityManager().find(ResourceRotation.class, id);
     }
     
-    public static List<ResourceRotation> ResourceRotation.findResourceRotationEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM ResourceRotation o", ResourceRotation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<ResourceRotation> ResourceRotation.findResourceRotationEntries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT Distinct(o) FROM ResourceRotation o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, ResourceRotation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

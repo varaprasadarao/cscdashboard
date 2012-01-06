@@ -58,12 +58,14 @@ privileged aspect BackfillManagement_Roo_Entity {
         return em;
     }
     
-    public static long BackfillManagement.countBackfillManagements() {
+    public static long BackfillManagement.countBackfillManagements(String username) {
+    	String query = "SELECT COUNT(o) FROM BackfillManagement o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery("SELECT COUNT(o) FROM BackfillManagement o", Long.class).getSingleResult();
     }
     
-    public static List<BackfillManagement> BackfillManagement.findAllBackfillManagements() {
-        return entityManager().createQuery("SELECT o FROM BackfillManagement o", BackfillManagement.class).getResultList();
+    public static List<BackfillManagement> BackfillManagement.findAllBackfillManagements(String username) {
+    	String query = "SELECT Distinct(o) FROM BackfillManagement o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, BackfillManagement.class).getResultList();
     }
     
     public static BackfillManagement BackfillManagement.findBackfillManagement(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect BackfillManagement_Roo_Entity {
         return entityManager().find(BackfillManagement.class, id);
     }
     
-    public static List<BackfillManagement> BackfillManagement.findBackfillManagementEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM BackfillManagement o", BackfillManagement.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<BackfillManagement> BackfillManagement.findBackfillManagementEntries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT Distinct(o) FROM Attrition o, BackfillManagement a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, BackfillManagement.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

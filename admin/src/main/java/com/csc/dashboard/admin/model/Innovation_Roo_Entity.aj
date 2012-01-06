@@ -58,12 +58,14 @@ privileged aspect Innovation_Roo_Entity {
         return em;
     }
     
-    public static long Innovation.countInnovations() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Innovation o", Long.class).getSingleResult();
+    public static long Innovation.countInnovations(String username) {
+    	String query = "SELECT COUNT(o) FROM Innovation o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<Innovation> Innovation.findAllInnovations() {
-        return entityManager().createQuery("SELECT o FROM Innovation o", Innovation.class).getResultList();
+    public static List<Innovation> Innovation.findAllInnovations(String username) {
+    	String query = "SELECT o FROM Innovation o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Innovation.class).getResultList();
     }
     
     public static Innovation Innovation.findInnovation(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect Innovation_Roo_Entity {
         return entityManager().find(Innovation.class, id);
     }
     
-    public static List<Innovation> Innovation.findInnovationEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Innovation o", Innovation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Innovation> Innovation.findInnovationEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT o FROM Innovation o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Innovation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

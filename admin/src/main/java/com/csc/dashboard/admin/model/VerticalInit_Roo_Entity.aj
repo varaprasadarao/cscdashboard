@@ -58,12 +58,14 @@ privileged aspect VerticalInit_Roo_Entity {
         return em;
     }
     
-    public static long VerticalInit.countVerticalInits() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM VerticalInit o", Long.class).getSingleResult();
+    public static long VerticalInit.countVerticalInits(String username) {
+    	String query = "SELECT COUNT(o) FROM VerticalInit o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<VerticalInit> VerticalInit.findAllVerticalInits() {
-        return entityManager().createQuery("SELECT o FROM VerticalInit o", VerticalInit.class).getResultList();
+    public static List<VerticalInit> VerticalInit.findAllVerticalInits(String username) {
+    	String query = "SELECT Distinct(o) FROM VerticalInit o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, VerticalInit.class).getResultList();
     }
     
     public static VerticalInit VerticalInit.findVerticalInit(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect VerticalInit_Roo_Entity {
         return entityManager().find(VerticalInit.class, id);
     }
     
-    public static List<VerticalInit> VerticalInit.findVerticalInitEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM VerticalInit o", VerticalInit.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<VerticalInit> VerticalInit.findVerticalInitEntries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT Distinct(o) FROM VerticalInit o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, VerticalInit.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

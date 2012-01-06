@@ -62,8 +62,9 @@ privileged aspect Account_Roo_Entity {
         return entityManager().createQuery("SELECT COUNT(o) FROM Account o", Long.class).getSingleResult();
     }
     
-    public static List<Account> Account.findAllAccounts() {
-        return entityManager().createQuery("SELECT o FROM Account o", Account.class).getResultList();
+    public static List<Account> Account.findAllAccounts(String username) {
+    	String query = "SELECT Distinct(o) FROM Account o, Team t, UserTeam u where o.id=t.account and t.id = u.teamId and u.username = '"+username+"'";
+        return entityManager().createQuery(query, Account.class).getResultList();
     }
     
     public static Account Account.findAccount(Integer id) {
@@ -71,8 +72,9 @@ privileged aspect Account_Roo_Entity {
         return entityManager().find(Account.class, id);
     }
     
-    public static List<Account> Account.findAccountEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Account o", Account.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Account> Account.findAccountEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT Distinct(o) FROM Account o, Team t, UserTeam u where o.id=t.account and t.id = u.teamId and u.username = '"+username+"'";
+        return entityManager().createQuery(query, Account.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

@@ -58,12 +58,14 @@ privileged aspect Escalations_Roo_Entity {
         return em;
     }
     
-    public static long Escalations.countEscalationses() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Escalations o", Long.class).getSingleResult();
+    public static long Escalations.countEscalationses(String username) {
+    	String query = "SELECT COUNT(o) FROM Escalations o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<Escalations> Escalations.findAllEscalationses() {
-        return entityManager().createQuery("SELECT o FROM Escalations o", Escalations.class).getResultList();
+    public static List<Escalations> Escalations.findAllEscalationses(String username) {
+    	String query = "SELECT Distinct(o) FROM Escalations o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, Escalations.class).getResultList();
     }
     
     public static Escalations Escalations.findEscalations(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect Escalations_Roo_Entity {
         return entityManager().find(Escalations.class, id);
     }
     
-    public static List<Escalations> Escalations.findEscalationsEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Escalations o", Escalations.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Escalations> Escalations.findEscalationsEntries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT Distinct(o) FROM Escalations o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, Escalations.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

@@ -58,12 +58,14 @@ privileged aspect Appreciation_Roo_Entity {
         return em;
     }
     
-    public static long Appreciation.countAppreciations() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Appreciation o", Long.class).getSingleResult();
+    public static long Appreciation.countAppreciations(String username) {
+    	String query = "SELECT COUNT(o) FROM Appreciation o, UserTeam t where o.team = t.teamId and t.username = '"+username+"'";
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<Appreciation> Appreciation.findAllAppreciations() {
-        return entityManager().createQuery("SELECT o FROM Appreciation o", Appreciation.class).getResultList();
+    public static List<Appreciation> Appreciation.findAllAppreciations(String username) {
+    	String query = "SELECT o FROM Appreciation o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";
+        return entityManager().createQuery(query, Appreciation.class).getResultList();
     }
     
     public static Appreciation Appreciation.findAppreciation(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect Appreciation_Roo_Entity {
         return entityManager().find(Appreciation.class, id);
     }
     
-    public static List<Appreciation> Appreciation.findAppreciationEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Appreciation o", Appreciation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Appreciation> Appreciation.findAppreciationEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT o FROM Appreciation o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";
+        return entityManager().createQuery(query, Appreciation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

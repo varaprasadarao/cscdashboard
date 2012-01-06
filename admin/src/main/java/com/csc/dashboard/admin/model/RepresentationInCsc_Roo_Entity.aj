@@ -58,12 +58,14 @@ privileged aspect RepresentationInCsc_Roo_Entity {
         return em;
     }
     
-    public static long RepresentationInCsc.countRepresentationInCscs() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM RepresentationInCsc o", Long.class).getSingleResult();
+    public static long RepresentationInCsc.countRepresentationInCscs(String username) {
+    	String query = "SELECT COUNT(o) FROM RepresentationInCsc o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<RepresentationInCsc> RepresentationInCsc.findAllRepresentationInCscs() {
-        return entityManager().createQuery("SELECT o FROM RepresentationInCsc o", RepresentationInCsc.class).getResultList();
+    public static List<RepresentationInCsc> RepresentationInCsc.findAllRepresentationInCscs(String username) {
+    	String query = "SELECT o FROM RepresentationInCsc o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, RepresentationInCsc.class).getResultList();
     }
     
     public static RepresentationInCsc RepresentationInCsc.findRepresentationInCsc(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect RepresentationInCsc_Roo_Entity {
         return entityManager().find(RepresentationInCsc.class, id);
     }
     
-    public static List<RepresentationInCsc> RepresentationInCsc.findRepresentationInCscEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM RepresentationInCsc o", RepresentationInCsc.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<RepresentationInCsc> RepresentationInCsc.findRepresentationInCscEntries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT o FROM RepresentationInCsc o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, RepresentationInCsc.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

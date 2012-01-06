@@ -58,12 +58,14 @@ privileged aspect NewOrderClosed_Roo_Entity {
         return em;
     }
     
-    public static long NewOrderClosed.countNewOrderCloseds() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM NewOrderClosed o", Long.class).getSingleResult();
+    public static long NewOrderClosed.countNewOrderCloseds(String username) {
+    	String query = "SELECT COUNT(o) FROM NewOrderClosed o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<NewOrderClosed> NewOrderClosed.findAllNewOrderCloseds() {
-        return entityManager().createQuery("SELECT o FROM NewOrderClosed o", NewOrderClosed.class).getResultList();
+    public static List<NewOrderClosed> NewOrderClosed.findAllNewOrderCloseds(String username) {
+    	String query = "SELECT o FROM NewOrderClosed o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, NewOrderClosed.class).getResultList();
     }
     
     public static NewOrderClosed NewOrderClosed.findNewOrderClosed(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect NewOrderClosed_Roo_Entity {
         return entityManager().find(NewOrderClosed.class, id);
     }
     
-    public static List<NewOrderClosed> NewOrderClosed.findNewOrderClosedEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM NewOrderClosed o", NewOrderClosed.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<NewOrderClosed> NewOrderClosed.findNewOrderClosedEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT o FROM NewOrderClosed o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, NewOrderClosed.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }
