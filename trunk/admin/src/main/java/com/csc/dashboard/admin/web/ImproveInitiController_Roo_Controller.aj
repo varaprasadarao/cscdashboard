@@ -39,7 +39,11 @@ privileged aspect ImproveInitiController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String ImproveInitiController.createForm(Model uiModel) {
+    public String ImproveInitiController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	long accCount = Account.findAllAccounts(remoteUser).size();
+    	if(accCount==0)
+    		return "noTeam";
         uiModel.addAttribute("improveIniti", new ImproveIniti());
         addDateTimeFormatPatterns(uiModel);
         return "improveinitis/create";
@@ -54,15 +58,16 @@ privileged aspect ImproveInitiController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String ImproveInitiController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String ImproveInitiController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("improveinitis", ImproveIniti.findImproveInitiEntries(firstResult, sizeNo));
-            float nrOfPages = (float) ImproveIniti.countImproveInitis() / sizeNo;
+            uiModel.addAttribute("improveinitis", ImproveIniti.findImproveInitiEntries(firstResult, sizeNo, remoteUser));
+            float nrOfPages = (float) ImproveIniti.countImproveInitis(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("improveinitis", ImproveIniti.findAllImproveInitis());
+            uiModel.addAttribute("improveinitis", ImproveIniti.findAllImproveInitis(remoteUser));
         }
         addDateTimeFormatPatterns(uiModel);
         return "improveinitis/list";
@@ -98,13 +103,15 @@ privileged aspect ImproveInitiController_Roo_Controller {
     }
     
     @ModelAttribute("accounts")
-    public Collection<Account> ImproveInitiController.populateAccounts() {
-        return Account.findAllAccounts();
+    public Collection<Account> ImproveInitiController.populateAccounts(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return Account.findAllAccounts(remoteUser);
     }
     
     @ModelAttribute("improveinitis")
-    public Collection<ImproveIniti> ImproveInitiController.populateImproveInitis() {
-        return ImproveIniti.findAllImproveInitis();
+    public Collection<ImproveIniti> ImproveInitiController.populateImproveInitis(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return ImproveIniti.findAllImproveInitis(remoteUser);
     }
     
     @ModelAttribute("monthses")

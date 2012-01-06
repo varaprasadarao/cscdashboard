@@ -37,7 +37,11 @@ privileged aspect RepresentationInCscController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String RepresentationInCscController.createForm(Model uiModel) {
+    public String RepresentationInCscController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("representationInCsc", new RepresentationInCsc());
         return "representationincscs/create";
     }
@@ -50,15 +54,16 @@ privileged aspect RepresentationInCscController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String RepresentationInCscController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String RepresentationInCscController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("representationincscs", RepresentationInCsc.findRepresentationInCscEntries(firstResult, sizeNo));
-            float nrOfPages = (float) RepresentationInCsc.countRepresentationInCscs() / sizeNo;
+            uiModel.addAttribute("representationincscs", RepresentationInCsc.findRepresentationInCscEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) RepresentationInCsc.countRepresentationInCscs(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("representationincscs", RepresentationInCsc.findAllRepresentationInCscs());
+            uiModel.addAttribute("representationincscs", RepresentationInCsc.findAllRepresentationInCscs(remoteUser));
         }
         return "representationincscs/list";
     }
@@ -91,8 +96,9 @@ privileged aspect RepresentationInCscController_Roo_Controller {
     }
     
     @ModelAttribute("accounts")
-    public Collection<Account> RepresentationInCscController.populateAccounts() {
-        return Account.findAllAccounts();
+    public Collection<Account> RepresentationInCscController.populateAccounts(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return Account.findAllAccounts(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -101,13 +107,15 @@ privileged aspect RepresentationInCscController_Roo_Controller {
     }
     
     @ModelAttribute("representationincscs")
-    public Collection<RepresentationInCsc> RepresentationInCscController.populateRepresentationInCscs() {
-        return RepresentationInCsc.findAllRepresentationInCscs();
+    public Collection<RepresentationInCsc> RepresentationInCscController.populateRepresentationInCscs(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	return RepresentationInCsc.findAllRepresentationInCscs(remoteUser);
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> RepresentationInCscController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> RepresentationInCscController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String RepresentationInCscController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

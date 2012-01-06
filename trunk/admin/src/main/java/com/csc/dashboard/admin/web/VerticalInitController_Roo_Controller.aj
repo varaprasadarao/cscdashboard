@@ -36,7 +36,11 @@ privileged aspect VerticalInitController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String VerticalInitController.createForm(Model uiModel) {
+    public String VerticalInitController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	long accCount = Account.findAllAccounts(remoteUser).size();
+    	if(accCount==0)
+    		return "noTeam";
         uiModel.addAttribute("verticalInit", new VerticalInit());
         return "verticalinits/create";
     }
@@ -49,15 +53,16 @@ privileged aspect VerticalInitController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String VerticalInitController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String VerticalInitController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("verticalinits", VerticalInit.findVerticalInitEntries(firstResult, sizeNo));
-            float nrOfPages = (float) VerticalInit.countVerticalInits() / sizeNo;
+            uiModel.addAttribute("verticalinits", VerticalInit.findVerticalInitEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) VerticalInit.countVerticalInits(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("verticalinits", VerticalInit.findAllVerticalInits());
+            uiModel.addAttribute("verticalinits", VerticalInit.findAllVerticalInits(remoteUser));
         }
         return "verticalinits/list";
     }
@@ -90,8 +95,9 @@ privileged aspect VerticalInitController_Roo_Controller {
     }
     
     @ModelAttribute("accounts")
-    public Collection<Account> VerticalInitController.populateAccounts() {
-        return Account.findAllAccounts();
+    public Collection<Account> VerticalInitController.populateAccounts(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return Account.findAllAccounts(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -100,8 +106,9 @@ privileged aspect VerticalInitController_Roo_Controller {
     }
     
     @ModelAttribute("verticalinits")
-    public Collection<VerticalInit> VerticalInitController.populateVerticalInits() {
-        return VerticalInit.findAllVerticalInits();
+    public Collection<VerticalInit> VerticalInitController.populateVerticalInits(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return VerticalInit.findAllVerticalInits(remoteUser);
     }
     
     String VerticalInitController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

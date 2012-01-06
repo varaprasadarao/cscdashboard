@@ -34,7 +34,11 @@ privileged aspect TeamController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String TeamController.createForm(Model uiModel) {
+    public String TeamController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("team", new Team());
         return "teams/create";
     }
@@ -47,15 +51,16 @@ privileged aspect TeamController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String TeamController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String TeamController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("teams", Team.findTeamEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Team.countTeams() / sizeNo;
+            uiModel.addAttribute("teams", Team.findTeamEntries(firstResult, sizeNo, remoteUser));
+            float nrOfPages = (float) Team.countTeams(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("teams", Team.findAllTeams());
+            uiModel.addAttribute("teams", Team.findAllTeams(remoteUser));
         }
         return "teams/list";
     }
@@ -88,8 +93,9 @@ privileged aspect TeamController_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> TeamController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> TeamController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String TeamController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

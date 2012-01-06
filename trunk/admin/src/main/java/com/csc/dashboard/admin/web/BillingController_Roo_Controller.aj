@@ -36,7 +36,11 @@ privileged aspect BillingController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String BillingController.createForm(Model uiModel) {
+    public String BillingController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("billing", new Billing());
         return "billings/create";
     }
@@ -49,15 +53,16 @@ privileged aspect BillingController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String BillingController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String BillingController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("billings", Billing.findBillingEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Billing.countBillings() / sizeNo;
+            uiModel.addAttribute("billings", Billing.findBillingEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) Billing.countBillings(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("billings", Billing.findAllBillings());
+            uiModel.addAttribute("billings", Billing.findAllBillings(remoteUser));
         }
         return "billings/list";
     }
@@ -90,8 +95,9 @@ privileged aspect BillingController_Roo_Controller {
     }
     
     @ModelAttribute("billings")
-    public Collection<Billing> BillingController.populateBillings() {
-        return Billing.findAllBillings();
+    public Collection<Billing> BillingController.populateBillings(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Billing.findAllBillings(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -100,8 +106,9 @@ privileged aspect BillingController_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> BillingController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> BillingController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String BillingController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

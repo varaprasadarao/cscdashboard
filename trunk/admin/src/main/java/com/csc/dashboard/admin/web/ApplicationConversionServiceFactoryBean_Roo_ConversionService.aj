@@ -12,6 +12,7 @@ import com.csc.dashboard.admin.model.BackfillManagement;
 import com.csc.dashboard.admin.model.Billing;
 import com.csc.dashboard.admin.model.ContributionToTop10;
 import com.csc.dashboard.admin.model.Csat;
+import com.csc.dashboard.admin.model.DropDown;
 import com.csc.dashboard.admin.model.Escalations;
 import com.csc.dashboard.admin.model.ImproveIniti;
 import com.csc.dashboard.admin.model.Incident;
@@ -33,6 +34,8 @@ import com.csc.dashboard.admin.model.Vertical;
 import com.csc.dashboard.admin.model.VerticalInit;
 import java.lang.Integer;
 import java.lang.String;
+import java.text.DateFormatSymbols;
+
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -45,7 +48,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Account, String> ApplicationConversionServiceFactoryBean.getAccountToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.csc.dashboard.admin.model.Account, java.lang.String>() {
             public String convert(Account account) {
-                return new StringBuilder().append(account.getVertical()).append(" ").append(account.getName()).toString();
+                return new StringBuilder().append(account.getName()).toString();
             }
         };
     }
@@ -405,7 +408,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Months, String> ApplicationConversionServiceFactoryBean.getMonthsToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.csc.dashboard.admin.model.Months, java.lang.String>() {
             public String convert(Months months) {
-                return new StringBuilder().append(months.getMonth()).append(" ").append(months.getYear()).toString();
+            	DateFormatSymbols dfs = new DateFormatSymbols();
+                String[] monthDefs = dfs.getShortMonths();
+                return new StringBuilder().append(monthDefs[months.getMonth()-1]).append(" ").append(months.getYear()).toString();
             }
         };
     }
@@ -549,7 +554,15 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Team, String> ApplicationConversionServiceFactoryBean.getTeamToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.csc.dashboard.admin.model.Team, java.lang.String>() {
             public String convert(Team team) {
-                return new StringBuilder().append(team.getAccount()).append(" ").append(team.getName()).append(" ").append(team.getDispOrder()).toString();
+                return new StringBuilder().append(team.getName()).toString();
+            }
+        };
+    }
+    
+    public Converter<DropDown, String> ApplicationConversionServiceFactoryBean.getDropDownToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<com.csc.dashboard.admin.model.DropDown, java.lang.String>() {
+            public String convert(DropDown dropDown) {
+                return new StringBuilder().append(dropDown.getValue()).toString();
             }
         };
     }

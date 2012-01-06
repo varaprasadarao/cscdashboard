@@ -36,7 +36,11 @@ privileged aspect IncidentController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String IncidentController.createForm(Model uiModel) {
+    public String IncidentController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("incident", new Incident());
         return "incidents/create";
     }
@@ -100,8 +104,9 @@ privileged aspect IncidentController_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> IncidentController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> IncidentController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String IncidentController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

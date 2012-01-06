@@ -36,7 +36,11 @@ privileged aspect AssessmentProgramsController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String AssessmentProgramsController.createForm(Model uiModel) {
+    public String AssessmentProgramsController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("assessmentPrograms", new AssessmentPrograms());
         return "assessmentprogramses/create";
     }
@@ -49,15 +53,16 @@ privileged aspect AssessmentProgramsController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String AssessmentProgramsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String AssessmentProgramsController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("assessmentprogramses", AssessmentPrograms.findAssessmentProgramsEntries(firstResult, sizeNo));
-            float nrOfPages = (float) AssessmentPrograms.countAssessmentProgramses() / sizeNo;
+            uiModel.addAttribute("assessmentprogramses", AssessmentPrograms.findAssessmentProgramsEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) AssessmentPrograms.countAssessmentProgramses(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("assessmentprogramses", AssessmentPrograms.findAllAssessmentProgramses());
+            uiModel.addAttribute("assessmentprogramses", AssessmentPrograms.findAllAssessmentProgramses(remoteUser));
         }
         return "assessmentprogramses/list";
     }
@@ -90,8 +95,9 @@ privileged aspect AssessmentProgramsController_Roo_Controller {
     }
     
     @ModelAttribute("assessmentprogramses")
-    public Collection<AssessmentPrograms> AssessmentProgramsController.populateAssessmentProgramses() {
-        return AssessmentPrograms.findAllAssessmentProgramses();
+    public Collection<AssessmentPrograms> AssessmentProgramsController.populateAssessmentProgramses(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	return AssessmentPrograms.findAllAssessmentProgramses(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -100,8 +106,9 @@ privileged aspect AssessmentProgramsController_Roo_Controller {
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> AssessmentProgramsController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> AssessmentProgramsController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String AssessmentProgramsController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

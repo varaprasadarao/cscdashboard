@@ -36,7 +36,11 @@ privileged aspect BackfillManagementController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String BackfillManagementController.createForm(Model uiModel) {
+    public String BackfillManagementController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	long accCount = Account.findAllAccounts(remoteUser).size();
+    	if(accCount==0)
+    		return "noTeam";
         uiModel.addAttribute("backfillManagement", new BackfillManagement());
         return "backfillmanagements/create";
     }
@@ -49,15 +53,16 @@ privileged aspect BackfillManagementController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String BackfillManagementController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String BackfillManagementController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("backfillmanagements", BackfillManagement.findBackfillManagementEntries(firstResult, sizeNo));
-            float nrOfPages = (float) BackfillManagement.countBackfillManagements() / sizeNo;
+            uiModel.addAttribute("backfillmanagements", BackfillManagement.findBackfillManagementEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) BackfillManagement.countBackfillManagements(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("backfillmanagements", BackfillManagement.findAllBackfillManagements());
+            uiModel.addAttribute("backfillmanagements", BackfillManagement.findAllBackfillManagements(remoteUser));
         }
         return "backfillmanagements/list";
     }
@@ -90,13 +95,15 @@ privileged aspect BackfillManagementController_Roo_Controller {
     }
     
     @ModelAttribute("accounts")
-    public Collection<Account> BackfillManagementController.populateAccounts() {
-        return Account.findAllAccounts();
+    public Collection<Account> BackfillManagementController.populateAccounts(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	return Account.findAllAccounts(remoteUser);
     }
     
     @ModelAttribute("backfillmanagements")
-    public Collection<BackfillManagement> BackfillManagementController.populateBackfillManagements() {
-        return BackfillManagement.findAllBackfillManagements();
+    public Collection<BackfillManagement> BackfillManagementController.populateBackfillManagements(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return BackfillManagement.findAllBackfillManagements(remoteUser);
     }
     
     @ModelAttribute("monthses")

@@ -36,7 +36,11 @@ privileged aspect KmScorecardController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String KmScorecardController.createForm(Model uiModel) {
+    public String KmScorecardController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	long teamCount = Team.countTeams(remoteUser);
+    	if(teamCount==0)
+    		return "noTeam";
         uiModel.addAttribute("kmScorecard", new KmScorecard());
         return "kmscorecards/create";
     }
@@ -49,15 +53,16 @@ privileged aspect KmScorecardController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String KmScorecardController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String KmScorecardController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("kmscorecards", KmScorecard.findKmScorecardEntries(firstResult, sizeNo));
-            float nrOfPages = (float) KmScorecard.countKmScorecards() / sizeNo;
+            uiModel.addAttribute("kmscorecards", KmScorecard.findKmScorecardEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) KmScorecard.countKmScorecards(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("kmscorecards", KmScorecard.findAllKmScorecards());
+            uiModel.addAttribute("kmscorecards", KmScorecard.findAllKmScorecards(remoteUser));
         }
         return "kmscorecards/list";
     }
@@ -90,18 +95,21 @@ privileged aspect KmScorecardController_Roo_Controller {
     }
     
     @ModelAttribute("kmscorecards")
-    public Collection<KmScorecard> KmScorecardController.populateKmScorecards() {
-        return KmScorecard.findAllKmScorecards();
+    public Collection<KmScorecard> KmScorecardController.populateKmScorecards(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return KmScorecard.findAllKmScorecards(remoteUser);
     }
     
     @ModelAttribute("monthses")
     public Collection<Months> KmScorecardController.populateMonthses() {
+    	
         return Months.findAllMonthses();
     }
     
     @ModelAttribute("teams")
-    public Collection<Team> KmScorecardController.populateTeams() {
-        return Team.findAllTeams();
+    public Collection<Team> KmScorecardController.populateTeams(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser();
+        return Team.findAllTeams(remoteUser);
     }
     
     String KmScorecardController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

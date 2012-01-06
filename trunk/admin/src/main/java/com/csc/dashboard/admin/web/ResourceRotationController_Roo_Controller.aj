@@ -36,7 +36,11 @@ privileged aspect ResourceRotationController_Roo_Controller {
     }
     
     @RequestMapping(params = "form", method = RequestMethod.GET)
-    public String ResourceRotationController.createForm(Model uiModel) {
+    public String ResourceRotationController.createForm(Model uiModel,HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	long accCount = Account.findAllAccounts(remoteUser).size();
+    	if(accCount==0)
+    		return "noTeam";
         uiModel.addAttribute("resourceRotation", new ResourceRotation());
         return "resourcerotations/create";
     }
@@ -49,15 +53,16 @@ privileged aspect ResourceRotationController_Roo_Controller {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String ResourceRotationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
+    public String ResourceRotationController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel, HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+    	if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("resourcerotations", ResourceRotation.findResourceRotationEntries(firstResult, sizeNo));
-            float nrOfPages = (float) ResourceRotation.countResourceRotations() / sizeNo;
+            uiModel.addAttribute("resourcerotations", ResourceRotation.findResourceRotationEntries(firstResult, sizeNo,remoteUser));
+            float nrOfPages = (float) ResourceRotation.countResourceRotations(remoteUser) / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("resourcerotations", ResourceRotation.findAllResourceRotations());
+            uiModel.addAttribute("resourcerotations", ResourceRotation.findAllResourceRotations(remoteUser));
         }
         return "resourcerotations/list";
     }
@@ -90,8 +95,9 @@ privileged aspect ResourceRotationController_Roo_Controller {
     }
     
     @ModelAttribute("accounts")
-    public Collection<Account> ResourceRotationController.populateAccounts() {
-        return Account.findAllAccounts();
+    public Collection<Account> ResourceRotationController.populateAccounts(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return Account.findAllAccounts(remoteUser);
     }
     
     @ModelAttribute("monthses")
@@ -100,8 +106,9 @@ privileged aspect ResourceRotationController_Roo_Controller {
     }
     
     @ModelAttribute("resourcerotations")
-    public Collection<ResourceRotation> ResourceRotationController.populateResourceRotations() {
-        return ResourceRotation.findAllResourceRotations();
+    public Collection<ResourceRotation> ResourceRotationController.populateResourceRotations(HttpServletRequest httpServletRequest) {
+    	String remoteUser = httpServletRequest.getRemoteUser(); 
+        return ResourceRotation.findAllResourceRotations(remoteUser);
     }
     
     String ResourceRotationController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
