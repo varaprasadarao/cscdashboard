@@ -58,12 +58,14 @@ privileged aspect AssessmentPrograms_Roo_Entity {
         return em;
     }
     
-    public static long AssessmentPrograms.countAssessmentProgramses() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM AssessmentPrograms o", Long.class).getSingleResult();
+    public static long AssessmentPrograms.countAssessmentProgramses(String username) {
+    	String query = "SELECT COUNT(o) FROM AssessmentPrograms o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<AssessmentPrograms> AssessmentPrograms.findAllAssessmentProgramses() {
-        return entityManager().createQuery("SELECT o FROM AssessmentPrograms o", AssessmentPrograms.class).getResultList();
+    public static List<AssessmentPrograms> AssessmentPrograms.findAllAssessmentProgramses(String username) {
+    	String query = "SELECT o FROM AssessmentPrograms o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";
+        return entityManager().createQuery(query, AssessmentPrograms.class).getResultList();
     }
     
     public static AssessmentPrograms AssessmentPrograms.findAssessmentPrograms(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect AssessmentPrograms_Roo_Entity {
         return entityManager().find(AssessmentPrograms.class, id);
     }
     
-    public static List<AssessmentPrograms> AssessmentPrograms.findAssessmentProgramsEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM AssessmentPrograms o", AssessmentPrograms.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<AssessmentPrograms> AssessmentPrograms.findAssessmentProgramsEntries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT o FROM AssessmentPrograms o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";
+        return entityManager().createQuery(query, AssessmentPrograms.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

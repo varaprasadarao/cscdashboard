@@ -58,12 +58,14 @@ privileged aspect ImproveIniti_Roo_Entity {
         return em;
     }
     
-    public static long ImproveIniti.countImproveInitis() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM ImproveIniti o", Long.class).getSingleResult();
+    public static long ImproveIniti.countImproveInitis(String username) {
+    	String query = "SELECT COUNT(o) FROM ImproveIniti o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<ImproveIniti> ImproveIniti.findAllImproveInitis() {
-        return entityManager().createQuery("SELECT o FROM ImproveIniti o", ImproveIniti.class).getResultList();
+    public static List<ImproveIniti> ImproveIniti.findAllImproveInitis(String username) {
+    	String query = "SELECT Distinct(o) FROM ImproveIniti o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, ImproveIniti.class).getResultList();
     }
     
     public static ImproveIniti ImproveIniti.findImproveIniti(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect ImproveIniti_Roo_Entity {
         return entityManager().find(ImproveIniti.class, id);
     }
     
-    public static List<ImproveIniti> ImproveIniti.findImproveInitiEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM ImproveIniti o", ImproveIniti.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<ImproveIniti> ImproveIniti.findImproveInitiEntries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT Distinct(o) FROM ImproveIniti o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+        return entityManager().createQuery(query, ImproveIniti.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

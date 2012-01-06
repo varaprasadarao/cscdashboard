@@ -3,76 +3,76 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Months;
-import java.lang.Integer;
+import com.csc.dashboard.admin.model.UserTeam;
+import java.lang.String;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Months_Roo_Entity {
+privileged aspect UserTeam_Roo_Entity {
     
     @PersistenceContext
-    transient EntityManager Months.entityManager;
+    transient EntityManager UserTeam.entityManager;
     
     @Transactional
-    public void Months.persist() {
+    public void UserTeam.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void Months.remove() {
+    public void UserTeam.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            Months attached = Months.findMonths(this.id);
+            UserTeam attached = UserTeam.findUserTeam(this.username);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void Months.flush() {
+    public void UserTeam.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void Months.clear() {
+    public void UserTeam.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public Months Months.merge() {
+    public UserTeam UserTeam.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Months merged = this.entityManager.merge(this);
+        UserTeam merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }
     
-    public static final EntityManager Months.entityManager() {
-        EntityManager em = new Months().entityManager;
+    public static final EntityManager UserTeam.entityManager() {
+        EntityManager em = new UserTeam().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long Months.countMonthses() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Months o", Long.class).getSingleResult();
+    public static long UserTeam.countUserTeames() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM UserTeam o", Long.class).getSingleResult();
     }
     
-    public static List<Months> Months.findAllMonthses() {
-        return entityManager().createQuery("SELECT o FROM Months o order by id desc", Months.class).getResultList();
+    public static List<UserTeam> UserTeam.findAllUserTeames() {
+        return entityManager().createQuery("SELECT o FROM UserTeam o", UserTeam.class).getResultList();
     }
     
-    public static Months Months.findMonths(Integer id) {
-        if (id == null) return null;
-        return entityManager().find(Months.class, id);
+    public static UserTeam UserTeam.findUserTeam(String username) {
+        if (username == null || username.length() == 0) return null;
+        return entityManager().find(UserTeam.class, username);
     }
     
-    public static List<Months> Months.findMonthsEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Months o order by id desc", Months.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<UserTeam> UserTeam.findUserTeamEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM UserTeam o", UserTeam.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

@@ -58,12 +58,14 @@ privileged aspect KmScorecard_Roo_Entity {
         return em;
     }
     
-    public static long KmScorecard.countKmScorecards() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM KmScorecard o", Long.class).getSingleResult();
+    public static long KmScorecard.countKmScorecards(String username) {
+    	String query = "SELECT COUNT(o) FROM KmScorecard o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<KmScorecard> KmScorecard.findAllKmScorecards() {
-        return entityManager().createQuery("SELECT o FROM KmScorecard o", KmScorecard.class).getResultList();
+    public static List<KmScorecard> KmScorecard.findAllKmScorecards(String username) {
+    	String query = "SELECT o FROM KmScorecard o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, KmScorecard.class).getResultList();
     }
     
     public static KmScorecard KmScorecard.findKmScorecard(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect KmScorecard_Roo_Entity {
         return entityManager().find(KmScorecard.class, id);
     }
     
-    public static List<KmScorecard> KmScorecard.findKmScorecardEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM KmScorecard o", KmScorecard.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<KmScorecard> KmScorecard.findKmScorecardEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT o FROM KmScorecard o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, KmScorecard.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

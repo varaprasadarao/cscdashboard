@@ -58,12 +58,14 @@ privileged aspect Csat_Roo_Entity {
         return em;
     }
     
-    public static long Csat.countCsats() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Csat o", Long.class).getSingleResult();
+    public static long Csat.countCsats(String username) {
+    	String query = "SELECT COUNT(o) FROM Csat o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<Csat> Csat.findAllCsats() {
-        return entityManager().createQuery("SELECT o FROM Csat o", Csat.class).getResultList();
+    public static List<Csat> Csat.findAllCsats(String username) {
+    	String query = "SELECT o FROM Csat o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Csat.class).getResultList();
     }
     
     public static Csat Csat.findCsat(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect Csat_Roo_Entity {
         return entityManager().find(Csat.class, id);
     }
     
-    public static List<Csat> Csat.findCsatEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Csat o", Csat.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Csat> Csat.findCsatEntries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT o FROM Csat o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Csat.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

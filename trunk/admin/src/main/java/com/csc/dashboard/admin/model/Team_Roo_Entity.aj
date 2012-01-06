@@ -58,12 +58,14 @@ privileged aspect Team_Roo_Entity {
         return em;
     }
     
-    public static long Team.countTeams() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Team o", Long.class).getSingleResult();
+    public static long Team.countTeams(String username) {
+    	String query = "SELECT COUNT(o) FROM Team o, UserTeam t where o.id = t.teamId and t.username = '"+username+"'";
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<Team> Team.findAllTeams() {
-        return entityManager().createQuery("SELECT o FROM Team o", Team.class).getResultList();
+    public static List<Team> Team.findAllTeams(String username) {
+    	String query = "SELECT o FROM Team o, UserTeam t where o.id = t.teamId and t.username = '"+username+"' order by o.id";
+        return entityManager().createQuery(query, Team.class).getResultList();
     }
     
     public static Team Team.findTeam(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect Team_Roo_Entity {
         return entityManager().find(Team.class, id);
     }
     
-    public static List<Team> Team.findTeamEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Team o", Team.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Team> Team.findTeamEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT o FROM Team o, UserTeam t where o.id = t.teamId and t.username = '"+username+"' order by o.id";
+        return entityManager().createQuery(query, Team.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

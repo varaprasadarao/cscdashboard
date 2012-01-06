@@ -58,12 +58,14 @@ privileged aspect Utilization_Roo_Entity {
         return em;
     }
     
-    public static long Utilization.countUtilizations() {
+    public static long Utilization.countUtilizations(String username) {
+    	String query = "SELECT COUNT(o) FROM Utilization o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
         return entityManager().createQuery("SELECT COUNT(o) FROM Utilization o", Long.class).getSingleResult();
     }
     
-    public static List<Utilization> Utilization.findAllUtilizations() {
-        return entityManager().createQuery("SELECT o FROM Utilization o", Utilization.class).getResultList();
+    public static List<Utilization> Utilization.findAllUtilizations(String username) {
+    	String query = "SELECT o FROM Utilization o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Utilization.class).getResultList();
     }
     
     public static Utilization Utilization.findUtilization(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect Utilization_Roo_Entity {
         return entityManager().find(Utilization.class, id);
     }
     
-    public static List<Utilization> Utilization.findUtilizationEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Utilization o", Utilization.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Utilization> Utilization.findUtilizationEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT o FROM Utilization o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Utilization.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

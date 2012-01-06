@@ -58,12 +58,14 @@ privileged aspect ContributionToTop10_Roo_Entity {
         return em;
     }
     
-    public static long ContributionToTop10.countContributionToTop10s() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM ContributionToTop10 o", Long.class).getSingleResult();
+    public static long ContributionToTop10.countContributionToTop10s(String username) {
+    	String query = "SELECT COUNT(o) FROM ContributionToTop10 o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<ContributionToTop10> ContributionToTop10.findAllContributionToTop10s() {
-        return entityManager().createQuery("SELECT o FROM ContributionToTop10 o", ContributionToTop10.class).getResultList();
+    public static List<ContributionToTop10> ContributionToTop10.findAllContributionToTop10s(String username) {
+    	String query = "SELECT o FROM ContributionToTop10 o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, ContributionToTop10.class).getResultList();
     }
     
     public static ContributionToTop10 ContributionToTop10.findContributionToTop10(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect ContributionToTop10_Roo_Entity {
         return entityManager().find(ContributionToTop10.class, id);
     }
     
-    public static List<ContributionToTop10> ContributionToTop10.findContributionToTop10Entries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM ContributionToTop10 o", ContributionToTop10.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<ContributionToTop10> ContributionToTop10.findContributionToTop10Entries(int firstResult, int maxResults,String username) {
+    	String query = "SELECT o FROM ContributionToTop10 o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, ContributionToTop10.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }

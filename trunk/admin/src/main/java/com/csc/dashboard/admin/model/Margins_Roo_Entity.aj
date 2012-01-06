@@ -58,12 +58,14 @@ privileged aspect Margins_Roo_Entity {
         return em;
     }
     
-    public static long Margins.countMarginses() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Margins o", Long.class).getSingleResult();
+    public static long Margins.countMarginses(String username) {
+    	String query = "SELECT COUNT(o) FROM Margins o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
-    public static List<Margins> Margins.findAllMarginses() {
-        return entityManager().createQuery("SELECT o FROM Margins o", Margins.class).getResultList();
+    public static List<Margins> Margins.findAllMarginses(String username) {
+    	String query = "SELECT o FROM Margins o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Margins.class).getResultList();
     }
     
     public static Margins Margins.findMargins(Integer id) {
@@ -71,8 +73,9 @@ privileged aspect Margins_Roo_Entity {
         return entityManager().find(Margins.class, id);
     }
     
-    public static List<Margins> Margins.findMarginsEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Margins o", Margins.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Margins> Margins.findMarginsEntries(int firstResult, int maxResults, String username) {
+    	String query = "SELECT o FROM Margins o, UserTeam t where o.team = t.teamId and t.username = '"+username+"' order by id desc";	
+        return entityManager().createQuery(query, Margins.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
 }
