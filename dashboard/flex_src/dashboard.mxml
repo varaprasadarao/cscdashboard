@@ -8,6 +8,7 @@
 		<![CDATA[
 		
 			import com.csc.dashboard.components.Header;
+			import mx.controls.Alert;
 
 		]]>
 	</fx:Script>
@@ -18,11 +19,18 @@
 	
 	<mx:VBox width="910" x="{(this.width - 910)/2}" y="10" styleName="body" height="100%" horizontalGap="0" verticalGap="10">
 		<csc:Header/>
-		<csc:MainComponent/>	
+		<csc:MainComponent/>
 		<mx:filters>
 			<mx:GlowFilter blurX="22" blurY="22" color="#111111" alpha="0.6" />
 		</mx:filters>
 	</mx:VBox>    
 
+	<mx:VBox bottom="0" right="0" textAlign="center">
+		<mx:Button label="Contact Us / Feedback" click="Alert.show('For any feedback or help related to this tool please contact\n\n Tabrez Quazi (tquazi@csc.com)\n Bhuvnesh Chhibar (bchhibar@csc.com)\n[Team DuPont]', 'Contact Us / Feedback', mx.controls.Alert.OK);"/>	
+		<mx:filters>
+			<mx:GlowFilter blurX="22" blurY="22" color="#111111" alpha="0.6" />
+		</mx:filters>
+	</mx:VBox>	
+	
 	
 </s:Application>

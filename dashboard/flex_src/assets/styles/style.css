@@ -6,6 +6,9 @@
 	embedAsCFF: false; 
 }
 
+mx|Alert{
+	textAlign:center;
+}
 
 mx|ColumnChart {
 	fontFamily: myMyriad;

@@ -14,6 +14,7 @@
 			import com.csc.dashboard.busniess.service.TeamDevelopmentService;
 			import com.csc.dashboard.events.AccountChangedEvent;
 			import com.csc.dashboard.events.Global;
+			import com.csc.dashboard.events.MonthChangedEvent;
 			import com.csc.dashboard.model.AttritionVO;
 			
 			import mx.collections.ArrayCollection;
@@ -70,9 +71,14 @@
 					monthCB.selectedIndex = now.getMonth() - 1;
 				}
 				Global.eventBus.addEventListener("accountChanged",accountCh);
+				Global.eventBus.addEventListener("monthChanged",monthCh);
 				reload();
 			}
-			
+			private function monthCh(event:MonthChangedEvent):void{
+				monthCB.selectedIndex = event.monthId;
+				yearCB.selectedIndex = event.yearId;
+				reload();
+			}
 			private function createYears():void {
 				var now:Date = new Date();
 				yearXML = <years></years>;
@@ -113,7 +119,7 @@
 
 			
 			private function changeEvt(event:Event):void {
-				reload();
+				Global.eventBus.dispatchEvent(new MonthChangedEvent("monthChanged",monthCB.selectedIndex,yearCB.selectedIndex));
 			}
 			
 			

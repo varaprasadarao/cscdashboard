@@ -38,7 +38,7 @@ package com.csc.dashboard.busniess.service
 		public function onRemoteException(event:FaultEvent):void {
 			Alert.show('code : ' + event.fault.faultCode +
 				', message : ' + event.fault.faultString +
-				',detail : ' + event.fault.faultDetail);
+				',detail : ' + event.toString());
 			
 			if (event.fault.faultString == BAD_CREDENTIALS) {
 				FlexGlobals.topLevelApplication.dispatchEvent(

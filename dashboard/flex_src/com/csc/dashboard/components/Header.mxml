@@ -81,13 +81,13 @@
 	<s:HGroup top="72" left="370">
 		<mx:FormItem label="Vertical:" labelStyleName="appText">
 			<mx:ComboBox dataProvider="{verticalsAC}" color="0x000000"
-						selectedIndex="1" id="vertical" change="changeEvt(event)"/>
+						selectedIndex="0" id="vertical" change="changeEvt(event)"/>
 		</mx:FormItem>
 	</s:HGroup>
 	<s:HGroup top="72" left="630">
 		<mx:FormItem label="Account:" labelStyleName="appText">
 			<mx:ComboBox dataProvider="{accountsAC}" color="0x000000"
-						selectedIndex="1" id="account" change="changeEvt(event)"/>
+						selectedIndex="0" id="account" change="changeEvt(event)"/>
 		</mx:FormItem>
 	</s:HGroup>
 	
