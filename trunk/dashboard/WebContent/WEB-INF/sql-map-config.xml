@@ -4,13 +4,12 @@
 <sqlMapConfig>
 	<properties resource="../sql-map-config.properties" />
 	<settings
-	     cacheModelsEnabled="true"
-	     enhancementEnabled="true"
-	     lazyLoadingEnabled="true"
-	     maxRequests="32"
-	     maxSessions="10"
-	     maxTransactions="5"
-	     useStatementNamespaces="false" 
+	     	cacheModelsEnabled="true"
+		    enhancementEnabled="true"
+		    maxSessions="64"
+		    maxTransactions="8"
+		    maxRequests="128"
+	     	useStatementNamespaces="false" 
 	 />
 	<transactionManager type="JDBC">
 		<dataSource type="SIMPLE">
@@ -18,6 +17,12 @@
 			<property name="JDBC.ConnectionURL" value="${url}"/>
 			<property name="JDBC.Username"      value="${user}"/>
 			<property name="JDBC.Password"      value="${password}"/>
+			<property value="20" name="Pool.MaximumActiveConnections"/>
+			<property value="10" name="Pool.MaximumIdleConnections"/>
+			<property value="1000" name="Pool.MaximumWait"/>
+			<property value="SELECT 1 FROM DUAL" name="Pool.PingQuery"/>
+			<property value="true" name="Pool.PingEnabled"/>
+			<property value="10" name="Pool.PingConnectionsOlderThan"/>
 		</dataSource>
 	</transactionManager>
     <sqlMap resource="com/csc/dashboard/persistence/UserInfo.xml" />

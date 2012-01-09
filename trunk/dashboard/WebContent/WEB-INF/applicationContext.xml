@@ -71,7 +71,7 @@
 			<security:intercept-url pattern="index.html" filters="none"/> 
 			<security:intercept-url pattern="/**/*.swf" filters="none" access="ROLE_USER"/> 
 			<security:intercept-url pattern="/**/*.html" access="ROLE_USER"/> 
-			<security:intercept-url pattern="/**" filters="none"/> 
+			<security:intercept-url pattern="/**" filters="none" access="ROLE_USER"/> 
 			<security:http-basic/>
 			<!-- <security:form-login login-page="/login.jsp" default-target-url="/dashboard.html" always-use-default-target="true"/>--> 
 		</security:http> 
