@@ -6,6 +6,6 @@
         <field:select field="month" id="c_com_csc_dashboard_admin_model_Csat_month" itemValue="id" items="${monthses}" path="/monthses" z="05dBJ/2rmAgU3WyyKQ9x0rmZi3E="/>
         <field:select field="team" id="c_com_csc_dashboard_admin_model_Csat_team" itemValue="id" items="${teams}" path="/teams" z="kKaDvxVe27CuR1/k0oRPEE2+Tyg="/>
         <field:input field="description" id="c_com_csc_dashboard_admin_model_Csat_description" required="true" z="aCVmhxgYtaZCUtqHRUGXKIbJ9ME="/>
-        <field:input field="rating" id="c_com_csc_dashboard_admin_model_Csat_rating" required="true" z="6WgO5aaUCmhP12KsSgiBO62cg4s="/>
+        <field:select itemValue="id" items="${rating}" path="/" field="rating" id="c_com_csc_dashboard_admin_model_Csat_rating" required="true" z="6WgO5aaUCmhP12KsSgiBO62cg4s="/>
     </form:update>
 </div>

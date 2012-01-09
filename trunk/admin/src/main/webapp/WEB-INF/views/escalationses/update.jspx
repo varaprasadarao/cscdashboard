@@ -6,7 +6,7 @@
         <field:select field="account" id="c_com_csc_dashboard_admin_model_Escalations_account" itemValue="id" items="${accounts}" path="/accounts" z="V4XcNxwEeJsvSMhJmVGkjQcLU4I="/>
         <field:select field="month" id="c_com_csc_dashboard_admin_model_Escalations_month" itemValue="id" items="${monthses}" path="/monthses" z="2ruVqywEHrUi8Xvl8r8r1nMwEcI="/>
         <field:input field="escalation" id="c_com_csc_dashboard_admin_model_Escalations_escalation" required="true" z="Gv9b7Up/+DJ2r8DsCmv+KreKQkY="/>
-        <field:input field="status" id="c_com_csc_dashboard_admin_model_Escalations_status" z="3a07eoq/TojlCwtY/HmAGjI+t6o="/>
+        <field:select itemValue="id" items="${statusDD}" path="/" field="status" id="c_com_csc_dashboard_admin_model_Escalations_status" z="3a07eoq/TojlCwtY/HmAGjI+t6o="/>
         <field:input field="assignedTo" id="c_com_csc_dashboard_admin_model_Escalations_assignedTo" z="bJloo/fMqbvd7tCKT2V+TZH/kZg="/>
         <field:input field="daysOpen" id="c_com_csc_dashboard_admin_model_Escalations_daysOpen" validationMessageCode="field_invalid_integer" z="gb02IOHRBT7NeaJucWzRFZcRuOY="/>
     </form:update>

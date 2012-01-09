@@ -8,7 +8,6 @@
             <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_team" property="team" z="LI1yEJP50JpAP3Ox+hZb/yIBqfA="/>
             <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_numKmcontrib" property="numKmcontrib" z="UrVROhL6Z+ETwX4zeCtvqrdR7Hg="/>
             <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_qualTop10" property="qualTop10" z="qwP4/3fz9hsBZcRVyz59uda4+kE="/>
-            <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_hc" property="hc" z="MvkbvV34SZhtzHmMl6AzZao1WEA="/>
         </table:table>
     </page:list>
 </div>

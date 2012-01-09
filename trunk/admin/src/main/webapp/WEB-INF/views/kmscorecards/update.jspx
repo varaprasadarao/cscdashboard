@@ -7,6 +7,5 @@
         <field:select field="team" id="c_com_csc_dashboard_admin_model_KmScorecard_team" itemValue="id" items="${teams}" path="/teams" z="Fuq3kshAGcA+zNdA2dw7jFEXNcA="/>
         <field:input field="numKmcontrib" id="c_com_csc_dashboard_admin_model_KmScorecard_numKmcontrib" validationMessageCode="field_invalid_integer" z="MAQnePj+YzuHfPwAPMr2tdcOfaI="/>
         <field:input field="qualTop10" id="c_com_csc_dashboard_admin_model_KmScorecard_qualTop10" validationMessageCode="field_invalid_integer" z="N7sSvav+fCzWDBAAnjNm0hGqchc="/>
-        <field:input field="hc" id="c_com_csc_dashboard_admin_model_KmScorecard_hc" validationMessageCode="field_invalid_integer" z="N3goL+Oq2ozXEQd3WlOj4Cl7vgg="/>
     </form:update>
 </div>
