@@ -11,6 +11,7 @@
 			import com.csc.dashboard.busniess.service.ClientFocusService;
 			import com.csc.dashboard.events.AccountChangedEvent;
 			import com.csc.dashboard.events.Global;
+			import com.csc.dashboard.events.MonthChangedEvent;
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
@@ -53,9 +54,14 @@
 				}
 				
 				Global.eventBus.addEventListener("accountChanged",accountCh);
+				Global.eventBus.addEventListener("monthChanged",monthCh);
 				reload();
 			}
-			
+			private function monthCh(event:MonthChangedEvent):void{
+				monthCB.selectedIndex = event.monthId;
+				yearCB.selectedIndex = event.yearId;
+				reload();
+			}
 			private function accountCh(event:AccountChangedEvent):void{
 				reload();
 			}
@@ -70,7 +76,7 @@
 			}
 			
 			private function changeEvt(event:Event):void {
-				reload();
+				Global.eventBus.dispatchEvent(new MonthChangedEvent("monthChanged",monthCB.selectedIndex,yearCB.selectedIndex));
 			}
 			
 			

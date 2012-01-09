@@ -18,6 +18,10 @@ package com.csc.dashboard.events
 		
 		public static var accountName:String;
 		
+		public static var currentMonth:String;
+		
+		public static var currentYear:String;
+		
 		public static function accountLabel():String{
 			if(accountId != "0"){
 				return accountName + " Account"; 
