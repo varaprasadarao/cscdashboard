@@ -10,4 +10,11 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "contribution_to_top10")
 @RooDbManaged(automaticallyDelete = true)
 public class ContributionToTop10 {
+	
+	public ContributionToTop10(){
+		
+	}
+	public ContributionToTop10(Integer month){
+		this.setMonth(month);
+	}
 }

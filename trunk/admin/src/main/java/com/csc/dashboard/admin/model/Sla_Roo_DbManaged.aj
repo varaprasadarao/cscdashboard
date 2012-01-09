@@ -4,6 +4,7 @@
 package com.csc.dashboard.admin.model;
 
 import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 

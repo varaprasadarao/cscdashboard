@@ -3,10 +3,6 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Account;
-import com.csc.dashboard.admin.model.Months;
-import java.lang.Integer;
-import java.lang.String;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,9 +14,8 @@ privileged aspect Escalations_Roo_DbManaged {
     @JoinColumn(name = "account", referencedColumnName = "id", nullable = false)
     private Account Escalations.account;
     
-    @ManyToOne
-    @JoinColumn(name = "month", referencedColumnName = "id", nullable = false)
-    private Months Escalations.month;
+    @Column(name = "monthid")
+	private Integer Escalations.month;
     
     @Column(name = "escalation", length = 500)
     @NotNull
@@ -43,11 +38,11 @@ privileged aspect Escalations_Roo_DbManaged {
         this.account = account;
     }
     
-    public Months Escalations.getMonth() {
+    public Integer Escalations.getMonth() {
         return this.month;
     }
     
-    public void Escalations.setMonth(Months month) {
+    public void Escalations.setMonth(Integer month) {
         this.month = month;
     }
     

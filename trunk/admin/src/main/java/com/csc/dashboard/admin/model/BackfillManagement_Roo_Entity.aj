@@ -3,11 +3,11 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.BackfillManagement;
-import java.lang.Integer;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect BackfillManagement_Roo_Entity {
@@ -60,7 +60,7 @@ privileged aspect BackfillManagement_Roo_Entity {
     
     public static long BackfillManagement.countBackfillManagements(String username) {
     	String query = "SELECT COUNT(o) FROM BackfillManagement o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
-        return entityManager().createQuery("SELECT COUNT(o) FROM BackfillManagement o", Long.class).getSingleResult();
+        return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
     public static List<BackfillManagement> BackfillManagement.findAllBackfillManagements(String username) {
@@ -74,7 +74,7 @@ privileged aspect BackfillManagement_Roo_Entity {
     }
     
     public static List<BackfillManagement> BackfillManagement.findBackfillManagementEntries(int firstResult, int maxResults,String username) {
-    	String query = "SELECT Distinct(o) FROM Attrition o, BackfillManagement a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM BackfillManagement o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, BackfillManagement.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     

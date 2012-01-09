@@ -3,17 +3,15 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Account;
-import com.csc.dashboard.admin.model.Months;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect ImproveIniti_Roo_DbManaged {
@@ -22,9 +20,8 @@ privileged aspect ImproveIniti_Roo_DbManaged {
     @JoinColumn(name = "account", referencedColumnName = "id", nullable = false)
     private Account ImproveIniti.account;
     
-    @ManyToOne
-    @JoinColumn(name = "month", referencedColumnName = "id", nullable = false)
-    private Months ImproveIniti.month;
+    @Column(name = "monthid")
+	private Integer ImproveIniti.month;
     
     @Column(name = "name_of_prog", length = 100)
     @NotNull
@@ -69,11 +66,11 @@ privileged aspect ImproveIniti_Roo_DbManaged {
         this.account = account;
     }
     
-    public Months ImproveIniti.getMonth() {
+    public Integer ImproveIniti.getMonth() {
         return this.month;
     }
     
-    public void ImproveIniti.setMonth(Months month) {
+    public void ImproveIniti.setMonth(Integer month) {
         this.month = month;
     }
     

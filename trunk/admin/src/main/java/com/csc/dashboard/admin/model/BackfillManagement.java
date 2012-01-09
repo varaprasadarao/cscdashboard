@@ -10,4 +10,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "backfill_management")
 @RooDbManaged(automaticallyDelete = true)
 public class BackfillManagement {
+	public BackfillManagement(){
+	}
+	public BackfillManagement(Integer month){
+		this.setMonth(month);
+	}
 }

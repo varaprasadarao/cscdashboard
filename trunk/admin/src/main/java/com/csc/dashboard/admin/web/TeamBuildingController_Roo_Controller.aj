@@ -3,15 +3,14 @@
 
 package com.csc.dashboard.admin.web;
 
-import com.csc.dashboard.admin.model.Account;
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.TeamBuilding;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.String;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
+
+import com.csc.dashboard.admin.model.Account;
+import com.csc.dashboard.admin.model.DropDown;
+import com.csc.dashboard.admin.model.Months;
+import com.csc.dashboard.admin.model.TeamBuilding;
 
 privileged aspect TeamBuildingController_Roo_Controller {
     
@@ -41,7 +45,11 @@ privileged aspect TeamBuildingController_Roo_Controller {
     	long accCount = Account.findAllAccounts(remoteUser).size();
     	if(accCount==0)
     		return "noTeam";
-        uiModel.addAttribute("teamBuilding", new TeamBuilding());
+    	Calendar cal = Calendar.getInstance();
+    	int nowMonth = cal.get(Calendar.MONTH);
+    	int nowYear = cal.get(Calendar.YEAR);
+        int monthId = nowYear*12+nowMonth-1;
+        uiModel.addAttribute("teamBuilding", new TeamBuilding(monthId));
         return "teambuildings/create";
     }
     
@@ -121,6 +129,16 @@ privileged aspect TeamBuildingController_Roo_Controller {
         }
         catch (UnsupportedEncodingException uee) {}
         return pathSegment;
+    }
+    @ModelAttribute("impactDD")
+    public Collection<DropDown> TeamBuildingController.populateImpactDD() {
+
+    	Collection<DropDown> dd = new ArrayList<DropDown>();
+    	dd.add(new DropDown("High","High"));
+    	dd.add(new DropDown("Medium","Medium"));
+    	dd.add(new DropDown("Low","Low"));
+    	return dd;
+    	
     }
     
 }

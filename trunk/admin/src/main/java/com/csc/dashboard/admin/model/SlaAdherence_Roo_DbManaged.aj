@@ -3,19 +3,14 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.Team;
-import java.lang.Double;
-import java.lang.Integer;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 privileged aspect SlaAdherence_Roo_DbManaged {
     
-    @ManyToOne
-    @JoinColumn(name = "month", referencedColumnName = "id", nullable = false)
-    private Months SlaAdherence.month;
+	@Column(name = "monthid")
+	private Integer SlaAdherence.month;
     
     @ManyToOne
     @JoinColumn(name = "team", referencedColumnName = "id", nullable = false)
@@ -57,11 +52,11 @@ privileged aspect SlaAdherence_Roo_DbManaged {
     @Column(name = "sev5sla", precision = 20, scale = 2)
     private Double SlaAdherence.sev5sla;
     
-    public Months SlaAdherence.getMonth() {
+    public Integer SlaAdherence.getMonth() {
         return this.month;
     }
     
-    public void SlaAdherence.setMonth(Months month) {
+    public void SlaAdherence.setMonth(Integer month) {
         this.month = month;
     }
     

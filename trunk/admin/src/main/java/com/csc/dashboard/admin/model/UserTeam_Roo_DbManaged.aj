@@ -3,9 +3,7 @@
 
 package com.csc.dashboard.admin.model;
 
-import java.lang.String;
 import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
 
 privileged aspect UserTeam_Roo_DbManaged {
     

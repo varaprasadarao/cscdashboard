@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "margins")
 @RooDbManaged(automaticallyDelete = true)
 public class Margins {
+	public Margins(){
+		
+	}
+	public Margins(Integer month){
+		this.setMonth(month);
+	}
 }

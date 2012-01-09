@@ -3,11 +3,11 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Authorities;
-import com.csc.dashboard.admin.model.AuthoritiesPK;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Authorities_Roo_Entity {

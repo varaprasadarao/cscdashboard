@@ -3,18 +3,14 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.Team;
-import java.lang.Integer;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 privileged aspect Utilization_Roo_DbManaged {
     
-    @ManyToOne
-    @JoinColumn(name = "month", referencedColumnName = "id", nullable = false)
-    private Months Utilization.month;
+	@Column(name = "monthid")
+	private Integer Utilization.month;
     
     @ManyToOne
     @JoinColumn(name = "team", referencedColumnName = "id", nullable = false)
@@ -38,11 +34,11 @@ privileged aspect Utilization_Roo_DbManaged {
     @Column(name = "idle_hours")
     private Integer Utilization.idleHours;
     
-    public Months Utilization.getMonth() {
+    public Integer Utilization.getMonth() {
         return this.month;
     }
     
-    public void Utilization.setMonth(Months month) {
+    public void Utilization.setMonth(Integer month) {
         this.month = month;
     }
     

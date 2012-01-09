@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "resource_rotation")
 @RooDbManaged(automaticallyDelete = true)
 public class ResourceRotation {
+	public ResourceRotation(){
+		
+	}
+	public ResourceRotation(Integer month){
+		this.setMonth(month);
+	}
 }

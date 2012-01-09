@@ -3,15 +3,13 @@
 
 package com.csc.dashboard.admin.web;
 
-import com.csc.dashboard.admin.model.ContributionToTop10;
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.Team;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.String;
+import java.util.Calendar;
 import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
+
+import com.csc.dashboard.admin.model.ContributionToTop10;
+import com.csc.dashboard.admin.model.Months;
+import com.csc.dashboard.admin.model.Team;
 
 privileged aspect ContributionToTop10Controller_Roo_Controller {
     
@@ -41,7 +43,11 @@ privileged aspect ContributionToTop10Controller_Roo_Controller {
     	long teamCount = Team.countTeams(remoteUser);
     	if(teamCount==0)
     		return "noTeam";
-        uiModel.addAttribute("contributionToTop10", new ContributionToTop10());
+    	Calendar cal = Calendar.getInstance();
+    	int nowMonth = cal.get(Calendar.MONTH);
+    	int nowYear = cal.get(Calendar.YEAR);
+        int monthId = nowYear*12+nowMonth-1;
+    	uiModel.addAttribute("contributionToTop10", new ContributionToTop10(monthId));
         return "contributiontotop10s/create";
     }
     

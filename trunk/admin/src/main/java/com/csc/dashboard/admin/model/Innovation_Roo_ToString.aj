@@ -3,13 +3,11 @@
 
 package com.csc.dashboard.admin.model;
 
-import java.lang.String;
 
 privileged aspect Innovation_Roo_ToString {
     
     public String Innovation.toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("AvgHc: ").append(getAvgHc()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("InnoQualified: ").append(getInnoQualified()).append(", ");
         sb.append("InnoSubmitted: ").append(getInnoSubmitted()).append(", ");

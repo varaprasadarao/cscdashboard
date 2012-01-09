@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "representation_in_csc")
 @RooDbManaged(automaticallyDelete = true)
 public class RepresentationInCsc {
+	public RepresentationInCsc(){
+		
+	}
+	public RepresentationInCsc(Integer month){
+		this.setMonth(month);
+	}
 }

@@ -3,9 +3,6 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.Team;
-import java.lang.Integer;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,17 +10,12 @@ import javax.validation.constraints.NotNull;
 
 privileged aspect Innovation_Roo_DbManaged {
     
-    @ManyToOne
-    @JoinColumn(name = "month", referencedColumnName = "id", nullable = false)
-    private Months Innovation.month;
+	@Column(name = "monthid")
+	private Integer Innovation.month;
     
     @ManyToOne
     @JoinColumn(name = "team", referencedColumnName = "id", nullable = false)
     private Team Innovation.team;
-    
-    @Column(name = "avg_hc")
-    @NotNull
-    private Integer Innovation.avgHc;
     
     @Column(name = "inno_submitted")
     private Integer Innovation.innoSubmitted;
@@ -34,11 +26,11 @@ privileged aspect Innovation_Roo_DbManaged {
     @Column(name = "manhrs_of_qualified_inno")
     private Integer Innovation.manhrsOfQualifiedInno;
     
-    public Months Innovation.getMonth() {
+    public Integer Innovation.getMonth() {
         return this.month;
     }
     
-    public void Innovation.setMonth(Months month) {
+    public void Innovation.setMonth(Integer month) {
         this.month = month;
     }
     
@@ -48,14 +40,6 @@ privileged aspect Innovation_Roo_DbManaged {
     
     public void Innovation.setTeam(Team team) {
         this.team = team;
-    }
-    
-    public Integer Innovation.getAvgHc() {
-        return this.avgHc;
-    }
-    
-    public void Innovation.setAvgHc(Integer avgHc) {
-        this.avgHc = avgHc;
     }
     
     public Integer Innovation.getInnoSubmitted() {

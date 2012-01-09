@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "new_order_closed")
 @RooDbManaged(automaticallyDelete = true)
 public class NewOrderClosed {
+	public NewOrderClosed(){
+		
+	}
+	public NewOrderClosed(Integer month){
+		this.setMonth(month);
+	}
 }

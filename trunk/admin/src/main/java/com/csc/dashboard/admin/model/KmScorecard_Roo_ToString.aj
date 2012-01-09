@@ -3,13 +3,11 @@
 
 package com.csc.dashboard.admin.model;
 
-import java.lang.String;
 
 privileged aspect KmScorecard_Roo_ToString {
     
     public String KmScorecard.toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Hc: ").append(getHc()).append(", ");
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("Month: ").append(getMonth()).append(", ");
         sb.append("NumKmcontrib: ").append(getNumKmcontrib()).append(", ");

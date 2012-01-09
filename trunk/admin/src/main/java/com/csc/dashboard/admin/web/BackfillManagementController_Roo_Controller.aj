@@ -3,15 +3,16 @@
 
 package com.csc.dashboard.admin.web;
 
-import com.csc.dashboard.admin.model.Account;
-import com.csc.dashboard.admin.model.BackfillManagement;
-import com.csc.dashboard.admin.model.Months;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.String;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import org.joda.time.format.DateTimeFormat;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,12 +23,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
+import com.csc.dashboard.admin.model.Account;
+import com.csc.dashboard.admin.model.BackfillManagement;
+import com.csc.dashboard.admin.model.DropDown;
+import com.csc.dashboard.admin.model.Months;
+
 privileged aspect BackfillManagementController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST)
     public String BackfillManagementController.create(@Valid BackfillManagement backfillManagement, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("backfillManagement", backfillManagement);
+            addDateTimeFormatPatterns(uiModel);
             return "backfillmanagements/create";
         }
         uiModel.asMap().clear();
@@ -41,7 +48,12 @@ privileged aspect BackfillManagementController_Roo_Controller {
     	long accCount = Account.findAllAccounts(remoteUser).size();
     	if(accCount==0)
     		return "noTeam";
-        uiModel.addAttribute("backfillManagement", new BackfillManagement());
+    	Calendar cal = Calendar.getInstance();
+    	int nowMonth = cal.get(Calendar.MONTH);
+    	int nowYear = cal.get(Calendar.YEAR);
+        int monthId = nowYear*12+nowMonth-1;
+        uiModel.addAttribute("backfillManagement", new BackfillManagement(monthId));
+        addDateTimeFormatPatterns(uiModel);
         return "backfillmanagements/create";
     }
     
@@ -49,6 +61,7 @@ privileged aspect BackfillManagementController_Roo_Controller {
     public String BackfillManagementController.show(@PathVariable("id") Integer id, Model uiModel) {
         uiModel.addAttribute("backfillmanagement", BackfillManagement.findBackfillManagement(id));
         uiModel.addAttribute("itemId", id);
+        addDateTimeFormatPatterns(uiModel);
         return "backfillmanagements/show";
     }
     
@@ -71,6 +84,7 @@ privileged aspect BackfillManagementController_Roo_Controller {
     public String BackfillManagementController.update(@Valid BackfillManagement backfillManagement, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             uiModel.addAttribute("backfillManagement", backfillManagement);
+            addDateTimeFormatPatterns(uiModel);
             return "backfillmanagements/update";
         }
         uiModel.asMap().clear();
@@ -81,6 +95,7 @@ privileged aspect BackfillManagementController_Roo_Controller {
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
     public String BackfillManagementController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         uiModel.addAttribute("backfillManagement", BackfillManagement.findBackfillManagement(id));
+        addDateTimeFormatPatterns(uiModel);
         return "backfillmanagements/update";
     }
     
@@ -122,5 +137,18 @@ privileged aspect BackfillManagementController_Roo_Controller {
         catch (UnsupportedEncodingException uee) {}
         return pathSegment;
     }
+    @ModelAttribute("yesNo")
+    public Collection<DropDown> BackfillManagementController.populateYesNo() {
+
+    	Collection<DropDown> dd = new ArrayList<DropDown>();
+    	dd.add(new DropDown("Yes","Yes"));
+    	dd.add(new DropDown("No","No"));
+    	return dd;
+    	
+    }
     
+    void BackfillManagementController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("enddate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+    }
 }

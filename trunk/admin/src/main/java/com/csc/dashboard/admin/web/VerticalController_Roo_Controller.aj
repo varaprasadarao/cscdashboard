@@ -3,13 +3,12 @@
 
 package com.csc.dashboard.admin.web;
 
-import com.csc.dashboard.admin.model.Vertical;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
+
+import com.csc.dashboard.admin.model.Vertical;
 
 privileged aspect VerticalController_Roo_Controller {
     

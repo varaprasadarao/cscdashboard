@@ -3,18 +3,15 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.Team;
-import java.lang.String;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 privileged aspect Appreciation_Roo_DbManaged {
     
-    @ManyToOne
-    @JoinColumn(name = "month", referencedColumnName = "id", nullable = false)
-    private Months Appreciation.month;
+
+    @Column(name = "monthid")
+    private Integer Appreciation.month;
     
     @ManyToOne
     @JoinColumn(name = "team", referencedColumnName = "id", nullable = false)
@@ -32,11 +29,11 @@ privileged aspect Appreciation_Roo_DbManaged {
     @Column(name = "relevance", length = 50)
     private String Appreciation.relevance;
     
-    public Months Appreciation.getMonth() {
+    public Integer Appreciation.getMonth() {
         return this.month;
     }
     
-    public void Appreciation.setMonth(Months month) {
+    public void Appreciation.setMonth(Integer month) {
         this.month = month;
     }
     
