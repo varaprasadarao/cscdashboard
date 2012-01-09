@@ -3,11 +3,11 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Escalations;
-import java.lang.Integer;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Escalations_Roo_Entity {

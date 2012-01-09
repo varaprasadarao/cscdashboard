@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "km_scorecard")
 @RooDbManaged(automaticallyDelete = true)
 public class KmScorecard {
+	public KmScorecard(){
+		
+	}
+	public KmScorecard(Integer month){
+		this.setMonth(month);
+	}
 }

@@ -3,6 +3,13 @@
 
 package com.csc.dashboard.admin.web;
 
+import java.text.DateFormatSymbols;
+
+import org.apache.commons.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.FormatterRegistry;
+
 import com.csc.dashboard.admin.model.Account;
 import com.csc.dashboard.admin.model.Appreciation;
 import com.csc.dashboard.admin.model.AssessmentPrograms;
@@ -32,14 +39,6 @@ import com.csc.dashboard.admin.model.Users;
 import com.csc.dashboard.admin.model.Utilization;
 import com.csc.dashboard.admin.model.Vertical;
 import com.csc.dashboard.admin.model.VerticalInit;
-import java.lang.Integer;
-import java.lang.String;
-import java.text.DateFormatSymbols;
-
-import org.apache.commons.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.format.FormatterRegistry;
 
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
@@ -312,7 +311,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Innovation, String> ApplicationConversionServiceFactoryBean.getInnovationToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.csc.dashboard.admin.model.Innovation, java.lang.String>() {
             public String convert(Innovation innovation) {
-                return new StringBuilder().append(innovation.getAvgHc()).append(" ").append(innovation.getInnoSubmitted()).append(" ").append(innovation.getInnoQualified()).append(" ").append(innovation.getManhrsOfQualifiedInno()).toString();
+                return new StringBuilder().append(innovation.getInnoSubmitted()).append(" ").append(innovation.getInnoQualified()).append(" ").append(innovation.getManhrsOfQualifiedInno()).toString();
             }
         };
     }
@@ -336,7 +335,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<KmScorecard, String> ApplicationConversionServiceFactoryBean.getKmScorecardToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.csc.dashboard.admin.model.KmScorecard, java.lang.String>() {
             public String convert(KmScorecard kmScorecard) {
-                return new StringBuilder().append(kmScorecard.getNumKmcontrib()).append(" ").append(kmScorecard.getQualTop10()).append(" ").append(kmScorecard.getHc()).toString();
+                return new StringBuilder().append(kmScorecard.getNumKmcontrib()).append(" ").append(kmScorecard.getQualTop10()).append(" ").toString();
             }
         };
     }

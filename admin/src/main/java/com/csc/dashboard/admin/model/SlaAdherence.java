@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "sla_adherence")
 @RooDbManaged(automaticallyDelete = true)
 public class SlaAdherence {
+	public SlaAdherence(){
+		
+	}
+	public SlaAdherence(Integer month){
+		this.setMonth(month);
+	}
 }

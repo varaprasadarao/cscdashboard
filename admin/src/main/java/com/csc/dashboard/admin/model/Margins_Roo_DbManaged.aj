@@ -3,18 +3,16 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.Team;
 import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 privileged aspect Margins_Roo_DbManaged {
     
-    @ManyToOne
-    @JoinColumn(name = "month", referencedColumnName = "id", nullable = false)
-    private Months Margins.month;
+	@Column(name = "monthid")
+	private Integer Margins.month;
     
     @ManyToOne
     @JoinColumn(name = "team", referencedColumnName = "id", nullable = false)
@@ -26,11 +24,11 @@ privileged aspect Margins_Roo_DbManaged {
     @Column(name = "cost", precision = 10, scale = 2)
     private BigDecimal Margins.cost;
     
-    public Months Margins.getMonth() {
+    public Integer Margins.getMonth() {
         return this.month;
     }
     
-    public void Margins.setMonth(Months month) {
+    public void Margins.setMonth(Integer month) {
         this.month = month;
     }
     

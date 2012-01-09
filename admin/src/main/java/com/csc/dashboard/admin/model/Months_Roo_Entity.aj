@@ -3,11 +3,13 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Months;
-import java.lang.Integer;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect Months_Roo_Entity {
@@ -63,7 +65,33 @@ privileged aspect Months_Roo_Entity {
     }
     
     public static List<Months> Months.findAllMonthses() {
-        return entityManager().createQuery("SELECT o FROM Months o order by id desc", Months.class).getResultList();
+List<Months> ret = new ArrayList<Months>();
+    	
+    	Calendar cal = Calendar.getInstance();
+    	
+    	int nowMonth = cal.get(Calendar.MONTH);
+    	int nowYear = cal.get(Calendar.YEAR);
+       
+    	boolean flag = true;
+    	while(flag){
+    		if(nowMonth == 3 && nowYear == 2010){
+    			flag = false;
+    		}
+    		Months m = new Months();
+    		m.setId(nowYear*12+nowMonth);
+    		m.setMonth(nowMonth+1);
+    		m.setYear(nowYear);
+    		ret.add(m);
+    		nowMonth--;
+    		if(nowMonth<0){
+    			nowMonth=11;
+    			nowYear--;
+    		}
+    	}
+    	return ret;
+    	
+    	
+    	//return entityManager().createQuery("SELECT o FROM Months o order by id desc", Months.class).getResultList();
     }
     
     public static Months Months.findMonths(Integer id) {

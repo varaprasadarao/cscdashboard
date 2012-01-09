@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "csat")
 @RooDbManaged(automaticallyDelete = true)
 public class Csat {
+	public Csat(){
+		
+	}
+	public Csat(Integer month){
+		this.setMonth(month);
+	}
 }

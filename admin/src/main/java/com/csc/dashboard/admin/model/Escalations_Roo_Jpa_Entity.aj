@@ -3,7 +3,6 @@
 
 package com.csc.dashboard.admin.model;
 
-import java.lang.Integer;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

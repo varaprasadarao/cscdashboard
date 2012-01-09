@@ -3,7 +3,6 @@
 
 package com.csc.dashboard.admin.model;
 
-import java.lang.String;
 
 privileged aspect NewOrderClosed_Roo_ToString {
     

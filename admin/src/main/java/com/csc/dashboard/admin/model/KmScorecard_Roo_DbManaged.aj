@@ -3,18 +3,14 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.Team;
-import java.lang.Integer;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 privileged aspect KmScorecard_Roo_DbManaged {
     
-    @ManyToOne
-    @JoinColumn(name = "month", referencedColumnName = "id", nullable = false)
-    private Months KmScorecard.month;
+	@Column(name = "monthid")
+	private Integer KmScorecard.month;
     
     @ManyToOne
     @JoinColumn(name = "team", referencedColumnName = "id", nullable = false)
@@ -26,14 +22,12 @@ privileged aspect KmScorecard_Roo_DbManaged {
     @Column(name = "qualTop10")
     private Integer KmScorecard.qualTop10;
     
-    @Column(name = "hc")
-    private Integer KmScorecard.hc;
     
-    public Months KmScorecard.getMonth() {
+    public Integer KmScorecard.getMonth() {
         return this.month;
     }
     
-    public void KmScorecard.setMonth(Months month) {
+    public void KmScorecard.setMonth(Integer month) {
         this.month = month;
     }
     
@@ -61,12 +55,5 @@ privileged aspect KmScorecard_Roo_DbManaged {
         this.qualTop10 = qualTop10;
     }
     
-    public Integer KmScorecard.getHc() {
-        return this.hc;
-    }
-    
-    public void KmScorecard.setHc(Integer hc) {
-        this.hc = hc;
-    }
-    
+  
 }

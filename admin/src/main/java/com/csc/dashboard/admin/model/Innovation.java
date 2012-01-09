@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "innovation")
 @RooDbManaged(automaticallyDelete = true)
 public class Innovation {
+	public Innovation(){
+		
+	}
+	public Innovation(Integer month){
+		this.setMonth(month);
+	}
 }

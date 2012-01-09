@@ -3,7 +3,6 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.AuthoritiesPK;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;

@@ -3,13 +3,12 @@
 
 package com.csc.dashboard.admin.model;
 
-import com.csc.dashboard.admin.model.AuthoritiesPK;
-import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
-import java.lang.String;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import flexjson.JSONDeserializer;
+import flexjson.JSONSerializer;
 
 privileged aspect AuthoritiesPK_Roo_Json {
     

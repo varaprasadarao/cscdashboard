@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "team_building")
 @RooDbManaged(automaticallyDelete = true)
 public class TeamBuilding {
+	public TeamBuilding(){
+		
+	}
+	public TeamBuilding(Integer month){
+		this.setMonth(month);
+	}
 }

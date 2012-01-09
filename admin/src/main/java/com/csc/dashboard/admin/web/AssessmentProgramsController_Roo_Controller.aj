@@ -3,15 +3,14 @@
 
 package com.csc.dashboard.admin.web;
 
-import com.csc.dashboard.admin.model.AssessmentPrograms;
-import com.csc.dashboard.admin.model.Months;
-import com.csc.dashboard.admin.model.Team;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.String;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
+
+import com.csc.dashboard.admin.model.AssessmentPrograms;
+import com.csc.dashboard.admin.model.DropDown;
+import com.csc.dashboard.admin.model.Months;
+import com.csc.dashboard.admin.model.Team;
 
 privileged aspect AssessmentProgramsController_Roo_Controller {
     
@@ -41,7 +45,11 @@ privileged aspect AssessmentProgramsController_Roo_Controller {
     	long teamCount = Team.countTeams(remoteUser);
     	if(teamCount==0)
     		return "noTeam";
-        uiModel.addAttribute("assessmentPrograms", new AssessmentPrograms());
+    	Calendar cal = Calendar.getInstance();
+    	int nowMonth = cal.get(Calendar.MONTH);
+    	int nowYear = cal.get(Calendar.YEAR);
+        int monthId = nowYear*12+nowMonth-1;
+        uiModel.addAttribute("assessmentPrograms", new AssessmentPrograms(monthId));
         return "assessmentprogramses/create";
     }
     
@@ -121,6 +129,20 @@ privileged aspect AssessmentProgramsController_Roo_Controller {
         }
         catch (UnsupportedEncodingException uee) {}
         return pathSegment;
+    }
+    
+    @ModelAttribute("dropDown")
+    public Collection<DropDown> AssessmentProgramsController.populateDropDown() {
+
+    	Collection<DropDown> dd = new ArrayList<DropDown>();
+    	dd.add(new DropDown("1","1 (Lowest)"));
+    	dd.add(new DropDown("2","2"));
+    	dd.add(new DropDown("3","3"));
+    	dd.add(new DropDown("4","4"));
+    	dd.add(new DropDown("5","5 (Highest)"));
+    	
+    	return dd;
+    	
     }
     
 }

@@ -10,4 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooEntity(versionField = "", table = "improve_initi")
 @RooDbManaged(automaticallyDelete = true)
 public class ImproveIniti {
+	public ImproveIniti(){
+		
+	}
+	public ImproveIniti(Integer month){
+		this.setMonth(month);
+	}
 }
