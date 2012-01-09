@@ -2,12 +2,9 @@ package com.csc.dashboard.domain;
 
 public class Attrition {
 
-	
-	
-	
-	
 	private int id;
 	private String month;
+	private int monthId;
 	private int attrNum;
 	private int openingHeadCount;
 	private int closingHeadCount;
@@ -16,6 +13,12 @@ public class Attrition {
 	private double cumulativeAnnAttr;
 	
 	
+	public int getMonthId() {
+		return monthId;
+	}
+	public void setMonthId(int monthId) {
+		this.monthId = monthId;
+	}
 	public int getId() {
 		return id;
 	}

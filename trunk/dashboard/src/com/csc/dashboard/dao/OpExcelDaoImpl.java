@@ -22,8 +22,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<BillingEfficiency> getBillingEfficieny(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<BillingEfficiency> li = (List<BillingEfficiency>)sqlMap.queryForList("getBillingEfficieny" , parameters);
@@ -33,8 +33,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<DemandForecast> getDemandForecast(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<DemandForecast> li = (List<DemandForecast>)sqlMap.queryForList("getDemandForecast" , parameters);
@@ -44,8 +44,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<EManageDisc> getEManageDisc(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<EManageDisc> li = (List<EManageDisc>)sqlMap.queryForList("getEManageDisc" , parameters);
@@ -55,8 +55,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<ETesAccuracy> getETesAccuracy(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<ETesAccuracy> li = (List<ETesAccuracy>)sqlMap.queryForList("getETesAccuracy" , parameters);
@@ -66,8 +66,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<Escalation> getEscalation(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Escalation> li = (List<Escalation>)sqlMap.queryForList("getEscalation" , parameters);
@@ -77,8 +77,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<GradeMix> getGradeMix(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<GradeMix> li = (List<GradeMix>)sqlMap.queryForList("getGradeMix" , parameters);
@@ -88,8 +88,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<Margins> getMargins(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Margins> li = (List<Margins>)sqlMap.queryForList("getMargins" , parameters);
@@ -99,8 +99,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<NonBillability> getNonBillability(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<NonBillability> li = (List<NonBillability>)sqlMap.queryForList("getNonBillability" , parameters);
@@ -110,8 +110,8 @@ public class OpExcelDaoImpl implements OpExcelDao {
 	public List<Utilization> getUtilization(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Utilization> li = (List<Utilization>)sqlMap.queryForList("getUtilization" , parameters);

@@ -23,8 +23,7 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 	public List<Assessment> getAssessments(int account, int month, int year) throws SQLException{
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Assessment> li = (List<Assessment>)sqlMap.queryForList("getAssessments" , parameters);
@@ -35,8 +34,8 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 			throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Csat> li = (List<Csat>)sqlMap.queryForList("getCSAT" , parameters);
@@ -47,8 +46,8 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 			int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<ClientAppreciation> li = (List<ClientAppreciation>)sqlMap.queryForList("getClientAppreciation" , parameters);
@@ -59,8 +58,8 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 			int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<ImproveInit> li = (List<ImproveInit>)sqlMap.queryForList("getImprovementInitiatives" , parameters);
@@ -71,8 +70,8 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 			throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Innovation> li = (List<Innovation>)sqlMap.queryForList("getInnovations" , parameters);
@@ -83,8 +82,8 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 			throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<KMScorecard> li = (List<KMScorecard>)sqlMap.queryForList("getKMScorecard" , parameters);
@@ -95,8 +94,8 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 			int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<NewOrderClosed> li = (List<NewOrderClosed>)sqlMap.queryForList("getNewOrderClosed" , parameters);
@@ -107,8 +106,8 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 			int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<ContributionTop10> li = (List<ContributionTop10>)sqlMap.queryForList("getTop10Contributors" , parameters);
@@ -119,8 +118,8 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 			int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<VerticalLevelInit> li = (List<VerticalLevelInit>)sqlMap.queryForList("getVerticalLevelInitiatives" , parameters);
@@ -130,11 +129,22 @@ public class ClientFocusDaoImpl implements ClientFocusDao {
 	public Integer getHeadCount(int account, int month, int year) throws SQLException{
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		return (Integer)sqlMap.queryForObject("getHeadCount" , parameters);
+		
+	}
+	
+	public Integer getTeamHeadCount(int team, int month, int year) throws SQLException{
+		Map parameters = new HashMap();
+		parameters.put("team", team);
+		parameters.put("month", year*12 + month - 1);
+		
+		
+		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
+		return (Integer)sqlMap.queryForObject("getTeamHeadCount" , parameters);
 		
 	}
 

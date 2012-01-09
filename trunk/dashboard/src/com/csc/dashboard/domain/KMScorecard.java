@@ -9,12 +9,19 @@ public class KMScorecard implements Serializable {
 	 */
 	private static final long serialVersionUID = 7871317352896395910L;
 	private String team;
+	private int teamId;
 	private int numKMContributed;
 	private double perOfHC;
 	private int qualifiedTop;
 	private int headCount;
 	
 	
+	public int getTeamId() {
+		return teamId;
+	}
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
+	}
 	public int getHeadCount() {
 		return headCount;
 	}

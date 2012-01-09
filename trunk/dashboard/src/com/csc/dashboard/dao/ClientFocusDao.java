@@ -26,5 +26,7 @@ public interface ClientFocusDao {
 	public List<VerticalLevelInit> getVerticalLevelInitiatives(int account, int month, int year) throws SQLException;
 	
 	public Integer getHeadCount(int account, int month, int year) throws SQLException;
+	
+	public Integer getTeamHeadCount(int team, int month, int year) throws SQLException;
 
 }

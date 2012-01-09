@@ -6,20 +6,20 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 <sqlMap namespace="TeamDevelopment">
 
 	<resultMap id="resultAttrition" class="com.csc.dashboard.domain.Attrition">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
-        <result property="month" column="month" jdbcType="VARCHAR" javaType="string"/>
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="monthId" column="monthId" jdbcType="int" javaType="int"  nullValue="0"/>
         <result property="attrNum" column="attrition_num" jdbcType="int" javaType="int"  nullValue="0"/>
         <result property="openingHeadCount" column="opening_head_count" jdbcType="int" javaType="int"  nullValue="0"/>
         <result property="closingHeadCount" column="closing_head_count" jdbcType="int" javaType="int"  nullValue="0"/>
 	</resultMap>
         
     <select id="getAttrition" parameterClass="java.util.Map" resultMap="resultAttrition">
-        <![CDATA[select a.id, concat( md.month ,' ', m.year) as month, a.attrition_num, a.opening_head_count, a.closing_head_count 
-        from attrition a, months m, month_def md 
-        where a.month = m.id and m.month = md.month_num and a.account = #account#
-        		and a.month > (select id from months where month= #startMonth# and year= #startYear# )
-        		and a.month <= (select id from months where month= #startMonth# and year= #endYear# )
-        		order by a.month asc
+        <![CDATA[select a.id, a.monthId as monthId, a.attrition_num, a.opening_head_count, a.closing_head_count 
+        from attrition a 
+        where a.account = #account#
+        		and a.monthId > #startMonth#
+        		and a.monthId <= #endMonth#
+        		order by a.monthId asc
         		]]>
     </select>
     
@@ -27,7 +27,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultBackfill" class="com.csc.dashboard.domain.Backfill">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="novient" column="novient" jdbcType="VARCHAR" javaType="string"/>
         <result property="empServingNotice" column="emp_serving_notice" jdbcType="VARCHAR" javaType="string"/>
         <result property="lastWorkingDate" column="last_working_date" jdbcType="VARCHAR" javaType="string"/>
@@ -40,14 +40,14 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     <select id="getBackfillInfo" parameterClass="java.util.Map" resultMap="resultBackfill">
         select id, novient, emp_serving_notice, last_working_date, replacement_date, replacement_identified, status 
         from backfill_management 
-        where account = #account# and month = (select id from months where month = #month# and year = #year#)
+        where account = #account# and monthId = #month#
     </select>
     
     
     
     
     <resultMap id="resultRepresentation" class="com.csc.dashboard.domain.Representation">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
         <result property="nameOfForum" column="name_of_forum" jdbcType="VARCHAR" javaType="string"/>
         <result property="resource" column="resource" jdbcType="VARCHAR" javaType="string"/>
@@ -59,29 +59,29 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         select rep.id, t.name as team, name_of_forum, resource, status, support_required 
         from representation_in_csc rep, team t 
         where rep.team = t.id and rep.account = #account# 
-        	and rep.month = (select id from months where month = #month# and year = #year#) order by rep.id;
+        	and rep.monthId = #month# order by rep.id;
     </select>
     
     
     
     
     <resultMap id="resultResourceRotation" class="com.csc.dashboard.domain.ResourceRotation">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="statistics" column="statistics" jdbcType="VARCHAR" javaType="string" />
         <result property="group" column="groupTxt" jdbcType="VARCHAR" javaType="string"/>
     </resultMap>
         
     <select id="getResourceRotation" parameterClass="java.util.Map" resultMap="resultResourceRotation">
         select id, statistics, groupTxt from resource_rotation 
-        where account = #account# and month = (select id from months where month = #month# and year = #year#) 
-        order by id
+        where account = #account# and monthId = #month# 
+        order by id;
     </select>
     
     
     
     
     <resultMap id="resultTeamBuilding" class="com.csc.dashboard.domain.TeamBuilding">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="activity" column="activity" jdbcType="VARCHAR" javaType="string"/>
         <result property="resourceImpacted" column="resource_impacted" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="impact" column="impact" jdbcType="VARCHAR" javaType="string"/>
@@ -90,7 +90,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     <select id="getTeamBuildingAct" parameterClass="java.util.Map" resultMap="resultTeamBuilding">
         select id, activity, resource_impacted, impact 
         from team_building where account = #account# 
-        	and month = (select id from months where month = #month# and year = #year#) order by id;
+        	and monthId = #month#;
     </select>
     
 </sqlMap>

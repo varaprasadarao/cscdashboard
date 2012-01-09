@@ -15,8 +15,8 @@ public class SLAAdherenceDaoImpl implements SLAAdherenceDao {
 	public List<SLAAdherence> getSLAAdherence(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<SLAAdherence> li = (List<SLAAdherence>)sqlMap.queryForList("getSLAAdherence" , parameters);
