@@ -10,12 +10,14 @@ public class Innovation implements Serializable {
 	private static final long serialVersionUID = -1035906590132748030L;
 	private int id;
 	private String team;
+	private int teamId;
 	private int avgHC;
 	private int numInnoSub;
 	private int numInnoQua;
 	private int manHrsQualInno;
 	private double qualInnoHC;
 	private double innoIndex;
+	
 	public int getId() {
 		return id;
 	}
@@ -63,6 +65,12 @@ public class Innovation implements Serializable {
 	}
 	public void setInnoIndex(double innoIndex) {
 		this.innoIndex = innoIndex;
+	}
+	public int getTeamId() {
+		return teamId;
+	}
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
 	}
 	
 	

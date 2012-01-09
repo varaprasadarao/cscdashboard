@@ -4,19 +4,35 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="UserInfo">
-    <resultMap id="resultUserInfo" class="com.csc.dashboard.domain.UserInfoVO">
-        <result property="no" column="no" jdbcType="int" javaType="int" />
+    <resultMap id="resultUser" class="com.csc.dashboard.domain.User">
+        <result property="username" column="username" jdbcType="VARCHAR" javaType="string" />
         <result property="name" column="name" jdbcType="VARCHAR" javaType="string"/>
-        <result property="subject" column="subject" jdbcType="VARCHAR" javaType="string" />
-        <result property="content" column="content" jdbcType="VARCHAR" javaType="string" />
-        <result property="ip" column="ip" jdbcType="VARCHAR" javaType="string" />
+        <result property="authority" column="authority" jdbcType="VARCHAR" javaType="string" />
+        <result property="account" column="account" jdbcType="VARCHAR" javaType="string" />
     </resultMap>
     
-    <select id="getUserList" resultMap="resultUserInfo">
-        SELECT no, name, subject, content, ip
-        FROM userinfo ORDER BY no DESC
+    <resultMap id="resultAccount" class="com.csc.dashboard.domain.Account">
+        <result property="accountId" column="id" jdbcType="int" javaType="int" />
+        <result property="accountName" column="name" jdbcType="VARCHAR" javaType="string"/>
+    </resultMap>
+    
+    <resultMap id="resultVertical" class="com.csc.dashboard.domain.Vertical">
+        <result property="verticalId" column="id" jdbcType="int" javaType="int" />
+        <result property="verticalName" column="name" jdbcType="VARCHAR" javaType="string"/>
+    </resultMap>
+    
+    <select id="getUser" resultMap="resultUser">
+        SELECT U.USERNAME, U.NAME, A.AUTHORITY, A.ACCOUNT FROM
+        USERS U, AUTHORITIES A WHERE U.USERNAME = A.USERNAME AND USERNAM = #value#
     </select>
     
+    <select id="getAccounts" resultMap="resultAccount">
+        SELECT DISTINCT ID, NAME FROM ACCOUNT WHERE ID IN (#value#)
+    </select>
+    
+    <select id="getVerticals" resultMap="resultVertical">
+        SELECT DISTINCT ID, NAME FROM VERTICAL WHERE ID IN (SELECT ID FROM ACCOUNT WHERE ID IN (#value#))
+    </select>
     
     <select id="getUserName" resultClass="string">
     	select name from users where username = #value#

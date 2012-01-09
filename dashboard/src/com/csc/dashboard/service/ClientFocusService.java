@@ -36,7 +36,9 @@ public class ClientFocusService {
 	}
 	
 	public List<Innovation> getInnovations(int account, int month,int year)throws SQLException{
-		List<Innovation> res = clientDao.getInnovations(account, month, year);
+		List<Innovation> res = null;
+		try{
+		res = clientDao.getInnovations(account, month, year);
 		
 		if(res != null && res.size() != 0){
 			Innovation overall = new Innovation();
@@ -49,29 +51,43 @@ public class ClientFocusService {
 			
 			
 			for(Innovation inno: res){
+				
+				
+				Integer hc = clientDao.getTeamHeadCount(inno.getTeamId(),month, year);
+				if(hc!=null)
+					inno.setAvgHC(hc);
 				totalHC += inno.getAvgHC();
 				totalNumInnoSub += inno.getNumInnoSub();
 				totalNumInnoQua += inno.getNumInnoQua();
 				totalManHrsQualInno += inno.getManHrsQualInno();
-				
-				inno.setQualInnoHC(Utils.roundDecimal((double)(inno.getNumInnoQua()*100/(double)inno.getAvgHC())));
-				
-				System.out.println(inno.getNumInnoQua() + "   dd "+inno.getAvgHC()+"CCC" + Utils.roundDecimal((double)(inno.getNumInnoQua()*100/(double)inno.getAvgHC())) );
-				
-				inno.setInnoIndex(Utils.roundDecimal((double)(inno.getManHrsQualInno()*100/((double)inno.getAvgHC()*180))));
+				if(inno.getAvgHC()==0){
+					inno.setQualInnoHC(0);
+					inno.setInnoIndex(0);
+				}else{
+					inno.setQualInnoHC(Utils.roundDecimal((double)(inno.getNumInnoQua()*100/(double)inno.getAvgHC())));
+					inno.setInnoIndex(Utils.roundDecimal((double)(inno.getManHrsQualInno()*100/((double)inno.getAvgHC()*180))));
+				}
+						
 			}
 			overall.setTeam("Overall");
 			overall.setAvgHC(totalHC);
 			overall.setNumInnoSub(totalNumInnoSub);
 			overall.setNumInnoQua(totalNumInnoQua);
 			overall.setManHrsQualInno(totalManHrsQualInno);
-			
-			overall.setQualInnoHC(Utils.roundDecimal((double)(overall.getNumInnoQua()*100/(double)overall.getAvgHC())));
-			overall.setInnoIndex(Utils.roundDecimal((double)(overall.getManHrsQualInno()*100/((double)overall.getAvgHC()*180))));
-			
+			if(overall.getAvgHC()==0){
+				overall.setQualInnoHC(0);
+				overall.setInnoIndex(0);
+			}else{
+				overall.setQualInnoHC(Utils.roundDecimal((double)(overall.getNumInnoQua()*100/(double)overall.getAvgHC())));
+				overall.setInnoIndex(Utils.roundDecimal((double)(overall.getManHrsQualInno()*100/((double)overall.getAvgHC()*180))));
+			}
 			res.add(0,overall);	
 		}
 		
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return res;
 	}
 	
@@ -90,7 +106,11 @@ public class ClientFocusService {
 		
 		if(res!=null && res.size()>0){
 			for(ImproveInit imp:res){
-				imp.setPplAffectedHC(Utils.roundDecimal((double)(imp.getNumPplAffected()*100)/(double)hc));
+				if(hc==null || hc==0){
+					imp.setPplAffectedHC(0);
+				}else{
+					imp.setPplAffectedHC(Utils.roundDecimal((double)(imp.getNumPplAffected()*100)/(double)hc));
+				}
 			}
 		}
 		
@@ -109,16 +129,28 @@ public class ClientFocusService {
 			int totalHeadCount = 0;
 			
 			for(KMScorecard it:res){
+				Integer hc = clientDao.getTeamHeadCount(it.getTeamId(),month, year);
+				if(hc!=null)
+					it.setHeadCount(hc);
+				
 				totalNumKM += it.getNumKMContributed();
 				totalQualifiedTop += it.getQualifiedTop();
 				totalHeadCount += it.getHeadCount();
-				it.setPerOfHC(Utils.roundDecimal((double)(it.getNumKMContributed()*100/(double)it.getHeadCount())));
+				if(it.getHeadCount()==0){
+					it.setPerOfHC(0);
+				}else{
+					it.setPerOfHC(Utils.roundDecimal((double)(it.getNumKMContributed()*100/(double)it.getHeadCount())));
+				}
 			}
 			overall.setTeam("Overall");
 			overall.setHeadCount(totalHeadCount);
 			overall.setNumKMContributed(totalNumKM);
 			overall.setQualifiedTop(totalQualifiedTop);
-			overall.setPerOfHC(Utils.roundDecimal((double)(overall.getNumKMContributed()*100/(double)overall.getHeadCount())));
+			if(overall.getHeadCount()==0){
+				overall.setPerOfHC(0);
+			}else{
+				overall.setPerOfHC(Utils.roundDecimal((double)(overall.getNumKMContributed()*100/(double)overall.getHeadCount())));
+			}
 			res.add(0,overall);	
 
 		}

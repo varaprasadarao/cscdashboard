@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.csc.dashboard.dao.UserDao;
 import com.csc.dashboard.dao.UserDaoImpl;
+import com.csc.dashboard.domain.User;
 import com.csc.dashboard.domain.UserInfoVO;
 import com.csc.dashboard.persistence.AppSqlmapConfig;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -16,14 +17,8 @@ public class UserInfoService {
 	UserDao userDao = new UserDaoImpl();
 	
 	public List<UserInfoVO> getData() throws SQLException{
-		
-		
-	
-		
-		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<UserInfoVO> uv = (List<UserInfoVO>)sqlMap.queryForList("getUserList");
-		
 		return uv;
 	}
 	
@@ -35,4 +30,14 @@ public class UserInfoService {
 		
 	}
 	
+	
+	public User getUser() throws SQLException{
+		
+		String username = FlexContext.getFlexSession().getUserPrincipal().getName();
+		User user = userDao.getUser(username);
+		user.setAccounts(userDao.getAccount(user.getAccountIds()));
+		user.setVerticals(userDao.getVertical(user.getAccountIds()));
+		return user;
+		
+	}
 }

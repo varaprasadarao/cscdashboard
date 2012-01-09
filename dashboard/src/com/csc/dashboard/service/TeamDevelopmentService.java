@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import com.csc.dashboard.Utils;
 import com.csc.dashboard.dao.TeamDevelopmentDao;
 import com.csc.dashboard.dao.TeamDevelopmentDaoImpl;
 import com.csc.dashboard.domain.Attrition;
@@ -20,13 +21,15 @@ public class TeamDevelopmentService {
 		List<Attrition> attrition = dao.getAttrition(account,startMonth,startYear); 
 		int cumulative = 0;
 		for(Attrition attr:attrition){
+			attr.setMonth(Utils.getFormatedMonth(attr.getMonthId()));
 			cumulative += attr.getAttrNum();
 			attr.setCumulativeExits(cumulative);
 			attr.setAvgHeadCount((attr.getOpeningHeadCount() + attr.getClosingHeadCount())/2);
-			double d = (((double)attr.getCumulativeExits()/attr.getAvgHeadCount())/12)*12*100;
-			
-			attr.setCumulativeAnnAttr(roundDecimal(d));
-			System.out.println(attr.getCumulativeAnnAttr()+ "  ssd "+ roundDecimal(d));
+			if(attr.getAvgHeadCount()==0){
+				attr.setCumulativeAnnAttr(0);
+			}else{
+				attr.setCumulativeAnnAttr(roundDecimal((((double)attr.getCumulativeExits()/attr.getAvgHeadCount())/12)*12*100));
+			}
 		}
 		return 	attrition;	
 	}

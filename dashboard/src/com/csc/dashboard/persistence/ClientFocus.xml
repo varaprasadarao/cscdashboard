@@ -6,7 +6,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 <sqlMap namespace="ClientFocus">
 
 	<resultMap id="resultClientAppreciation" class="com.csc.dashboard.domain.ClientAppreciation">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="appriciationFor" column="appreciation_for" jdbcType="VARCHAR" javaType="string"/>
         <result property="appriciation" column="appreciation" jdbcType="VARCHAR" javaType="string" />
         <result property="appriciatedBy" column="appreciated_by" jdbcType="VARCHAR" javaType="string" />
@@ -15,26 +15,28 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         
     <select id="getClientAppreciation" parameterClass="java.util.Map" resultMap="resultClientAppreciation">
     	select a.id, t.name as team, a.appreciation_for, a.appreciation, a.appreciated_by, a.relevance from appreciation a, team t
-    	where t.id = a.team and t.account = #account# and a.month = (select id from months where month = #month# and year = #year#)
+    	where t.id = a.team and t.account = #account# and a.monthId = #month#
     </select>
     
     <select id="getHeadCount" parameterClass="java.util.Map" resultClass="int">
-    	select closing_head_count from attrition where account = #account# and month = (select id from months where month = #month# and year = #year#)
+    	select closing_head_count from attrition where account = #account# and monthId = #month#
     </select>
     
-    
+    <select id="getTeamHeadCount" parameterClass="java.util.Map" resultClass="int">
+    	select head_count from billing where monthid = #month# and team = #team#;
+    </select>
     
     <resultMap id="resultCsat" class="com.csc.dashboard.domain.Csat">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="description" column="description" jdbcType="VARCHAR" javaType="string" />
-        <result property="rating" column="rating" jdbcType="VARCHAR" javaType="string" />
+        <result property="description" column="description" jdbcType="VARCHAR" javaType="string" nullValue=""/>
+        <result property="rating" column="rating" jdbcType="VARCHAR" javaType="string" nullValue=""/>
  	</resultMap>
         
     <select id="getCSAT" parameterClass="java.util.Map" resultMap="resultCsat">
     	select c.id, t.name as team, c.description, c.rating
 			from team t left join csat c on t.id = c.team 
-			where (c.month = (select id from months where month = #month# and year = #year#) or c.month is null) and t.account = #account# 
+			where (c.monthId = #month# or c.monthId is null) and t.account = #account# 
 			order by t.disp_order;
     </select>
     
@@ -42,7 +44,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultNewOrderClosed" class="com.csc.dashboard.domain.NewOrderClosed">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
         <result property="type" column="type" jdbcType="VARCHAR" javaType="string"/>
         <result property="effort" column="effort" jdbcType="VARCHAR" javaType="string" />
@@ -53,7 +55,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         
     <select id="getNewOrderClosed" parameterClass="java.util.Map" resultMap="resultNewOrderClosed">
     	select c.id, t.name as team, c.type, c.effort, c.description as briefDesc, c.status from new_order_closed c, team t 
-    	where c.team = t.id and c.month = (select id from months where month = #month# and year = #year#) and t.account = #account#  
+    	where c.team = t.id and c.monthId = #month# and t.account = #account#  
     	order by t.disp_order
     </select>
  
@@ -61,18 +63,18 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
  
  
     <resultMap id="resultInnovation" class="com.csc.dashboard.domain.Innovation">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="avgHC" column="avg_hc" jdbcType="int" javaType="int" />
-        <result property="numInnoSub" column="inno_submitted" jdbcType="int" javaType="int" />
-        <result property="numInnoQua" column="inno_qualified" jdbcType="int" javaType="int" />
-        <result property="manHrsQualInno" column="manhrs_of_qualified_inno" jdbcType="int" javaType="int" />
+        <result property="teamId" column="team_id" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="numInnoSub" column="inno_submitted" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="numInnoQua" column="inno_qualified" jdbcType="int" javaType="int" nullValue="0" />
+        <result property="manHrsQualInno" column="manhrs_of_qualified_inno" jdbcType="int" javaType="int" nullValue="0"/>
  	</resultMap>
         
     <select id="getInnovations" parameterClass="java.util.Map" resultMap="resultInnovation">
-    	select i.id, t.name as team, i.avg_hc, i.inno_submitted, i.inno_qualified,i.manhrs_of_qualified_inno
+    	select i.id, t.name as team, t.id as team_id, i.inno_submitted, i.inno_qualified,i.manhrs_of_qualified_inno
 			from team t left join innovation i on t.id = i.team 
-			where (i.month = (select id from months where month = #month# and year = #year#) or i.month is null) and t.account = #account# 
+			where (i.monthId = #month# or i.monthId is null) and t.account = #account# 
 			order by t.disp_order;
     </select>
     
@@ -80,17 +82,17 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultAssessment" class="com.csc.dashboard.domain.Assessment">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="knowledge" column="knowledge" jdbcType="int" javaType="int"  />
-        <result property="process" column="process" jdbcType="int" javaType="int"  />
-        <result property="technical" column="technical" jdbcType="int" javaType="int"  />
+        <result property="knowledge" column="knowledge" jdbcType="int" javaType="int" nullValue="0" />
+        <result property="process" column="process" jdbcType="int" javaType="int" nullValue="0" />
+        <result property="technical" column="technical" jdbcType="int" javaType="int" nullValue="0" />
  	</resultMap>
         
     <select id="getAssessments" parameterClass="java.util.Map" resultMap="resultAssessment">
     	select a.id, t.name as team, a.knowledge, a.process, a.technical
 			from team t left join assessment_programs a on t.id = a.team 
-			where (a.month = (select id from months where month = #month# and year = #year#) or a.month is null) and t.account = #account# 
+			where (a.monthId = #month# or a.monthId is null) and t.account = #account# 
 			order by t.disp_order;
     </select>
     
@@ -114,7 +116,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     <select id="getImprovementInitiatives" parameterClass="java.util.Map" resultMap="resultImproveInit">
     	select name_of_prog, primary_team, owner, start_date, start_score, end_date, desired_score, num_ppl_affected, internal_training_conducted, prog_desc
 			from improve_initi 
-			where (month = (select id from months where month = #month# and year = #year#) or month is null) and account = #account# 
+			where (monthId = #month# or monthId is null) and account = #account# 
 			order by id;	
     </select>
     
@@ -124,15 +126,15 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     <resultMap id="resultKMScorecard" class="com.csc.dashboard.domain.KMScorecard">
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="numKMContributed" column="numKMContrib" jdbcType="int" javaType="int"  />
-        <result property="qualifiedTop" column="qualTop10" jdbcType="int" javaType="int" />
-        <result property="headCount" column="hc" jdbcType="int" javaType="int" />
+        <result property="numKMContributed" column="numKMContrib" jdbcType="int" javaType="int" nullValue="0" />
+        <result property="qualifiedTop" column="qualTop10" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="teamId" column="team_id" jdbcType="int" javaType="int" nullValue="0"/>
  	</resultMap>
         
     <select id="getKMScorecard" parameterClass="java.util.Map" resultMap="resultKMScorecard">
-    	select t.name as team, k.numKMContrib, k.qualTop10, k.hc
+    	select t.name as team, k.numKMContrib, k.qualTop10, t.id as team_id
 			from team t left join km_scorecard k on t.id = k.team 
-			where (k.month = (select id from months where month = #month# and year = #year#) or k.month is null) and t.account = #account# 
+			where (k.monthId = #month# or k.monthId is null) and t.account = #account# 
 			order by t.disp_order;	
     </select>
     
@@ -148,7 +150,7 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         
     <select id="getVerticalLevelInitiatives" parameterClass="java.util.Map" resultMap="resultVerticalLevelInit">
     	select name_of_init, sponsor, key_contributors, remarks
-		from vertical_init where account = #account# and month = (select id from months where month = #month# and year = #year#)
+		from vertical_init where account = #account# and monthId = #month#;
 	</select>
     
     
@@ -156,13 +158,13 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     <resultMap id="resultTop10Contributors" class="com.csc.dashboard.domain.ContributionTop10">
         <result property="nameOfContri" column="name_of_contributor" jdbcType="VARCHAR" javaType="string"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"  />
-        <result property="position" column="position_in_top10" jdbcType="int" javaType="int" />
+        <result property="position" column="position_in_top10" jdbcType="int" javaType="int" nullValue="0" />
  	</resultMap>
         
     <select id="getTop10Contributors" parameterClass="java.util.Map" resultMap="resultTop10Contributors">
     	select t.name as team, c.name_of_contributor, c.position_in_top10
 			from team t, contribution_to_top10 c
-			where t.id = c.team and (c.month = (select id from months where month = #month# and year = #year#) or c.month is null) and t.account = #account# 
+			where t.id = c.team and (c.monthId = #month# or c.monthId is null) and t.account = #account# 
 			order by t.disp_order;
 	</select>
    

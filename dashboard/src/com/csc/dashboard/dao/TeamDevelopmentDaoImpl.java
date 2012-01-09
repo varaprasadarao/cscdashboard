@@ -18,9 +18,8 @@ public class TeamDevelopmentDaoImpl implements TeamDevelopmentDao {
 	public List<Attrition> getAttrition(int account, int startMonth, int startYear)throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("startMonth", startMonth);
-		parameters.put("startYear", startYear-1);
-		parameters.put("endYear", startYear);
+		parameters.put("startMonth", startYear*12 + startMonth - 13);
+		parameters.put("endMonth", startYear*12 + startMonth - 1);
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Attrition> uv = (List<Attrition>)sqlMap.queryForList("getAttrition" , parameters);
@@ -30,8 +29,8 @@ public class TeamDevelopmentDaoImpl implements TeamDevelopmentDao {
 	public List<Backfill> getBackfillInfo(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Backfill> li = (List<Backfill>)sqlMap.queryForList("getBackfillInfo" , parameters);
@@ -41,8 +40,8 @@ public class TeamDevelopmentDaoImpl implements TeamDevelopmentDao {
 	public List<Representation> getRepresentation(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<Representation> li = (List<Representation>)sqlMap.queryForList("getRepresentation" , parameters);
@@ -52,8 +51,8 @@ public class TeamDevelopmentDaoImpl implements TeamDevelopmentDao {
 	public List<ResourceRotation> getResourceRotation(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<ResourceRotation> li = (List<ResourceRotation>)sqlMap.queryForList("getResourceRotation" , parameters);
@@ -63,8 +62,8 @@ public class TeamDevelopmentDaoImpl implements TeamDevelopmentDao {
 	public List<TeamBuilding> getTeamBuildingAct(int account, int month, int year) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", month);
-		parameters.put("year", year);
+		parameters.put("month", year*12 + month - 1);
+		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
 		List<TeamBuilding> li = (List<TeamBuilding>)sqlMap.queryForList("getTeamBuildingAct" , parameters);

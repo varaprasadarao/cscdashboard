@@ -6,19 +6,19 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 <sqlMap namespace="OpExcel">
 
 	<resultMap id="resultNonBillability" class="com.csc.dashboard.domain.NonBillability">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="headCount" column="head_count" jdbcType="int" javaType="int" />
-        <result property="offshoreBillingHC" column="offshore_billing_hc" jdbcType="int" javaType="int" />
-        <result property="onshoreBillingHC" column="onshore_billing_hc" jdbcType="int" javaType="int" />
-        <result property="lossOfBillingAvgHC" column="loss_of_billing_avg_hc" jdbcType="int" javaType="int" />
-        <result property="partialBilling" column="partial_billing" jdbcType="int" javaType="int" />
+        <result property="headCount" column="head_count" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="offshoreBillingHC" column="offshore_billing_hc" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="onshoreBillingHC" column="onshore_billing_hc" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="lossOfBillingAvgHC" column="loss_of_billing_avg_hc" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="partialBilling" column="partial_billing" jdbcType="int" javaType="int" nullValue="0"/>
 	</resultMap>
         
     <select id="getNonBillability" parameterClass="java.util.Map" resultMap="resultNonBillability">
     	select t.id, t.name as team, b.head_count, b.offshore_billing_hc, b.onshore_billing_hc, b.loss_of_billing_avg_hc, b.partial_billing  
 		from team t left join billing b on t.id = b.team 
-		where (b.month = (select id from months where month = #month# and year = #year#) or b.month is null) and t.account = #account# 
+		where (b.monthId = #month# or b.monthId is null) and t.account = #account# 
 		order by t.disp_order;
     </select>
     
@@ -26,17 +26,17 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultEManageDisc" class="com.csc.dashboard.domain.EManageDisc">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="headCount" column="head_count" jdbcType="int" javaType="int"/>
-        <result property="eManageDisc" column="emanage_sap_disc" jdbcType="int" javaType="int"/>
+        <result property="headCount" column="head_count" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="eManageDisc" column="emanage_sap_disc" jdbcType="int" javaType="int" nullValue="0"/>
         
     </resultMap>
         
     <select id="getEManageDisc" parameterClass="java.util.Map" resultMap="resultEManageDisc">
     	select t.id, t.name as team, b.head_count, b.emanage_sap_disc  
 		from team t left join billing b on t.id = b.team 
-		where (b.month = (select id from months where month = #month# and year = #year#) or b.month is null) and t.account = #account# 
+		where (b.monthId = #month# or b.monthId is null) and t.account = #account# 
 		order by t.disp_order;
 
     </select>
@@ -45,18 +45,18 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultDemandForecast" class="com.csc.dashboard.domain.DemandForecast">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="openDemandRepl" column="open_demand_replacement" jdbcType="int" javaType="int"/>
-        <result property="openDemandNew" column="open_demand_new" jdbcType="int" javaType="int"/>
-        <result property="demandForecastRepl" column="demand_forecast_replacement" jdbcType="int" javaType="int"/>
-        <result property="demandForecastNew" column="demand_forecast_new" jdbcType="int" javaType="int"/>
+        <result property="openDemandRepl" column="open_demand_replacement" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="openDemandNew" column="open_demand_new" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="demandForecastRepl" column="demand_forecast_replacement" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="demandForecastNew" column="demand_forecast_new" jdbcType="int" javaType="int" nullValue="0"/>
     </resultMap>
         
     <select id="getDemandForecast" parameterClass="java.util.Map" resultMap="resultDemandForecast">
 	      select t.id, t.name as team, b.head_count, b.open_demand_replacement, b.open_demand_new, b.demand_forecast_replacement, b.demand_forecast_new  
 			from team t left join billing b on t.id = b.team 
-			where (b.month = (select id from months where month = #month# and year = #year#) or b.month is null) and t.account = #account# 
+			where (b.monthId = #month# or b.monthId is null) and t.account = #account# 
 			order by t.disp_order;  
     </select>
     
@@ -64,17 +64,17 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultETesAccuracy" class="com.csc.dashboard.domain.ETesAccuracy">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string" />
-        <result property="headCount" column="head_count" jdbcType="int" javaType="int"/>
-        <result property="mts" column="mts" jdbcType="int" javaType="int"/>
-        <result property="incompleteEtes" column="incomplete_etes" jdbcType="int" javaType="int"/>
+        <result property="headCount" column="head_count" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="mts" column="mts" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="incompleteEtes" column="incomplete_etes" jdbcType="int" javaType="int" nullValue="0"/>
     </resultMap>
         
     <select id="getETesAccuracy" parameterClass="java.util.Map" resultMap="resultETesAccuracy">
     	select t.id, t.name as team, b.head_count, b.mts, b.incomplete_etes  
 			from team t left join billing b on t.id = b.team 
-			where (b.month = (select id from months where month = #month# and year = #year#) or b.month is null) and t.account = #account# 
+			where (b.monthId = #month# or b.monthId is null) and t.account = #account# 
 			order by t.disp_order;
     </select>
     
@@ -82,17 +82,17 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultBillingEfficieny" class="com.csc.dashboard.domain.BillingEfficiency">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="headCount" column="head_count" jdbcType="int" javaType="int"/>
-        <result property="maxPossibleBillingHrs" column="max_possible_billing_hrs" jdbcType="int" javaType="int"/>
-        <result property="billedHrs" column="billed_hrs" jdbcType="int" javaType="int"/>
+        <result property="headCount" column="head_count" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="maxPossibleBillingHrs" column="max_possible_billing_hrs" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="billedHrs" column="billed_hrs" jdbcType="int" javaType="int" nullValue="0"/>
     </resultMap>
         
     <select id="getBillingEfficieny" parameterClass="java.util.Map" resultMap="resultBillingEfficieny">
         select t.id, t.name as team, b.head_count, b.max_possible_billing_hrs, b.billed_hrs  
 			from team t left join billing b on t.id = b.team 
-			where (b.month = (select id from months where month = #month# and year = #year#) or b.month is null) and t.account = #account# 
+			where (b.monthId = #month# or b.monthId is null) and t.account = #account# 
 			order by t.disp_order; 
     </select>
     
@@ -101,36 +101,36 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     
     
     <resultMap id="resultGradeMix" class="com.csc.dashboard.domain.GradeMix">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="headCount" column="head_count" jdbcType="int" javaType="int"/>
-        <result property="gradeMix" column="grade_mix" jdbcType="int" javaType="int"/>
+        <result property="headCount" column="head_count" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="gradeMix" column="grade_mix" jdbcType="int" javaType="int" nullValue="0"/>
     </resultMap>
         
     <select id="getGradeMix" parameterClass="java.util.Map" resultMap="resultGradeMix">
         select t.id, t.name as team, b.head_count, b.grade_mix  
 			from team t left join billing b on t.id = b.team 
-			where (b.month = (select id from months where month = #month# and year = #year#) or b.month is null) and t.account = #account# 
+			where (b.monthId = #month# or b.monthId is null) and t.account = #account# 
 			order by t.disp_order; 
     </select>
     
     <resultMap id="resultUtilization" class="com.csc.dashboard.domain.Utilization">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="utilization" column="utilization" jdbcType="int" javaType="int"/>
-        <result property="adHrsDevl" column="ad_hours_devl" jdbcType="int" javaType="int"/>
-        <result property="amsHrsMaint" column="ams_hours_maint" jdbcType="int" javaType="int"/>
-        <result property="obfHours" column="obf_hours" jdbcType="int" javaType="int"/>
-        <result property="valueAdds" column="value_adds" jdbcType="int" javaType="int"/>
-        <result property="idleHrs" column="idle_hours" jdbcType="int" javaType="int"/>
+        <result property="utilization" column="utilization" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="adHrsDevl" column="ad_hours_devl" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="amsHrsMaint" column="ams_hours_maint" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="obfHours" column="obf_hours" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="valueAdds" column="value_adds" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="idleHrs" column="idle_hours" jdbcType="int" javaType="int" nullValue="0"/>
     </resultMap>
         
     <select id="getUtilization" parameterClass="java.util.Map" resultMap="resultUtilization">
         select t.id, t.name as team, u.utilization, u.ad_hours_devl, u.ams_hours_maint, u.obf_hours, u.value_adds, u.idle_hours
 		from team t left join utilization u on t.id = u.team 
-		where (u.month = (select id from months where month = #month# and year = #year#) or u.month is null) and t.account = #account# 
+		where (u.monthId = #month# or u.monthId is null) and t.account = #account# 
 		order by t.disp_order;
-        
+
     </select>
     
     <resultMap id="resultEscalation" class="com.csc.dashboard.domain.Escalation">
@@ -144,20 +144,20 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
     <select id="getEscalation" parameterClass="java.util.Map" resultMap="resultEscalation">
     	select id, escalation, status, assigned_to, days_open
     	from escalations
-    	where account = #account# and month = (select id from months where month = #month# and year = #year#)
+    	where account = #account# and monthId = #month#;
     </select>
     
     <resultMap id="resultMargins" class="com.csc.dashboard.domain.Margins">
-        <result property="id" column="id" jdbcType="int" javaType="int" />
+        <result property="id" column="id" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="team" column="team" jdbcType="VARCHAR" javaType="string"/>
-        <result property="revenue" column="revenue" jdbcType="int" javaType="int"/>
-        <result property="cost" column="cost" jdbcType="int" javaType="int"/>
+        <result property="revenue" column="revenue" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="cost" column="cost" jdbcType="int" javaType="int" nullValue="0"/>
     </resultMap>
         
     <select id="getMargins" parameterClass="java.util.Map" resultMap="resultMargins">
         select t.id, t.name as team, m.revenue, m.cost  
 		from team t left join margins m on t.id = m.team 
-		where (m.month = (select id from months where month = #month# and year = #year#) or m.month is null) and t.account = #account# 
+		where (m.monthId = #month# or m.monthId is null) and t.account = #account# 
 		order by t.disp_order;
     </select>
     

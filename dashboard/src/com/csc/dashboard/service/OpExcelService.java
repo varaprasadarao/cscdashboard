@@ -43,7 +43,11 @@ public class OpExcelService {
 				totalOnshoreBillingHC += nonBill.getOnshoreBillingHC();
 				totalLossOfBillingAvgHC += nonBill.getLossOfBillingAvgHC();
 				totalPartialBilling += nonBill.getPartialBilling();
-				nonBill.setNonBillabilityRatio(Utils.roundDecimal((double)(nonBill.getHeadCount() - (nonBill.getOffshoreBillingHC() + nonBill.getOnshoreBillingHC() - nonBill.getPartialBilling()))/(double)nonBill.getHeadCount()*100));
+				if(nonBill.getHeadCount()==0){
+					nonBill.setNonBillabilityRatio(0);
+				}else{
+					nonBill.setNonBillabilityRatio(Utils.roundDecimal((double)(nonBill.getHeadCount() - (nonBill.getOffshoreBillingHC() + nonBill.getOnshoreBillingHC() - nonBill.getPartialBilling()))/(double)nonBill.getHeadCount()*100));
+				}
 			}
 			overall.setTeam("Overall");
 			overall.setHeadCount(totalHC);
@@ -51,7 +55,11 @@ public class OpExcelService {
 			overall.setOnshoreBillingHC(totalOnshoreBillingHC);
 			overall.setLossOfBillingAvgHC(totalLossOfBillingAvgHC);
 			overall.setPartialBilling(totalPartialBilling);
-			overall.setNonBillabilityRatio(Utils.roundDecimal((double)(overall.getHeadCount() - (overall.getOffshoreBillingHC() + overall.getOnshoreBillingHC() - overall.getPartialBilling()))/(double)overall.getHeadCount()*100));
+			if(overall.getHeadCount()==0){
+				overall.setNonBillabilityRatio(0);
+			}else{
+				overall.setNonBillabilityRatio(Utils.roundDecimal((double)(overall.getHeadCount() - (overall.getOffshoreBillingHC() + overall.getOnshoreBillingHC() - overall.getPartialBilling()))/(double)overall.getHeadCount()*100));
+			}
 			res.add(0,overall);	
 		}
 		return res;
@@ -66,11 +74,19 @@ public class OpExcelService {
 			for(EManageDisc eMan: res){
 				totalEManageDisc += eMan.geteManageDisc();
 				totalHC += eMan.getHeadCount();
-				eMan.seteManageDiscHC(Utils.roundDecimal((double)(eMan.geteManageDisc()*100)/eMan.getHeadCount()));
+				if(eMan.getHeadCount() ==0 ){
+					eMan.seteManageDiscHC(0);
+				}else{
+					eMan.seteManageDiscHC(Utils.roundDecimal((double)(eMan.geteManageDisc()*100)/eMan.getHeadCount()));
+				}
 			}
 			overall.setTeam("Overall");
 			overall.seteManageDisc(totalEManageDisc);
-			overall.seteManageDiscHC(Utils.roundDecimal((double)(totalEManageDisc*100)/totalHC));
+			if(totalHC==0){
+				overall.seteManageDiscHC(0);
+			}else{
+				overall.seteManageDiscHC(Utils.roundDecimal((double)(totalEManageDisc*100)/totalHC));
+			}
 			res.add(0,overall);
 		}
 			
@@ -139,14 +155,21 @@ public class OpExcelService {
 				totalMts += etes.getMts();
 				totalInCompEtes += etes.getIncompleteEtes();
 				totalHC += etes.getHeadCount();
-				etes.seteTesAccuracy(Utils.roundDecimal((etes.getHeadCount() - etes.getMts() - etes.getIncompleteEtes())*100/(double)etes.getHeadCount()));
+				if(etes.getHeadCount()==0){
+					etes.seteTesAccuracy(0);
+				}else{
+					etes.seteTesAccuracy(Utils.roundDecimal((etes.getHeadCount() - etes.getMts() - etes.getIncompleteEtes())*100/(double)etes.getHeadCount()));
+				}
 			}
 			overall.setHeadCount(totalHC);
 			overall.setTeam("Overall");
 			overall.setIncompleteEtes(totalInCompEtes);
 			overall.setMts(totalMts);
-			overall.seteTesAccuracy(Utils.roundDecimal((overall.getHeadCount() - overall.getMts() - overall.getIncompleteEtes())*100/(double)overall.getHeadCount()));
-			
+			if(overall.getHeadCount()==0){
+				overall.seteTesAccuracy(0);
+			}else{
+				overall.seteTesAccuracy(Utils.roundDecimal((overall.getHeadCount() - overall.getMts() - overall.getIncompleteEtes())*100/(double)overall.getHeadCount()));
+			}
 			res.add(0, overall);
 			
 		}
@@ -160,7 +183,11 @@ public class OpExcelService {
 			int totalPossibleHrs = 0;
 			int totalBilledHrs = 0;
 			for(BillingEfficiency bill:res){
-				bill.setBillingEfficiency(Utils.roundDecimal((double)(bill.getBilledHrs()*100)/bill.getMaxPossibleBillingHrs()));
+				if(bill.getMaxPossibleBillingHrs()==0){
+					bill.setBillingEfficiency(0);
+				}else{
+					bill.setBillingEfficiency(Utils.roundDecimal((double)(bill.getBilledHrs()*100)/bill.getMaxPossibleBillingHrs()));
+				}
 				totalPossibleHrs += bill.getMaxPossibleBillingHrs();
 				totalBilledHrs += bill.getBilledHrs();
 			}
@@ -168,7 +195,11 @@ public class OpExcelService {
 			summary.setTeam("Overall");
 			summary.setBilledHrs(totalBilledHrs);
 			summary.setMaxPossibleBillingHrs(totalPossibleHrs);
-			summary.setBillingEfficiency(Utils.roundDecimal((double)(totalBilledHrs*100)/totalPossibleHrs));
+			if(totalPossibleHrs==0){
+				summary.setBillingEfficiency(0);
+			}else{
+				summary.setBillingEfficiency(Utils.roundDecimal((double)(totalBilledHrs*100)/totalPossibleHrs));
+			}
 			res.add(0,summary);
 		}
 		return res;
@@ -181,7 +212,11 @@ public class OpExcelService {
 			int totalGrade = 0;
 			int totalHC = 0;
 			for(GradeMix grade : res){
-				grade.setGradeMixPer(Utils.roundDecimal((double)(grade.getGradeMix()*100)/grade.getHeadCount()));
+				if(grade.getHeadCount()==0){
+					grade.setGradeMixPer(0);
+				}else{
+					grade.setGradeMixPer(Utils.roundDecimal((double)(grade.getGradeMix()*100)/grade.getHeadCount()));
+				}
 				totalGrade += grade.getGradeMix();
 				totalHC += grade.getHeadCount();
 			}
@@ -189,7 +224,11 @@ public class OpExcelService {
 			summary.setHeadCount(totalHC);
 			summary.setTeam("Overall");
 			summary.setGradeMix(totalGrade);
-			summary.setGradeMixPer(Utils.roundDecimal((double)(totalGrade*100)/totalHC));
+			if(totalHC==0){
+				summary.setGradeMixPer(0);
+			}else{
+				summary.setGradeMixPer(Utils.roundDecimal((double)(totalGrade*100)/totalHC));
+			}
 			res.add(0,summary);
 		}
 		return res;
@@ -221,14 +260,30 @@ public class OpExcelService {
 			for(Margins margin:res){
 				totalRevenue += margin.getRevenue();
 				totalCost += margin.getCost();
-				margin.setContributingMargin(Utils.roundDecimal((double)(margin.getRevenue()*100/((double)margin.getRevenue()+margin.getCost()))));
-				margin.setOi(Utils.roundDecimal((double)((margin.getRevenue()-margin.getCost())*100/((double)margin.getRevenue()))));
+				if(margin.getRevenue()+margin.getCost()==0){
+					margin.setContributingMargin(0);
+				}else{
+					margin.setContributingMargin(Utils.roundDecimal((double)(margin.getRevenue()*100/((double)margin.getRevenue()+margin.getCost()))));	
+				}
+				if(margin.getRevenue()==0){
+					margin.setOi(0);
+				}else{
+					margin.setOi(Utils.roundDecimal((double)((margin.getRevenue()-margin.getCost())*100/((double)margin.getRevenue()))));
+				}
 			}
 			overall.setTeam("Overall");
 			overall.setCost(totalCost);
 			overall.setRevenue(totalRevenue);
-			overall.setContributingMargin(Utils.roundDecimal((double)(overall.getRevenue()*100/((double)overall.getRevenue()+overall.getCost()))));
-			overall.setOi(Utils.roundDecimal((double)((overall.getRevenue()-overall.getCost())*100/((double)overall.getRevenue()))));
+			if(overall.getRevenue()+overall.getCost()==0){
+				overall.setContributingMargin(0);
+			}else{
+				overall.setContributingMargin(Utils.roundDecimal((double)(overall.getRevenue()*100/((double)overall.getRevenue()+overall.getCost()))));	
+			}
+			if(overall.getRevenue()==0){
+				overall.setOi(0);
+			}else{
+				overall.setOi(Utils.roundDecimal((double)((overall.getRevenue()-overall.getCost())*100/((double)overall.getRevenue()))));
+			}
 			res.add(0,overall);
 		}
 		
