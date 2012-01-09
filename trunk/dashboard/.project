@@ -40,4 +40,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>bin-release</name>
+			<type>2</type>
+			<location>C:/Users/tquazi/Desktop/test</location>
+		</link>
+	</linkedResources>
 </projectDescription>
