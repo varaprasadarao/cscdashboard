@@ -7,6 +7,5 @@
         <field:display field="team" id="s_com_csc_dashboard_admin_model_KmScorecard_team" object="${kmscorecard}" z="OIT94tGNkUBzRm4ATID7EDYfNRQ="/>
         <field:display field="numKmcontrib" id="s_com_csc_dashboard_admin_model_KmScorecard_numKmcontrib" object="${kmscorecard}" z="vx47HCal1lSec7FOE42mJBS15jU="/>
         <field:display field="qualTop10" id="s_com_csc_dashboard_admin_model_KmScorecard_qualTop10" object="${kmscorecard}" z="Ojf8LELvlNQLzvgsja8QEyUv3w4="/>
-        <field:display field="hc" id="s_com_csc_dashboard_admin_model_KmScorecard_hc" object="${kmscorecard}" z="dt69F5Db9+N0+i+fzc7fdSqp+UQ="/>
     </page:show>
 </div>

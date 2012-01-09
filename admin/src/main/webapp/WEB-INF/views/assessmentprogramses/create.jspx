@@ -5,9 +5,9 @@
     <form:create id="fc_com_csc_dashboard_admin_model_AssessmentPrograms" modelAttribute="assessmentPrograms" path="/assessmentprogramses" render="${empty dependencies}" z="ufwrd+SszUJ7MXO+4pAhZeeegss=">
         <field:select field="month" id="c_com_csc_dashboard_admin_model_AssessmentPrograms_month" itemValue="id" items="${monthses}" path="/monthses" z="MxtxJ5+MMCBF/ev6v1t9Ha2mmSc="/>
         <field:select field="team" id="c_com_csc_dashboard_admin_model_AssessmentPrograms_team" itemValue="id" items="${teams}" path="/teams" z="L1vS/HJ9PY9/UFU4GH2SQ3SyRSQ="/>
-        <field:input field="knowledge" id="c_com_csc_dashboard_admin_model_AssessmentPrograms_knowledge" validationMessageCode="field_invalid_integer" z="C5dz573cjHQUCAsldfEaBxSMGgU="/>
-        <field:input field="process" id="c_com_csc_dashboard_admin_model_AssessmentPrograms_process" validationMessageCode="field_invalid_integer" z="IS72SQwW2cOCU3L1WZi9CCd/6KM="/>
-        <field:input field="technical" id="c_com_csc_dashboard_admin_model_AssessmentPrograms_technical" validationMessageCode="field_invalid_integer" z="5cz8Sg89FC1sqUcj3ZxerHk+mJw="/>
+        <field:select field="knowledge" itemValue="id" items="${dropDown}" id="c_com_csc_dashboard_admin_model_AssessmentPrograms_knowledge" path="/assessmentprogramses" z="C5dz573cjHQUCAsldfEaBxSMGgU="/>
+        <field:select field="process" itemValue="id" items="${dropDown}" id="c_com_csc_dashboard_admin_model_AssessmentPrograms_process" path="/assessmentprogramses" z="IS72SQwW2cOCU3L1WZi9CCd/6KM="/>
+        <field:select field="technical" itemValue="id" items="${dropDown}" id="c_com_csc_dashboard_admin_model_AssessmentPrograms_technical" path="/assessmentprogramses" z="5cz8Sg89FC1sqUcj3ZxerHk+mJw="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_com_csc_dashboard_admin_model_AssessmentPrograms" render="${not empty dependencies}" z="6gdbX/PmzGgy0HFFbeOKDY2LNCk="/>
 </div>

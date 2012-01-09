@@ -5,7 +5,6 @@
     <form:update id="fu_com_csc_dashboard_admin_model_Innovation" modelAttribute="innovation" path="/innovations" versionField="none" z="xnnSoakgSLbq7pOIo0B9kv37twY=">
         <field:select field="month" id="c_com_csc_dashboard_admin_model_Innovation_month" itemValue="id" items="${monthses}" path="/monthses" z="0Rs7V/9Pg7tmXydtPFNE/eqN/30="/>
         <field:select field="team" id="c_com_csc_dashboard_admin_model_Innovation_team" itemValue="id" items="${teams}" path="/teams" z="sruRF6x+htNNxDp9dW6gGBcYAko="/>
-        <field:input field="avgHc" id="c_com_csc_dashboard_admin_model_Innovation_avgHc" required="true" validationMessageCode="field_invalid_integer" z="38rUoJ/+wTlheV556t9B6tEmcF8="/>
         <field:input field="innoSubmitted" id="c_com_csc_dashboard_admin_model_Innovation_innoSubmitted" validationMessageCode="field_invalid_integer" z="jccNjTk4W1pW8yFK4A56CzfT3nc="/>
         <field:input field="innoQualified" id="c_com_csc_dashboard_admin_model_Innovation_innoQualified" validationMessageCode="field_invalid_integer" z="9ahuHAbEkc/2W6Miy8aQNZP8HOU="/>
         <field:input field="manhrsOfQualifiedInno" id="c_com_csc_dashboard_admin_model_Innovation_manhrsOfQualifiedInno" validationMessageCode="field_invalid_integer" z="Ko/u9Fu52WNZVWmcgMQFbmpvOqY="/>

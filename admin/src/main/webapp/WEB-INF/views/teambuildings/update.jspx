@@ -7,6 +7,6 @@
         <field:select field="month" id="c_com_csc_dashboard_admin_model_TeamBuilding_month" itemValue="id" items="${monthses}" path="/monthses" z="4tvpD3qvYfq2lF04GGvjpr6tWPo="/>
         <field:input field="activity" id="c_com_csc_dashboard_admin_model_TeamBuilding_activity" required="true" z="UANwnHGbT0NQVDNQ+ux1hr0XfXU="/>
         <field:input field="resourceImpacted" id="c_com_csc_dashboard_admin_model_TeamBuilding_resourceImpacted" validationMessageCode="field_invalid_integer" z="WgIuTucoLETjmnfrcuPr7UmSbmQ="/>
-        <field:input field="impact" id="c_com_csc_dashboard_admin_model_TeamBuilding_impact" z="4ydxUqyr1Lttbbc0smVp5beCSC8="/>
+        <field:select itemValue="id" items="${impactDD}" path="/" field="impact" id="c_com_csc_dashboard_admin_model_TeamBuilding_impact" z="4ydxUqyr1Lttbbc0smVp5beCSC8="/>
     </form:update>
 </div>

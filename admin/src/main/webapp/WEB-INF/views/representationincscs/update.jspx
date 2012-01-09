@@ -8,7 +8,7 @@
         <field:select field="team" id="c_com_csc_dashboard_admin_model_RepresentationInCsc_team" itemValue="id" items="${teams}" path="/teams" z="JmrItRRLidxlvMfurLb7P0CGWSc="/>
         <field:input field="nameOfForum" id="c_com_csc_dashboard_admin_model_RepresentationInCsc_nameOfForum" z="w+qdfNJXXDLyA9iJEA2pa6eeWrc="/>
         <field:input field="resource" id="c_com_csc_dashboard_admin_model_RepresentationInCsc_resource" z="k29ECL+X0+2vgE+dNhzE17G0NcQ="/>
-        <field:input field="status" id="c_com_csc_dashboard_admin_model_RepresentationInCsc_status" z="KI4lbqqrP6bwZkzMTS8byybGajE="/>
+        <field:select itemValue="id" items="${statusDD}" path="/" field="status" id="c_com_csc_dashboard_admin_model_RepresentationInCsc_status" z="KI4lbqqrP6bwZkzMTS8byybGajE="/>
         <field:input field="supportRequired" id="c_com_csc_dashboard_admin_model_RepresentationInCsc_supportRequired" z="kePWR/fUljLBJaMwCrtMH78lFyw="/>
     </form:update>
 </div>

@@ -21,6 +21,10 @@
     </c:if>
       
     <c:choose>
+       <c:when test="${property eq 'month'}">
+	       	<c:set var="columnTypes" value="month" scope="request" />
+	        <c:set var="columnDatePatterns" value="none" scope="request" />
+       </c:when>
       <c:when test="${date and empty columnTypes}">
         <c:set var="columnTypes" value="date" scope="request" />
         <c:set var="columnDatePatterns" value="${dateTimePattern}" scope="request" />

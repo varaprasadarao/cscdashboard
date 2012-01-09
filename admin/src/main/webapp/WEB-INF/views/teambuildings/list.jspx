@@ -4,8 +4,8 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_csc_dashboard_admin_model_TeamBuilding" items="${teambuildings}" z="H2fCYa90JcJO2rjZ2Zc5OFV+r4I=">
         <table:table data="${teambuildings}" id="l_com_csc_dashboard_admin_model_TeamBuilding" path="/teambuildings" z="nlzbTC22//20qSabuivBq2qXVIA=">
-            <table:column id="c_com_csc_dashboard_admin_model_TeamBuilding_account" property="account" z="iHPdslWd5v2R9FRW2rvtZtoxkTU="/>
             <table:column id="c_com_csc_dashboard_admin_model_TeamBuilding_month" property="month" z="STdQxhcbqP1DSFN9lsV7NHkkHGg="/>
+            <table:column id="c_com_csc_dashboard_admin_model_TeamBuilding_account" property="account" z="iHPdslWd5v2R9FRW2rvtZtoxkTU="/>
             <table:column id="c_com_csc_dashboard_admin_model_TeamBuilding_activity" property="activity" z="Ci1O7KQX0VOTlKYb4ZsXLS85sZk="/>
             <table:column id="c_com_csc_dashboard_admin_model_TeamBuilding_resourceImpacted" property="resourceImpacted" z="Hrn5eAodi6u8tHu1/ZOza9vwjhk="/>
             <table:column id="c_com_csc_dashboard_admin_model_TeamBuilding_impact" property="impact" z="9Q/ojBTaUOH+/Ucm+EnptTh/uMY="/>

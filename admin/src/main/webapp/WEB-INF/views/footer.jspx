@@ -27,10 +27,4 @@
     </span>
   <util:theme/>
 
-
-  <span>
-    <a href="http://springsource.com" title="${fn:escapeXml(sponsored)}">
-      <img align="right" alt="${fn:escapeXml(sponsored)}" src="${logo}"/>
-    </a>
-  </span>
 </div>

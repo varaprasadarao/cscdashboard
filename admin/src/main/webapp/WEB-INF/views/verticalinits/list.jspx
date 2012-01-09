@@ -4,8 +4,8 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_csc_dashboard_admin_model_VerticalInit" items="${verticalinits}" z="LloF5TUohslXsDFGO6x8A4SeTl8=">
         <table:table data="${verticalinits}" id="l_com_csc_dashboard_admin_model_VerticalInit" path="/verticalinits" z="cz9Sl84UOHAyYk88rc2l07qHIiQ=">
-            <table:column id="c_com_csc_dashboard_admin_model_VerticalInit_account" property="account" z="neGQxeHnnZaPgawapHQV3tdSBg4="/>
             <table:column id="c_com_csc_dashboard_admin_model_VerticalInit_month" property="month" z="rJiM38NW4wm6I26lFlmWo+AOp7I="/>
+            <table:column id="c_com_csc_dashboard_admin_model_VerticalInit_account" property="account" z="neGQxeHnnZaPgawapHQV3tdSBg4="/>
             <table:column id="c_com_csc_dashboard_admin_model_VerticalInit_nameOfInit" property="nameOfInit" z="yWQvF73nNklqRAszPDm+p026q2s="/>
             <table:column id="c_com_csc_dashboard_admin_model_VerticalInit_sponsor" property="sponsor" z="9LRx622qTt0sZ36on1UwnKhqKg4="/>
             <table:column id="c_com_csc_dashboard_admin_model_VerticalInit_keyContributors" property="keyContributors" z="XNCQtD+l1V8j388hxxjOyKU9c+E="/>

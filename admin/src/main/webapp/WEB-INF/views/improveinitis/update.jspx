@@ -9,11 +9,11 @@
         <field:input field="primaryTeam" id="c_com_csc_dashboard_admin_model_ImproveIniti_primaryTeam" z="g998OeSVQHLb3loQbR1gvzfYpaA="/>
         <field:input field="owner" id="c_com_csc_dashboard_admin_model_ImproveIniti_owner" z="2kUtrsqDjbIny9DgXfUA2jQDK/o="/>
         <field:datetime dateTimePattern="${improveIniti_startdate_date_format}" field="startDate" id="c_com_csc_dashboard_admin_model_ImproveIniti_startDate" z="l7z2im/VHsCImK/tkK5BxEVvouQ="/>
-        <field:input field="startScore" id="c_com_csc_dashboard_admin_model_ImproveIniti_startScore" z="E3BIvEN6+k1TxNcXGVaZddIzZBo="/>
+        <field:select itemValue="id" items="${score}" path="/" field="startScore" id="c_com_csc_dashboard_admin_model_ImproveIniti_startScore" z="E3BIvEN6+k1TxNcXGVaZddIzZBo="/>
         <field:datetime dateTimePattern="${improveIniti_enddate_date_format}" field="endDate" id="c_com_csc_dashboard_admin_model_ImproveIniti_endDate" z="SWxg9jn1Hd+GRfZWsuapq+W+wPY="/>
-        <field:input field="desiredScore" id="c_com_csc_dashboard_admin_model_ImproveIniti_desiredScore" z="rErlzj3xaTw2IR1smMqu1OSjBxY="/>
+        <field:select itemValue="id" items="${score}" path="/" field="desiredScore" id="c_com_csc_dashboard_admin_model_ImproveIniti_desiredScore" z="rErlzj3xaTw2IR1smMqu1OSjBxY="/>
         <field:input field="numPplAffected" id="c_com_csc_dashboard_admin_model_ImproveIniti_numPplAffected" validationMessageCode="field_invalid_integer" z="RUmfIB9hxrh8R9OrTXDtLkbDW+M="/>
-        <field:input field="internalTrainingConducted" id="c_com_csc_dashboard_admin_model_ImproveIniti_internalTrainingConducted" z="Eu86EKZeZt/lKGzreW0RQp9o5HE="/>
+        <field:select itemValue="id" items="${yesNo}" path="/" field="internalTrainingConducted" id="c_com_csc_dashboard_admin_model_ImproveIniti_internalTrainingConducted" z="Eu86EKZeZt/lKGzreW0RQp9o5HE="/>
         <field:input field="progDesc" id="c_com_csc_dashboard_admin_model_ImproveIniti_progDesc" z="0VVohRMV14g8EBNpTSt1BLw15+I="/>
     </form:update>
 </div>
