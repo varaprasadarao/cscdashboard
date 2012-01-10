@@ -59,12 +59,12 @@ privileged aspect Escalations_Roo_Entity {
     }
     
     public static long Escalations.countEscalationses(String username) {
-    	String query = "SELECT COUNT(o) FROM Escalations o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT COUNT(o) FROM Escalations o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
     public static List<Escalations> Escalations.findAllEscalationses(String username) {
-    	String query = "SELECT Distinct(o) FROM Escalations o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM Escalations o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, Escalations.class).getResultList();
     }
     
@@ -74,7 +74,7 @@ privileged aspect Escalations_Roo_Entity {
     }
     
     public static List<Escalations> Escalations.findEscalationsEntries(int firstResult, int maxResults,String username) {
-    	String query = "SELECT Distinct(o) FROM Escalations o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM Escalations o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, Escalations.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     

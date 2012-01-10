@@ -5,7 +5,7 @@
     <page:list id="pl_com_csc_dashboard_admin_model_NewOrderClosed" items="${newordercloseds}" z="iMICGBxCd3ERiszSS29Mo15uljs=">
         <table:table data="${newordercloseds}" id="l_com_csc_dashboard_admin_model_NewOrderClosed" path="/newordercloseds" z="6KWS/1gICDnmiYSO5MFEsQAb9g0=">
             <table:column id="c_com_csc_dashboard_admin_model_NewOrderClosed_month" property="month" z="w1fLdC1QkhIy1T24iZ2HuKpTynw="/>
-            <table:column id="c_com_csc_dashboard_admin_model_NewOrderClosed_team" property="team" z="1AtZA+zVyLhWaDnCT8TXxThg/TQ="/>
+            <table:column id="c_com_csc_dashboard_admin_model_NewOrderClosed_team" property="team" z="1AtZA+zVyLhWaDnCT8TXxThg/TQ=" maxLength="20"/>
             <table:column id="c_com_csc_dashboard_admin_model_NewOrderClosed_type" property="type" z="IoMbJjP+Tx0SWoVgd7rCTs4Nwgs="/>
             <table:column id="c_com_csc_dashboard_admin_model_NewOrderClosed_effort" property="effort" z="jWK6MbTTPcKj7Jhm44I4A9UpOT0="/>
             <table:column id="c_com_csc_dashboard_admin_model_NewOrderClosed_description" property="description" z="YIW0ZlNA5JUnb+JvCvWl2WDi7pc="/>

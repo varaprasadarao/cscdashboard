@@ -59,12 +59,12 @@ privileged aspect ImproveIniti_Roo_Entity {
     }
     
     public static long ImproveIniti.countImproveInitis(String username) {
-    	String query = "SELECT COUNT(o) FROM ImproveIniti o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT COUNT(o) FROM ImproveIniti o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
     public static List<ImproveIniti> ImproveIniti.findAllImproveInitis(String username) {
-    	String query = "SELECT Distinct(o) FROM ImproveIniti o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM ImproveIniti o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, ImproveIniti.class).getResultList();
     }
     
@@ -74,7 +74,7 @@ privileged aspect ImproveIniti_Roo_Entity {
     }
     
     public static List<ImproveIniti> ImproveIniti.findImproveInitiEntries(int firstResult, int maxResults,String username) {
-    	String query = "SELECT Distinct(o) FROM ImproveIniti o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM ImproveIniti o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, ImproveIniti.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     

@@ -5,7 +5,7 @@
     <page:list id="pl_com_csc_dashboard_admin_model_Appreciation" items="${appreciations}" z="zu80XvYR07XARwXnIq2HcYqfOaY=">
         <table:table data="${appreciations}" id="l_com_csc_dashboard_admin_model_Appreciation" path="/appreciations" z="VJnRbNQt22DVedb0fAXyX+1/Qtc=">
             <table:column id="c_com_csc_dashboard_admin_model_Appreciation_month" property="month" z="UjU3jEvtiu11TaB3qoGKXkgw+/U="/>
-            <table:column id="c_com_csc_dashboard_admin_model_Appreciation_team" property="team" z="4Zmd7U6Iga4ODdvSTQxak8g5Rns="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Appreciation_team" property="team" z="4Zmd7U6Iga4ODdvSTQxak8g5Rns=" maxLength="20"/>
             <table:column id="c_com_csc_dashboard_admin_model_Appreciation_appreciationFor" property="appreciationFor" z="NXr2CXIsm3S1EotxmFWE3MEA7UE="/>
             <table:column id="c_com_csc_dashboard_admin_model_Appreciation_appreciation" property="appreciation" z="kobXs7DLgsYop9TyCnpQUM2xUl4="/>
             <table:column id="c_com_csc_dashboard_admin_model_Appreciation_appreciatedBy" property="appreciatedBy" z="601ycZs3i+rDKJ8IpEZVEaAufFc="/>
