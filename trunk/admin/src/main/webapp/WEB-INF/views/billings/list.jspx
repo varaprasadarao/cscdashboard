@@ -5,7 +5,7 @@
     <page:list id="pl_com_csc_dashboard_admin_model_Billing" items="${billings}" z="3WUQxkzZ2XWhSrhx9Jze3MMM4jg=">
         <table:table data="${billings}" id="l_com_csc_dashboard_admin_model_Billing" path="/billings" z="u6uMkfuzkfoqdQ9PTSArVKpcj1w=">
             <table:column id="c_com_csc_dashboard_admin_model_Billing_month" property="month" z="uUW1oqKXG/sj6r+ie/HOC+o9hDo="/>
-            <table:column id="c_com_csc_dashboard_admin_model_Billing_team" property="team" z="vBtZ9L8fBF4uTnN5uz/OJQsi++Q="/>
+            <table:column id="c_com_csc_dashboard_admin_model_Billing_team" property="team" z="vBtZ9L8fBF4uTnN5uz/OJQsi++Q=" maxLength="20"/>
             <table:column id="c_com_csc_dashboard_admin_model_Billing_headCount" property="headCount" z="GhOKIDuEgasbdBU7HEIh63oMfug="/>
             <table:column id="c_com_csc_dashboard_admin_model_Billing_offshoreBillingHc" property="offshoreBillingHc" z="LdNW5XCTbEor6cU8KvUKP2fx2ig="/>
             <table:column id="c_com_csc_dashboard_admin_model_Billing_onshoreBillingHc" property="onshoreBillingHc" z="eLPAJXJI4tmGvtyfgQdZSYf0xRY="/>

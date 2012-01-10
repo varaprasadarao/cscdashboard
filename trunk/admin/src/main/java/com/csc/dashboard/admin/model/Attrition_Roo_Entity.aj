@@ -59,12 +59,12 @@ privileged aspect Attrition_Roo_Entity {
     }
     
     public static long Attrition.countAttritions(String username) {
-    	String query = "SELECT COUNT(o) FROM Attrition o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"'";
+    	String query = "SELECT COUNT(o) FROM Attrition o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"'";
         return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
     public static List<Attrition> Attrition.findAllAttritions(String username) {
-    	String query = "SELECT Distinct(o) FROM Attrition o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";
+    	String query = "SELECT Distinct(o) FROM Attrition o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";
         return entityManager().createQuery(query, Attrition.class).getResultList();
     }
     
@@ -74,7 +74,7 @@ privileged aspect Attrition_Roo_Entity {
     }
     
     public static List<Attrition> Attrition.findAttritionEntries(int firstResult, int maxResults, String username) {
-    	String query = "SELECT Distinct(o) FROM Attrition o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";
+    	String query = "SELECT Distinct(o) FROM Attrition o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";
         return entityManager().createQuery(query, Attrition.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     

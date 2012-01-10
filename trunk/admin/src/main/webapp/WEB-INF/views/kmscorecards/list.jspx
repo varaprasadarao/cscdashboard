@@ -5,7 +5,7 @@
     <page:list id="pl_com_csc_dashboard_admin_model_KmScorecard" items="${kmscorecards}" z="SUnw0pF6j34OL3zRrc50mHzHef8=">
         <table:table data="${kmscorecards}" id="l_com_csc_dashboard_admin_model_KmScorecard" path="/kmscorecards" z="hgg7+ldLXTWv2IT91mbV2xu6l9s=">
             <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_month" property="month" z="44HQ2TuRVpCaCdbJT4zsz4tISX0="/>
-            <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_team" property="team" z="LI1yEJP50JpAP3Ox+hZb/yIBqfA="/>
+            <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_team" property="team" z="LI1yEJP50JpAP3Ox+hZb/yIBqfA=" maxLength="20"/>
             <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_numKmcontrib" property="numKmcontrib" z="UrVROhL6Z+ETwX4zeCtvqrdR7Hg="/>
             <table:column id="c_com_csc_dashboard_admin_model_KmScorecard_qualTop10" property="qualTop10" z="qwP4/3fz9hsBZcRVyz59uda4+kE="/>
         </table:table>

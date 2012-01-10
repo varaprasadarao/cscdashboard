@@ -5,7 +5,7 @@
     <page:list id="pl_com_csc_dashboard_admin_model_AssessmentPrograms" items="${assessmentprogramses}" z="OiYNNQ8QhRZqdiGqKyAVHwBev2E=">
         <table:table data="${assessmentprogramses}" id="l_com_csc_dashboard_admin_model_AssessmentPrograms" path="/assessmentprogramses" z="8+JeJzhoeVwYkGX/n7zR5x/JCgc=">
             <table:column id="c_com_csc_dashboard_admin_model_AssessmentPrograms_month" property="month" z="1z/Umm2Vj7rdH+x5ph7QLziMHu4="/>
-            <table:column id="c_com_csc_dashboard_admin_model_AssessmentPrograms_team" property="team" z="rvRe+MHUndMkUjNo1XjbSjJYgsA="/>
+            <table:column id="c_com_csc_dashboard_admin_model_AssessmentPrograms_team" property="team" z="rvRe+MHUndMkUjNo1XjbSjJYgsA=" maxLength="20"/>
             <table:column id="c_com_csc_dashboard_admin_model_AssessmentPrograms_knowledge" property="knowledge" z="kHByN7pv5Bz9AFXuz1LbdsFywpg="/>
             <table:column id="c_com_csc_dashboard_admin_model_AssessmentPrograms_process" property="process" z="wpp7m49CS3GdwJdzQSsfCrxt/dM="/>
             <table:column id="c_com_csc_dashboard_admin_model_AssessmentPrograms_technical" property="technical" z="Flgg8uS/basFIy8aZifH8JWWB0c="/>

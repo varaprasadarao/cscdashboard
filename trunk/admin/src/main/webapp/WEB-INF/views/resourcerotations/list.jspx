@@ -5,7 +5,7 @@
     <page:list id="pl_com_csc_dashboard_admin_model_ResourceRotation" items="${resourcerotations}" z="lTt8YkxqAdPRmVO9xdY/80qpzls=">
         <table:table data="${resourcerotations}" id="l_com_csc_dashboard_admin_model_ResourceRotation" path="/resourcerotations" z="5+4r1qXCKjc1BXP0y/ZFSefDpyY=">
             <table:column id="c_com_csc_dashboard_admin_model_ResourceRotation_month" property="month" z="09tUHNopUk/CTGaK8L95eId/+dE="/>
-            <table:column id="c_com_csc_dashboard_admin_model_ResourceRotation_account" property="account" z="CLsTIR5l1ibdqgpiohmBPN1O6RQ="/>
+            <table:column id="c_com_csc_dashboard_admin_model_ResourceRotation_account" property="account" z="CLsTIR5l1ibdqgpiohmBPN1O6RQ=" maxLength="20"/>
             <table:column id="c_com_csc_dashboard_admin_model_ResourceRotation_statistics" property="statistics" z="Uk7FG3Wy+mPbnumTSl08ffHAnLc="/>
             <table:column id="c_com_csc_dashboard_admin_model_ResourceRotation_groupTxt" property="groupTxt" z="qFewu68i4FmOs2/4iP2f7kjgfZQ="/>
         </table:table>

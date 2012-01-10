@@ -5,7 +5,7 @@
     <page:list id="pl_com_csc_dashboard_admin_model_SlaAdherence" items="${slaadherences}" z="gAjGNSnn7NcepVBAyNtBTo8Lj+s=">
         <table:table data="${slaadherences}" id="l_com_csc_dashboard_admin_model_SlaAdherence" path="/slaadherences" z="UmKrJ31+ye4nAwDXhcwZ4qjkvZg=">
             <table:column id="c_com_csc_dashboard_admin_model_SlaAdherence_month" property="month" z="OTDJFAsvOsKuxY09pEtALCgxauM="/>
-            <table:column id="c_com_csc_dashboard_admin_model_SlaAdherence_team" property="team" z="VbcDKId3e8VTuEARMZYZWZSBg2A="/>
+            <table:column id="c_com_csc_dashboard_admin_model_SlaAdherence_team" property="team" z="VbcDKId3e8VTuEARMZYZWZSBg2A=" maxLength="20"/>
             <table:column id="c_com_csc_dashboard_admin_model_SlaAdherence_sev12" property="sev12" z="cBk6YVY09wOeo7TuhUPEStCHPwU="/>
             <table:column id="c_com_csc_dashboard_admin_model_SlaAdherence_sev12success" property="sev12success" z="RvVX7r3UN42mkw4P6VojG1Gq7fo="/>
             <table:column id="c_com_csc_dashboard_admin_model_SlaAdherence_sev3" property="sev3" z="sJJBv8rldaeA5BTdOHQe7dAoMxM="/>

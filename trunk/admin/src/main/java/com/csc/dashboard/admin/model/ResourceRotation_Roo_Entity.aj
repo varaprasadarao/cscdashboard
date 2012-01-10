@@ -59,12 +59,12 @@ privileged aspect ResourceRotation_Roo_Entity {
     }
     
     public static long ResourceRotation.countResourceRotations(String username) {
-    	String query = "SELECT COUNT(o) FROM ResourceRotation o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT COUNT(o) FROM ResourceRotation o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
     public static List<ResourceRotation> ResourceRotation.findAllResourceRotations(String username) {
-    	String query = "SELECT Distinct(o) FROM ResourceRotation o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM ResourceRotation o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, ResourceRotation.class).getResultList();
     }
     
@@ -74,7 +74,7 @@ privileged aspect ResourceRotation_Roo_Entity {
     }
     
     public static List<ResourceRotation> ResourceRotation.findResourceRotationEntries(int firstResult, int maxResults,String username) {
-    	String query = "SELECT Distinct(o) FROM ResourceRotation o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM ResourceRotation o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, ResourceRotation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     

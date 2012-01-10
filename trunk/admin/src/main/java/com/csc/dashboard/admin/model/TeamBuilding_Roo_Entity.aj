@@ -59,12 +59,12 @@ privileged aspect TeamBuilding_Roo_Entity {
     }
     
     public static long TeamBuilding.countTeamBuildings(String username) {
-    	String query = "SELECT COUNT(o) FROM TeamBuilding o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT COUNT(o) FROM TeamBuilding o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, Long.class).getSingleResult();
     }
     
     public static List<TeamBuilding> TeamBuilding.findAllTeamBuildings(String username) {
-    	String query = "SELECT Distinct(o) FROM TeamBuilding o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM TeamBuilding o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, TeamBuilding.class).getResultList();
     }
     
@@ -74,7 +74,7 @@ privileged aspect TeamBuilding_Roo_Entity {
     }
     
     public static List<TeamBuilding> TeamBuilding.findTeamBuildingEntries(int firstResult, int maxResults, String username) {
-    	String query = "SELECT Distinct(o) FROM TeamBuilding o, Account a, Team t, UserTeam u where a.id=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
+    	String query = "SELECT Distinct(o) FROM TeamBuilding o, Team t, UserTeam u where o.account=t.account and t.id = u.teamId and u.username = '"+username+"' order by o.id desc";	
         return entityManager().createQuery(query, TeamBuilding.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
