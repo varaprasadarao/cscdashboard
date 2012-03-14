@@ -46,5 +46,15 @@
 			<type>2</type>
 			<location>C:/Users/tquazi/Desktop/test</location>
 		</link>
+		<link>
+			<name>bin-release1</name>
+			<type>2</type>
+			<location>C:/Users/tquazi/Desktop/test12</location>
+		</link>
+		<link>
+			<name>bin-release2</name>
+			<type>2</type>
+			<location>C:/Users/tquazi/Desktop/test123</location>
+		</link>
 	</linkedResources>
 </projectDescription>
