@@ -8,8 +8,14 @@
 		<![CDATA[
 		
 			import com.csc.dashboard.components.Header;
+			
 			import mx.controls.Alert;
 
+			protected function footerClickHandler(event:MouseEvent):void
+			{
+				Alert.show('For any feedback or help related to this tool please contact\n\n Tabrez Quazi (tquazi@csc.com)\n Bhuvnesh Chhibar (bchhibar@csc.com)\n[Team DuPont]', 'Contact Us / Feedback', mx.controls.Alert.OK);
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -25,11 +31,9 @@
 		</mx:filters>
 	</mx:VBox>    
 
-	<mx:VBox bottom="0" right="0" textAlign="center">
-		<mx:Button label="Contact Us / Feedback" click="Alert.show('For any feedback or help related to this tool please contact\n\n Tabrez Quazi (tquazi@csc.com)\n Bhuvnesh Chhibar (bchhibar@csc.com)\n[Team DuPont]', 'Contact Us / Feedback', mx.controls.Alert.OK);"/>	
-		<mx:filters>
-			<mx:GlowFilter blurX="22" blurY="22" color="#111111" alpha="0.6" />
-		</mx:filters>
+	<mx:VBox bottom="4" textAlign="center" x="{(this.width - 590)/2}" width="590" backgroundColor="WHITE" backgroundAlpha="0.8">
+		<mx:Label click="footerClickHandler(event)" htmlText="Concept : &lt;b&gt;Rajeev Sinha&lt;/b&gt; Implementation Idea : &lt;b&gt;Bhuvnesh Chhibar&lt;/b&gt; Designed and Developed : &lt;b&gt;Tabrez Quazi&lt;/b&gt;"/>
+	
 	</mx:VBox>	
 	
 	

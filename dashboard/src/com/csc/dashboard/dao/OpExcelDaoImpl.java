@@ -19,10 +19,10 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class OpExcelDaoImpl implements OpExcelDao {
 
-	public List<BillingEfficiency> getBillingEfficieny(int account, int month, int year) throws SQLException {
+	public List<BillingEfficiency> getBillingEfficieny(int account, int month) throws SQLException {
 		Map parameters = new HashMap();
 		parameters.put("account", account);
-		parameters.put("month", year*12 + month - 1);
+		parameters.put("month", month);
 		
 		
 		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
@@ -118,4 +118,27 @@ public class OpExcelDaoImpl implements OpExcelDao {
 		return li;
 	}
 
+	public List<BillingEfficiency> getTeamBillingEfficieny(int account, int month, int monthDur) throws SQLException {
+		Map parameters = new HashMap();
+		parameters.put("account", account);
+		parameters.put("monthStart", month-monthDur);
+		parameters.put("monthEnd", month);
+		
+		
+		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
+		List<BillingEfficiency> li = (List<BillingEfficiency>)sqlMap.queryForList("getTeamBillingEfficieny" , parameters);
+		return li;
+	}
+	public List<BillingEfficiency> getTeamAvgBillingEfficieny(int account, int month, int monthDur) throws SQLException {
+		Map parameters = new HashMap();
+		parameters.put("account", account);
+		parameters.put("monthStart", month-monthDur);
+		parameters.put("monthEnd", month);
+		
+		
+		SqlMapClient sqlMap = AppSqlmapConfig.getSqlMapInstance();
+		List<BillingEfficiency> li = (List<BillingEfficiency>)sqlMap.queryForList("getTeamAvgBillingEfficieny" , parameters);
+		return li;
+	}
+	
 }

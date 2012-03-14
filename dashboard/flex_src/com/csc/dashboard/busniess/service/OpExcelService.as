@@ -31,6 +31,10 @@ package com.csc.dashboard.busniess.service
 			return remoteObject.getBillingEfficieny(account, month, year);
 		}
 		
+		public function getTeamBillingEfficieny(account:Number,month:Number,year:Number,monthDiff:Number):AsyncToken {
+			return remoteObject.getTeamBillingEfficieny(account, month, year, monthDiff);
+		}
+		
 		public function getGradeMix(account:Number,month:Number,year:Number):AsyncToken {
 			return remoteObject.getGradeMix(account, month, year);
 		}

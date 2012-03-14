@@ -11,11 +11,21 @@ public class BillingEfficiency implements Serializable {
 	private static final long serialVersionUID = -342059693019218017L;
 	private int id;
 	private String month;
+	private int monthId;
 	private String team;
 	private int headCount;
 	private int maxPossibleBillingHrs;
 	private int billedHrs;
 	private double billingEfficiency;
+	
+	
+	
+	public int getMonthId() {
+		return monthId;
+	}
+	public void setMonthId(int monthId) {
+		this.monthId = monthId;
+	}
 	public int getId() {
 		return id;
 	}

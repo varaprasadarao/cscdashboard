@@ -12,24 +12,17 @@
 		<s:NavigatorContent label="Non Billability"  width="100%" height="100%">
 			<billing:NonBillability />
 		</s:NavigatorContent>
-		<s:NavigatorContent label="eManage Discrepancy" width="100%" height="100%" >
-			<billing:EManager/>
-			
-		</s:NavigatorContent>
 		<s:NavigatorContent label="Demand Forecast" width="100%" height="100%" >
 			<billing:DemandForecast/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="eTes Accuracy" width="100%" height="100%" >
 			<billing:ETesAccuracy/>
-			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Billing Efficiency" width="100%" height="100%" >
 			<billing:BillingEfficiency/>
-			
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Grade Mix" width="100%" height="100%" >
 			<billing:GradeMix/>
-			
 		</s:NavigatorContent>
 
 	</mx:ViewStack>

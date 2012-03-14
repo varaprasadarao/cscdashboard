@@ -2,12 +2,46 @@
 <s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"
+				   xmlns:csc="com.csc.dashboard.util.*"
 				   creationComplete="init()">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.chartClasses.Series;
+			import mx.collections.ArrayCollection;
+			
+			import org.as3commons.collections.Map;
+			import org.as3commons.lang.HashArray;
+			protected function compareClick(event:MouseEvent):void
+			{
+				column.visible = false;
+				dg.visible = false;
+				columnComp.visible = true;
+				compareButton.visible = false;
+				monthDurCB.visible = true;
+				backButton.visible = true;
+			}
+			
+			protected function backClick(event:MouseEvent):void
+			{
+				column.visible = true;
+				dg.visible = true;
+				columnComp.visible = false;;
+				compareButton.visible = true;
+				monthDurCB.visible = false;
+				backButton.visible = false;
+			}
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import com.csc.dashboard.util.Util;
+			import org.as3commons.lang.DateUtils;
+			import mx.charts.series.LineSeries;
 			import com.csc.dashboard.busniess.service.OpExcelService;
 			import com.csc.dashboard.events.AccountChangedEvent;
 			import com.csc.dashboard.events.Global;
@@ -26,6 +60,12 @@
 			private var _ac:ArrayCollection;
 			
 			[Bindable]
+			private var _compac:ArrayCollection;
+			
+			[Bindable]
+			var final1:ArrayCollection = new ArrayCollection();
+			
+			[Bindable]
 			public var months:ArrayCollection = new ArrayCollection(
 				[ {label:"Jan", data:1},
 					{label:"Feb", data:2},
@@ -39,6 +79,13 @@
 					{label:"Oct", data:10},
 					{label:"Nov", data:11},
 					{label:"Dec", data:12}]);
+			[Bindable]
+			public var monthDur:ArrayCollection = new ArrayCollection(
+				[ {label:"Last 3 Months", data:3},
+					{label:"Last 6 Months", data:6},
+					{label:"Last 12 Months", data:12},
+					{label:"Last 18 Months", data:18},
+					{label:"Last 24 Months", data:24}]);			
 			
 			[Bindable]
 			private var yearXML:XML = new XML;
@@ -49,8 +96,10 @@
 				var monthnum:Number = now.getMonth();
 				if(monthnum == 0){
 					monthCB.selectedIndex = 11;
+					yearCB.selectedIndex = yearCB.selectedIndex + 1;
 				}else{
 					monthCB.selectedIndex = now.getMonth() - 1;
+					
 				}
 				
 				Global.eventBus.addEventListener("accountChanged",accountCh);
@@ -81,13 +130,24 @@
 				Global.eventBus.dispatchEvent(new MonthChangedEvent("monthChanged",monthCB.selectedIndex,yearCB.selectedIndex));
 			}
 			
-			
+			private function changeCompEvt(event:Event):void {
+				reloadComp();
+			}
 			
 			private function reload():void {
 				_ac = null;
 				displayText.text = "Billing Efficiency for " + Global.accountLabel();								
 				var token:AsyncToken = service.getBillingEfficieny(parseInt(Global.accountId),monthCB.selectedIndex + 1,parseInt(yearCB.selectedLabel));
 				token.addResponder(new AsyncResponder(onResult, onFault));
+				reloadComp();
+			
+			}
+			
+			private function reloadComp():void {
+				var selItem:Number = monthDurCB.selectedItem['data'] as Number;
+				var comptoken:AsyncToken = service.getTeamBillingEfficieny(parseInt(Global.accountId),monthCB.selectedIndex + 1,parseInt(yearCB.selectedLabel), selItem);
+				comptoken.addResponder(new AsyncResponder(onCompResult, onCompFault));
+				
 			}
 			
 			private function onResult(event:ResultEvent, token:Object = null ):void {
@@ -95,6 +155,23 @@
 			}
 			
 			private function onFault(event:FaultEvent, token:Object = null ):void {
+				Alert.show('code : ' + event.fault.faultCode +
+					', message : ' + event.fault.faultString +
+					',detail : ' + event.fault.faultDetail);
+				trace(event);
+			}
+			private function onCompResult(event:ResultEvent, token:Object = null ):void {
+				_compac = event.result as ArrayCollection;
+				var year:Number = parseInt(yearCB.selectedLabel);
+				var month:Number = monthCB.selectedIndex;
+				var monthDur:Number = monthDurCB.selectedItem['data'] as Number;
+				columnComp.build(month, year, monthDur);
+			}
+		
+			
+			
+			
+			private function onCompFault(event:FaultEvent, token:Object = null ):void {
 				Alert.show('code : ' + event.fault.faultCode +
 					', message : ' + event.fault.faultString +
 					',detail : ' + event.fault.faultDetail);
@@ -111,8 +188,9 @@
 	<mx:Label id= "displayText" styleName="subHead" x="30" y="20"/>
 	<mx:ComboBox id="monthCB" dataProvider="{months}" x="695" y="20" change="changeEvt(event)"></mx:ComboBox>
 	<mx:ComboBox id="yearCB" dataProvider="{yearXML.year}" x="765" y="20" change="changeEvt(event)"></mx:ComboBox>
-	
-	
+	<s:Button id="compareButton" click="compareClick(event)" label="Compare" x="600" y="20"/>
+	<s:Button id="backButton" click="backClick(event)" label="Back" x="600" y="20" visible="false"/>
+	<mx:ComboBox id="monthDurCB" dataProvider="{monthDur}" x="695" y="50" change="changeEvt(event)" selectedIndex="1" visible="false"></mx:ComboBox>
 	<mx:DataGrid id="dg" color="0x323232" dataProvider="{_ac}" width="50%" height="75%" textAlign="center" x="20" y="70" variableRowHeight="true">
 		<mx:columns>
 			<mx:DataGridColumn dataField="team" headerText="Team" wordWrap="true" width="100"/>
@@ -139,5 +217,12 @@
 			<mx:ColumnSeries xField="team" yField="billingEfficiency" displayName="Billing Efficiency"/>
 		</mx:series>
 	</mx:ColumnChart>
+
+	
+	<csc:TeamComparision id="columnComp" height="100%" width="100%" x="20" y="70" visible="false"
+						 _compac="{_compac}" compField="billingEfficiency"/>
+						 
+	
+	
 	
 </s:BorderContainer>

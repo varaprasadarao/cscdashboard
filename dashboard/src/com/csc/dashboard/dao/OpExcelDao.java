@@ -24,7 +24,11 @@ public interface OpExcelDao {
 	
 	public List<ETesAccuracy> getETesAccuracy(int account, int month, int year) throws SQLException;
 	
-	public List<BillingEfficiency> getBillingEfficieny(int account, int month, int year) throws SQLException;
+	public List<BillingEfficiency> getBillingEfficieny(int account, int month) throws SQLException;
+	
+	public List<BillingEfficiency> getTeamBillingEfficieny(int account, int month, int monthDur) throws SQLException;
+	
+	public List<BillingEfficiency> getTeamAvgBillingEfficieny(int account, int month, int monthDur) throws SQLException;
 	
 	public List<GradeMix> getGradeMix(int account, int month, int year) throws SQLException;
 	

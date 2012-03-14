@@ -87,17 +87,32 @@ PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
         <result property="headCount" column="head_count" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="maxPossibleBillingHrs" column="max_possible_billing_hrs" jdbcType="int" javaType="int" nullValue="0"/>
         <result property="billedHrs" column="billed_hrs" jdbcType="int" javaType="int" nullValue="0"/>
+        <result property="monthId" column="monthid" jdbcType="int" javaType="int" nullValue="0"/>
     </resultMap>
         
     <select id="getBillingEfficieny" parameterClass="java.util.Map" resultMap="resultBillingEfficieny">
-        select t.id, t.name as team, b.head_count, b.max_possible_billing_hrs, b.billed_hrs  
+        select t.id, t.name as team, b.head_count, b.max_possible_billing_hrs, b.billed_hrs, b.monthid  
 			from team t left join billing b on t.id = b.team 
 			where (b.monthId = #month# or b.monthId is null) and t.account = #account# 
 			order by t.disp_order; 
     </select>
     
+ 
+ 
     
+	<select id="getTeamBillingEfficieny" parameterClass="java.util.Map" resultMap="resultBillingEfficieny">
+        <![CDATA[select t.id, t.name as team, b.max_possible_billing_hrs, b.billed_hrs, b.monthid, b.head_count 
+			from team t left join billing b on t.id = b.team 
+			where b.monthId > #monthStart# and b.monthId <= #monthEnd#  and t.account = #account# 
+			order by t.disp_order; ]]>
+    </select>
     
+    <select id="getTeamAvgBillingEfficieny" parameterClass="java.util.Map" resultMap="resultBillingEfficieny">
+        <![CDATA[select '0' as id, '' as team, '0' as head_count, avg(max_possible_billing_hrs) as max_possible_billing_hrs, avg(billed_hrs) as billed_hrs, monthId  
+			from billing 
+			where monthId > #monthStart# and monthId <= #monthEnd#  and team in (select id from team where account = #account#) group by monthId 
+			]]>
+    </select>
     
     
     <resultMap id="resultGradeMix" class="com.csc.dashboard.domain.GradeMix">

@@ -1,6 +1,7 @@
 package com.csc.dashboard.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.csc.dashboard.Utils;
@@ -176,9 +177,57 @@ public class OpExcelService {
 		
 		return res;
 	}
-	
+	public List<BillingEfficiency> getTeamBillingEfficieny(int account, int month, int year, int monthDiff) throws SQLException{
+		
+		List<BillingEfficiency> res = new ArrayList<BillingEfficiency>();
+		
+		try{
+		System.out.println("Team Effi" + monthDiff);
+		
+		res = opExcelDao.getTeamBillingEfficieny(account, year*12 + month - 1, monthDiff);
+		
+		for(BillingEfficiency bill:res){
+			bill.setMonth(Utils.getFormatedMonth(bill.getMonthId()));
+			if(bill.getMaxPossibleBillingHrs()==0){
+				bill.setBillingEfficiency(0);
+			}else{
+				bill.setBillingEfficiency(Utils.roundDecimal((double)(bill.getBilledHrs()*100)/bill.getMaxPossibleBillingHrs()));
+			}
+		}
+		
+		List<BillingEfficiency> resNew = opExcelDao.getTeamAvgBillingEfficieny(account, year*12 + month - 1, monthDiff);
+		
+		for(BillingEfficiency bill:resNew){
+			bill.setTeam("Overall");
+			bill.setMonth(Utils.getFormatedMonth(bill.getMonthId()));
+			if(bill.getMaxPossibleBillingHrs()==0){
+				bill.setBillingEfficiency(0);
+			}else{
+				bill.setBillingEfficiency(Utils.roundDecimal((double)(bill.getBilledHrs()*100)/bill.getMaxPossibleBillingHrs()));
+			}
+		}
+		res.addAll(resNew);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return res;
+	}
 	public List<BillingEfficiency> getBillingEfficieny(int account, int month, int year) throws SQLException{
-		List<BillingEfficiency> res = opExcelDao.getBillingEfficieny(account, month, year);
+		
+		System.out.println("Lonely");
+		List<BillingEfficiency> res = opExcelDao.getBillingEfficieny(account, year*12 + month - 1);
 		if(res !=null && res.size() != 0){
 			int totalPossibleHrs = 0;
 			int totalBilledHrs = 0;
@@ -249,7 +298,7 @@ public class OpExcelService {
 	}
 	
 	
-	
+
 	
 	public List<Margins> getMargins(int account, int month, int year) throws SQLException{
 		List<Margins> res = opExcelDao.getMargins(account, month, year);
